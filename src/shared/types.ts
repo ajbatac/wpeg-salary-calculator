@@ -40,7 +40,7 @@ export interface SalaryBreakdown {
   payFrequency: PayFrequency;
 }
 
-// 2025 Tax Brackets and Rates
+// 2026 Tax Brackets and Rates
 export const FEDERAL_TAX_BRACKETS: TaxBracket[] = [
   { min: 0, max: 55867, rate: 0.15 },
   { min: 55867, max: 111733, rate: 0.205 },
@@ -55,7 +55,7 @@ export const MANITOBA_TAX_BRACKETS: TaxBracket[] = [
   { min: 79625, max: null, rate: 0.174 },
 ];
 
-// 2025 CPP and EI Rates
+// 2026 CPP and EI Rates
 export const CPP_RATE = 0.0595;
 export const CPP_MAX_EARNINGS = 68500;
 export const CPP_BASIC_EXEMPTION = 3500;

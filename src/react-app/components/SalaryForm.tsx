@@ -39,29 +39,34 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
       <div className="space-y-6">
         {/* Gross Salary */}
         <div>
-          <label className="block text-sm font-semibold text-foreground mb-2">
+          <label htmlFor="gross-salary" className="block text-sm font-semibold text-foreground mb-2">
             <DollarSign className="w-4 h-4 inline mr-1" />
             Gross Salary
           </label>
           <input
+            id="gross-salary"
             type="number"
             value={input.grossSalary}
             onChange={(e) => handleInputChange('grossSalary', e.target.value)}
             className="w-full theme-input text-lg font-medium text-foreground placeholder:text-muted-foreground"
             placeholder="Enter your gross salary"
+            aria-label="Gross Salary"
+            aria-required="true"
           />
         </div>
 
         {/* Pay Frequency */}
         <div>
-          <label className="block text-sm font-semibold text-foreground mb-2">
+          <label htmlFor="pay-frequency" className="block text-sm font-semibold text-foreground mb-2">
             <Calendar className="w-4 h-4 inline mr-1" />
             Pay Frequency
           </label>
           <select
+            id="pay-frequency"
             value={input.payFrequency}
             onChange={(e) => handleInputChange('payFrequency', e.target.value as PayFrequency)}
             className="w-full theme-input text-lg font-medium text-foreground"
+            aria-label="Pay Frequency"
           >
             <option value="annual">Annual</option>
             <option value="monthly">Monthly</option>
@@ -72,14 +77,16 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
 
         {/* Employment Type */}
         <div>
-          <label className="block text-sm font-semibold text-foreground mb-2">
+          <label htmlFor="employment-type" className="block text-sm font-semibold text-foreground mb-2">
             <Briefcase className="w-4 h-4 inline mr-1" />
             Employment Type
           </label>
           <select
+            id="employment-type"
             value={input.employmentType}
             onChange={(e) => handleInputChange('employmentType', e.target.value as EmploymentType)}
-            className="w-full clay-input text-lg font-medium text-foreground"
+            className="w-full theme-input text-lg font-medium text-foreground"
+            aria-label="Employment Type"
           >
             <option value="full-time">Full-time</option>
             <option value="part-time">Part-time</option>
@@ -90,7 +97,9 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
         {/* Advanced Options Toggle */}
         <button
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className="flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors theme-button bg-transparent"
+          className="flex items-center gap-2 px-6 py-3 text-primary hover:text-primary/80 font-medium transition-all duration-300 theme-button hover:scale-105"
+          aria-expanded={showAdvanced}
+          aria-controls="advanced-options"
         >
           {showAdvanced ? (
             <Minus className="w-4 h-4" />
@@ -102,56 +111,64 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
 
         {/* Advanced Options */}
         {showAdvanced && (
-          <div className="space-y-4 pt-4 border-t border-white/10">
+          <div id="advanced-options" className="space-y-4 pt-4 border-t border-white/10">
             <div>
-              <label className="block text-sm font-semibold text-foreground mb-2">
+              <label htmlFor="additional-income" className="block text-sm font-semibold text-foreground mb-2">
                 Additional Income (bonuses, overtime)
               </label>
               <input
+                id="additional-income"
                 type="number"
                 value={input.additionalIncome}
                 onChange={(e) => handleInputChange('additionalIncome', e.target.value)}
                 className="w-full theme-input text-foreground placeholder:text-muted-foreground"
                 placeholder="0"
+                aria-label="Additional Income"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-foreground mb-2">
+              <label htmlFor="rrsp-contributions" className="block text-sm font-semibold text-foreground mb-2">
                 RRSP Contributions
               </label>
               <input
+                id="rrsp-contributions"
                 type="number"
                 value={input.rrspContributions}
                 onChange={(e) => handleInputChange('rrspContributions', e.target.value)}
-                className="w-full clay-input text-foreground placeholder:text-muted-foreground"
+                className="w-full theme-input text-foreground placeholder:text-muted-foreground"
                 placeholder="0"
+                aria-label="RRSP Contributions"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-foreground mb-2">
+              <label htmlFor="union-dues" className="block text-sm font-semibold text-foreground mb-2">
                 Union Dues
               </label>
               <input
+                id="union-dues"
                 type="number"
                 value={input.unionDues}
                 onChange={(e) => handleInputChange('unionDues', e.target.value)}
-                className="w-full clay-input text-foreground placeholder:text-muted-foreground"
+                className="w-full theme-input text-foreground placeholder:text-muted-foreground"
                 placeholder="0"
+                aria-label="Union Dues"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-foreground mb-2">
+              <label htmlFor="other-deductions" className="block text-sm font-semibold text-foreground mb-2">
                 Other Deductions
               </label>
               <input
+                id="other-deductions"
                 type="number"
                 value={input.otherDeductions}
                 onChange={(e) => handleInputChange('otherDeductions', e.target.value)}
-                className="w-full clay-input text-foreground placeholder:text-muted-foreground"
+                className="w-full theme-input text-foreground placeholder:text-muted-foreground"
                 placeholder="0"
+                aria-label="Other Deductions"
               />
             </div>
           </div>

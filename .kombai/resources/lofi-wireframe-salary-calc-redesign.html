@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winnipeg Salary Calculator - Redesign Wireframe</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: #fff;
+      color: #333;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    .wireframe-title {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 3px solid #333;
+    }
+    
+    .wireframe-title h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    
+    .wireframe-title p {
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .box {
+      border: 2px solid #333;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: #f9f9f9;
+      position: relative;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 20px;
+      border: 2px solid #333;
+      margin-bottom: 30px;
+      background: #f5f5f5;
+    }
+    
+    .icon-box {
+      width: 50px;
+      height: 50px;
+      border: 2px solid #666;
+      background: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    .sticky-calc {
+      position: sticky;
+      top: 20px;
+      border: 3px solid #333;
+      background: #fff;
+      padding: 20px;
+    }
+    
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    
+    .form-field {
+      margin-bottom: 15px;
+    }
+    
+    .form-field label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    
+    .input-box {
+      width: 100%;
+      height: 40px;
+      border: 2px solid #666;
+      background: #fff;
+      padding: 5px 10px;
+    }
+    
+    .button {
+      padding: 10px 20px;
+      border: 2px solid #333;
+      background: #ddd;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .stat-card {
+      border: 2px solid #666;
+      padding: 15px;
+      text-align: center;
+      background: #f5f5f5;
+    }
+    
+    .stat-card .value {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    
+    .tab-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+    
+    .tab {
+      padding: 8px 16px;
+      border: 2px solid #666;
+      background: #f0f0f0;
+      cursor: pointer;
+    }
+    
+    .tab.active {
+      background: #333;
+      color: #fff;
+    }
+    
+    .accordion-item {
+      border: 2px solid #666;
+      margin-bottom: 10px;
+      background: #f9f9f9;
+    }
+    
+    .accordion-header {
+      padding: 12px;
+      background: #e0e0e0;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .accordion-content {
+      padding: 15px;
+      display: none;
+    }
+    
+    .badge {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      z-index: 10;
+    }
+    
+    .badge-reuse {
+      background: #4CAF50;
+      color: white;
+    }
+    
+    .badge-new {
+      background: #FF9800;
+      color: white;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 30px;
+      border: 2px solid #333;
+      position: relative;
+      background: #fff;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        #ccc,
+        #ccc 10px,
+        #999 10px,
+        #999 20px
+      );
+    }
+    
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      
+      .sticky-calc {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wireframe-title">
+    <h1>Winnipeg Salary Calculator - Redesign Wireframe</h1>
+    <p>Streamlined layout with improved information architecture and sticky calculator for better UX</p>
+  </div>
+
+  <div class="container">
+    <!-- REUSABLE: Header structure similar to current implementation -->
+    <div class="header" style="position: relative;">
+      <span class="badge badge-reuse" title="Reuse header structure from src/react-app/pages/Home.tsx">[REUSE] Header</span>
+      <div class="icon-box">LOGO</div>
+      <div>
+        <div style="font-size: 18px; font-weight: bold;">WPEG: Winnipeg Salary Calculator 2025</div>
+        <div style="font-size: 12px; color: #666;">📍 Manitoba, Canada</div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="box" style="position: relative; text-align: center; padding: 40px 20px;">
+      <span class="badge badge-reuse" title="Reuse content from src/react-app/pages/Home.tsx:52-93">[REUSE] Hero Content</span>
+      <h2 style="font-size: 32px; margin-bottom: 15px;">Calculate Your Net Take-Home Pay</h2>
+      <p style="font-size: 16px; color: #666; margin-bottom: 20px;">
+        Get accurate calculations for your salary after federal and Manitoba provincial taxes
+      </p>
+      
+      <!-- Quick Jump Pills -->
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <div style="padding: 8px 16px; border: 2px solid #666; border-radius: 20px; background: #f0f0f0;">💡 Tax Rates</div>
+        <div style="padding: 8px 16px; border: 2px solid #666; border-radius: 20px; background: #f0f0f0;">🧮 Calculator</div>
+        <div style="padding: 8px 16px; border: 2px solid #666; border-radius: 20px; background: #f0f0f0;">📊 Breakdown</div>
+        <div style="padding: 8px 16px; border: 2px solid #666; border-radius: 20px; background: #f0f0f0;">☕ Insights</div>
+      </div>
+    </div>
+
+    <!-- Main Two-Column Layout -->
+    <div class="grid-2">
+      <!-- Left Column: Sticky Calculator -->
+      <div>
+        <!-- NEW COMPONENT: Sticky calculator card for better accessibility -->
+        <div class="sticky-calc" style="position: relative;">
+          <span class="badge badge-new" title="Create sticky calculator at src/react-app/components/StickyCalculator.tsx">[NEW] StickyCalculator</span>
+          
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+            <div class="icon-box" style="width: 40px; height: 40px;">🧮</div>
+            <h3 style="font-size: 20px;">Salary Calculator</h3>
+          </div>
+
+          <!-- REUSABLE: Form inputs from SalaryForm -->
+          <div style="position: relative;">
+            <span class="badge badge-reuse" title="Reuse from src/react-app/components/SalaryForm.tsx">[REUSE] Form Inputs</span>
+            
+            <div class="form-field">
+              <label>💰 Gross Salary</label>
+              <div class="input-box">[Input: 65000]</div>
+            </div>
+
+            <div class="form-field">
+              <label>📅 Pay Frequency</label>
+              <div class="input-box">[Select: Annual ▼]</div>
+            </div>
+
+            <div class="form-field">
+              <label>💼 Employment Type</label>
+              <div class="input-box">[Select: Full-time ▼]</div>
+            </div>
+
+            <button class="button" style="width: 100%; margin-top: 10px;">+ Show Additional Options</button>
+          </div>
+
+          <!-- NEW COMPONENT: Quick Summary Stats -->
+          <div style="position: relative; margin-top: 20px; padding-top: 20px; border-top: 2px dashed #999;">
+            <span class="badge badge-new" title="Create at src/react-app/components/QuickSummary.tsx">[NEW] QuickSummary</span>
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+              <span style="font-weight: bold;">Gross Annual:</span>
+              <span>$65,000</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+              <span style="font-weight: bold;">Total Deductions:</span>
+              <span style="color: #d00;">-$22,530</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 2px solid #333;">
+              <span style="font-weight: bold; font-size: 18px;">Net Take-Home:</span>
+              <span style="font-weight: bold; font-size: 18px;">$42,470</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEW COMPONENT: Interactive Tax Rate Accordion -->
+        <div class="box" style="position: relative; margin-top: 20px;">
+          <span class="badge badge-new" title="Create at src/react-app/components/TaxRateAccordion.tsx">[NEW] TaxRateAccordion</span>
+          
+          <h3 style="margin-bottom: 15px;">💡 2025 Tax Rates Reference</h3>
+          
+          <div class="accordion-item">
+            <div class="accordion-header">
+              Federal Tax Brackets
+              <span>▼</span>
+            </div>
+            <div class="accordion-content">
+              <div>[Federal tax bracket table]</div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              Manitoba Provincial Tax
+              <span>▼</span>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              CPP & EI Rates
+              <span>▼</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Results & Insights -->
+      <div>
+        <!-- NEW COMPONENT: Tabbed Results View -->
+        <div class="box" style="position: relative;">
+          <span class="badge badge-new" title="Create at src/react-app/components/TabbedResults.tsx">[NEW] TabbedResults</span>
+          
+          <div class="tab-nav">
+            <div class="tab active">📊 Breakdown</div>
+            <div class="tab">☕ Perspectives</div>
+            <div class="tab">🎯 Comparisons</div>
+          </div>
+
+          <!-- Tab 1: Breakdown -->
+          <div>
+            <!-- REUSABLE: Summary Cards -->
+            <div class="grid-2" style="position: relative; margin-bottom: 20px;">
+              <span class="badge badge-reuse" title="Reuse from src/react-app/components/SalaryBreakdown.tsx:49-78">[REUSE] Summary Cards</span>
+              
+              <div class="stat-card">
+                <div style="font-size: 12px; color: #666;">Gross Income</div>
+                <div class="value">$65,000</div>
+                <div style="font-size: 12px;">per year</div>
+              </div>
+
+              <div class="stat-card">
+                <div style="font-size: 12px; color: #666;">Net Take-Home</div>
+                <div class="value" style="color: #0a0;">$42,470</div>
+                <div style="font-size: 12px;">per year</div>
+              </div>
+            </div>
+
+            <!-- NEW COMPONENT: Visual Deduction Breakdown -->
+            <div style="position: relative; margin-bottom: 20px;">
+              <span class="badge badge-new" title="Create at src/react-app/components/VisualBreakdown.tsx">[NEW] VisualBreakdown</span>
+              
+              <h4 style="margin-bottom: 10px;">Deduction Breakdown</h4>
+              
+              <div class="progress-bar" style="margin-bottom: 5px;">
+                <div class="progress-fill" style="width: 45%; background: #f88;"></div>
+              </div>
+              <div style="font-size: 12px; margin-bottom: 10px;">■ Federal Tax (45%)</div>
+
+              <div class="progress-bar" style="margin-bottom: 5px;">
+                <div class="progress-fill" style="width: 34%; background: #fa8;"></div>
+              </div>
+              <div style="font-size: 12px; margin-bottom: 10px;">■ Provincial Tax (34%)</div>
+
+              <div class="progress-bar" style="margin-bottom: 5px;">
+                <div class="progress-fill" style="width: 16%; background: #8af;"></div>
+              </div>
+              <div style="font-size: 12px; margin-bottom: 10px;">■ CPP (16%)</div>
+
+              <div class="progress-bar" style="margin-bottom: 5px;">
+                <div class="progress-fill" style="width: 5%; background: #8f8;"></div>
+              </div>
+              <div style="font-size: 12px;">■ EI (5%)</div>
+            </div>
+
+            <!-- REUSABLE: Detailed Breakdown List -->
+            <div style="position: relative;">
+              <span class="badge badge-reuse" title="Reuse from src/react-app/components/SalaryBreakdown.tsx:115-136">[REUSE] Breakdown List</span>
+              
+              <div style="border: 2px solid #f88; background: #fee; padding: 10px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Federal Tax</span>
+                  <span>$10,252</span>
+                </div>
+              </div>
+
+              <div style="border: 2px solid #fa8; background: #fed; padding: 10px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Provincial Tax</span>
+                  <span>$7,569</span>
+                </div>
+              </div>
+
+              <div style="border: 2px solid #8af; background: #eff; padding: 10px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>CPP</span>
+                  <span>$3,659</span>
+                </div>
+              </div>
+
+              <div style="border: 2px solid #8f8; background: #efe; padding: 10px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>EI</span>
+                  <span>$1,049</span>
+                </div>
+              </div>
+
+              <div style="border: 3px solid #f00; background: #fee; padding: 10px; font-weight: bold;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>TOTAL DEDUCTIONS</span>
+                  <span>$22,530</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEW COMPONENT: Perspective Cards Grid -->
+        <div class="grid-3" style="position: relative; margin-top: 20px;">
+          <span class="badge badge-new" title="Create at src/react-app/components/PerspectiveCard.tsx">[NEW] PerspectiveCard</span>
+          
+          <div class="box" style="text-align: center; padding: 15px;">
+            <div class="icon-box" style="margin: 0 auto 10px;">☕</div>
+            <div style="font-weight: bold; margin-bottom: 5px;">Coffee Coin</div>
+            <div style="font-size: 20px; margin: 10px 0;">1,037</div>
+            <div style="font-size: 12px; color: #666;">cappuccinos/year</div>
+          </div>
+
+          <div class="box" style="text-align: center; padding: 15px;">
+            <div class="icon-box" style="margin: 0 auto 10px;">🏠</div>
+            <div style="font-weight: bold; margin-bottom: 5px;">Rent Ratio</div>
+            <div style="font-size: 20px; margin: 10px 0;">24.9%</div>
+            <div style="font-size: 12px; color: #666;">of gross income</div>
+          </div>
+
+          <div class="box" style="text-align: center; padding: 15px;">
+            <div class="icon-box" style="margin: 0 auto 10px;">📅</div>
+            <div style="font-weight: bold; margin-bottom: 5px;">Tax Months</div>
+            <div style="font-size: 20px; margin: 10px 0;">16.7</div>
+            <div style="font-size: 12px; color: #666;">months of rent</div>
+          </div>
+        </div>
+
+        <!-- REUSABLE: Winnipeg Context Cards -->
+        <div class="box" style="position: relative; margin-top: 20px;">
+          <span class="badge badge-reuse" title="Reuse trivia content from src/react-app/pages/Home.tsx:230-273">[REUSE] Context Cards</span>
+          
+          <h3 style="margin-bottom: 15px;">🌟 Winnipeg Context</h3>
+          
+          <div style="padding: 15px; border: 2px dashed #999; background: #f9f9f9; margin-bottom: 10px;">
+            <strong>Rent-to-Income Snapshot</strong>
+            <p style="font-size: 14px; margin-top: 5px; color: #666;">
+              Average rent comparison and affordability context...
+            </p>
+          </div>
+
+          <div style="padding: 15px; border: 2px dashed #999; background: #f9f9f9;">
+            <strong>Fun Fact: Slurpee Capital Math</strong>
+            <p style="font-size: 14px; margin-top: 5px; color: #666;">
+              Winnipeg trivia and salary perspectives...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW COMPONENT: "What Could You Buy" Comparison Grid -->
+    <div class="box" style="position: relative; margin-top: 30px;">
+      <span class="badge badge-new" title="Create at src/react-app/components/ComparisonGrid.tsx">[NEW] ComparisonGrid</span>
+      
+      <h3 style="margin-bottom: 20px;">💰 What Your $22,530 Deductions Could Buy</h3>
+      
+      <div class="grid-3">
+        <div style="border: 2px solid #666; padding: 15px; background: #f9f9f9;">
+          <div style="font-size: 24px; margin-bottom: 5px;">🏠</div>
+          <strong>Down Payment</strong>
+          <p style="font-size: 12px; color: #666; margin-top: 5px;">
+            Minimum on a $500K home
+          </p>
+        </div>
+
+        <div style="border: 2px solid #666; padding: 15px; background: #f9f9f9;">
+          <div style="font-size: 24px; margin-bottom: 5px;">🚗</div>
+          <strong>New Compact Car</strong>
+          <p style="font-size: 12px; color: #666; margin-top: 5px;">
+            Brand new vehicle
+          </p>
+        </div>
+
+        <div style="border: 2px solid #666; padding: 15px; background: #f9f9f9;">
+          <div style="font-size: 24px; margin-bottom: 5px;">✈️</div>
+          <strong>World Trip</strong>
+          <p style="font-size: 12px; color: #666; margin-top: 5px;">
+            For two people
+          </p>
+        </div>
+
+        <div style="border: 2px solid #666; padding: 15px; background: #f9f9f9;">
+          <div style="font-size: 24px; margin-bottom: 5px;">💻</div>
+          <strong>5 MacBook Pros</strong>
+          <p style="font-size: 12px; color: #666; margin-top: 5px;">
+            High-end M4 models
+          </p>
+        </div>
+
+        <div style="border: 2px solid #666; padding: 15px; background: #f9f9f9;">
+          <div style="font-size: 24px; margin-bottom: 5px;">🎓</div>
+          <strong>4-Year Degree</strong>
+          <p style="font-size: 12px; color: #666; margin-top: 5px;">
+            U of Manitoba tuition
+          </p>
+        </div>
+
+        <div style="border: 2px solid #666; padding: 15px; background: #f9f9f9;">
+          <div style="font-size: 24px; margin-bottom: 5px;">🚐</div>
+          <strong>Camper Van</strong>
+          <p style="font-size: 12px; color: #666; margin-top: 5px;">
+            For prairie road trips
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- REUSABLE: Footer -->
+    <div class="box" style="position: relative; margin-top: 30px;">
+      <span class="badge badge-reuse" title="Reuse from src/react-app/pages/Home.tsx:398-418">[REUSE] Footer Info</span>
+      
+      <h3 style="margin-bottom: 15px;">📋 Important Notes</h3>
+      
+      <div class="grid-2">
+        <div>
+          <strong>Accuracy</strong>
+          <p style="font-size: 13px; color: #666; margin-top: 5px;">
+            Uses 2025 rates. Estimates only.
+          </p>
+        </div>
+        <div>
+          <strong>Privacy</strong>
+          <p style="font-size: 13px; color: #666; margin-top: 5px;">
+            All local. No data stored.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 40px; padding: 20px; border-top: 3px solid #333; color: #666;">
+    <p style="font-size: 14px;">
+      <strong>Key Improvements:</strong> Sticky calculator for easy access • Tabbed results for better organization • 
+      Accordion for collapsible tax info • Visual progress bars for deductions • Improved mobile responsiveness
+    </p>
+  </div>
+</body>
+</html>

@@ -1,5 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
 
+/* Font fallbacks in case Google Fonts fails */
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local('Arial'), local('Helvetica'), local('sans-serif');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora Fallback';
+  src: local('Georgia'), local('Times New Roman'), local('serif');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fira Code Fallback';
+  src: local('Courier New'), local('monospace');
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,9 +57,9 @@
     --sidebar-accent-foreground: #4b2e36;
     --sidebar-border: #d7d2e0;
     --sidebar-ring: #8a79ab;
-    --font-sans: Geist, sans-serif;
-    --font-serif: "Lora", Georgia, serif;
-    --font-mono: "Fira Code", "Courier New", monospace;
+    --font-sans: Geist, 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-serif: "Lora", 'Lora Fallback', Georgia, 'Times New Roman', serif;
+    --font-mono: "Fira Code", 'Fira Code Fallback', 'Courier New', Consolas, Monaco, monospace;
     --radius: 0.5rem;
     --shadow-2xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
     --shadow-xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
@@ -87,9 +106,9 @@
     --sidebar-accent-foreground: #f2b8c6;
     --sidebar-border: #2a273a;
     --sidebar-ring: #a995c9;
-    --font-sans: Geist, sans-serif;
-    --font-serif: "Lora", Georgia, serif;
-    --font-mono: "Fira Code", "Courier New", monospace;
+    --font-sans: Geist, 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-serif: "Lora", 'Lora Fallback', Georgia, 'Times New Roman', serif;
+    --font-mono: "Fira Code", 'Fira Code Fallback', 'Courier New', Consolas, Monaco, monospace;
     --radius: 0.5rem;
     --shadow-2xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
     --shadow-xs: 1px 2px 5px 1px hsl(0 0% 0% / 0.03);
@@ -110,6 +129,146 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Visible focus indicators for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius);
+  }
+  
+  /* Skip link for keyboard navigation */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 100;
+    border-radius: 0 0 var(--radius) 0;
+    font-weight: 600;
+  }
+  
+  .skip-link:focus {
+    top: 0;
+  }
+}
+
+/* Print styles */
+@media print {
+  /* Hide interactive elements */
+  .print\:hidden,
+  .skip-link,
+  button:not(.print\:block),
+  nav,
+  .navigation-pills {
+    display: none !important;
+  }
+  
+  /* Reset page colors for print */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  /* Remove shadows and borders for cleaner print */
+  .theme-surface,
+  .theme-card,
+  .theme-button {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    background: white !important;
+  }
+  
+  /* Ensure proper page breaks */
+  .theme-card {
+    page-break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+  
+  /* Remove animations and transitions */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* Make text black for better readability */
+  h1, h2, h3, h4, h5, h6, p, span, div {
+    color: black !important;
+  }
+  
+  /* Keep important colors for deduction badges */
+  [class*="bg-red"] {
+    background-color: #fee !important;
+    border: 1px solid #fcc !important;
+  }
+  
+  [class*="bg-orange"] {
+    background-color: #ffd !important;
+    border: 1px solid #fc8 !important;
+  }
+  
+  [class*="bg-blue"] {
+    background-color: #eff !important;
+    border: 1px solid #8cf !important;
+  }
+  
+  [class*="bg-green"] {
+    background-color: #efe !important;
+    border: 1px solid #8c8 !important;
+  }
+  
+  /* Header adjustments */
+  header {
+    border-bottom: 2px solid #000 !important;
+    margin-bottom: 1rem;
+  }
+  
+  /* Grid layouts */
+  .grid {
+    display: grid !important;
+  }
+  
+  /* Ensure links show URLs in print */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+  
+  /* Page margins */
+  @page {
+    margin: 2cm;
+    size: letter;
+  }
+  
+  /* Print-specific utilities */
+  .print\:block {
+    display: block !important;
+  }
+  
+  .print\:static {
+    position: static !important;
+  }
+  
+  .print\:border-none {
+    border: none !important;
+  }
+  
+  .print\:shadow-none {
+    box-shadow: none !important;
   }
 }
 

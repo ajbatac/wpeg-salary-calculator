@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, MapPin } from 'lucide-react';
 import { SalaryBreakdown } from '@/shared/types';
 
@@ -92,11 +93,11 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
             <p className="text-sm text-muted-foreground">Effective Tax Rate</p>
             <p className="text-2xl font-bold text-foreground">{effectiveTaxRate}%</p>
           </div>
-          <div className="text-center p-4 clay-surface rounded-2xl border border-white/10">
+          <div className="text-center p-4 theme-surface rounded-[var(--radius)] border border-border">
             <p className="text-sm text-muted-foreground">Total Deductions</p>
             <p className="text-2xl font-bold text-foreground">{totalDeductionRate}%</p>
           </div>
-          <div className="text-center p-4 clay-surface rounded-2xl border border-white/10">
+          <div className="text-center p-4 theme-surface rounded-[var(--radius)] border border-border">
             <p className="text-sm text-muted-foreground">Net Rate</p>
             <p className="text-2xl font-bold text-green-400">{(100 - parseFloat(totalDeductionRate)).toFixed(1)}%</p>
           </div>
@@ -144,9 +145,9 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
           <h3 className="text-xl font-bold text-foreground font-serif">Deduction Perspective</h3>
         </div>
 
-        <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+        <div className="space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
           <p>
-            Federal income tax of <strong className="text-foreground">{formatCurrency(breakdown.federalTax)} a year</strong> is roughly equal to <strong className="text-primary">{Math.round(breakdown.federalTax / 1353)} months</strong> of average city rent (the median apartment sat at C$1,353 in August 2025), so your federal bill alone could keep a typical one-bedroom roof overhead from January through {(() => {
+            Federal income tax of <strong className="text-foreground">{formatCurrency(breakdown.federalTax)} a year</strong> is roughly equal to <strong className="text-primary">{Math.round(breakdown.federalTax / 1353)} months</strong> of average city rent (the median apartment sat at C$1,353 in August 2026), so your federal bill alone could keep a typical one-bedroom roof overhead from January through {(() => {
               const months = Math.round(breakdown.federalTax / 1353);
               const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
               return monthNames[Math.min(months - 1, 11)];
@@ -171,7 +172,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
         </div>
 
         {/* Winnipeg Salary Trivia */}
-        {(() => {
+        {useMemo(() => {
           const triviaFacts = [
             "Winnipeg has more trees per capita than any other prairie city, with over 400,000 boulevard trees—that's roughly one tree for every two residents.",
             "The city's underground walkway system spans 30 blocks, originally built in the 1970s to help workers escape winter temperatures that can drop to -40°C.",
@@ -217,22 +218,22 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
             <div className={`mt-6 p-6 rounded-[var(--radius)] border backdrop-blur-sm ${selectedColor} hover:scale-[1.01] transition-all duration-300`}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-3 bg-white/20 rounded-[var(--radius)] shadow-lg">
-                  <MapPin className="w-5 h-5 text-slate-900" />
+                  <MapPin className="w-5 h-5 text-slate-900 dark:text-slate-100" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 font-serif">Winnipeg Trivia</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 font-serif">Winnipeg Trivia</h3>
               </div>
               
-              <div className="text-sm text-slate-900 leading-relaxed">
-                <p className="font-medium text-slate-900">
+              <div className="text-sm text-slate-900 dark:text-slate-100 leading-relaxed">
+                <p className="font-medium text-slate-900 dark:text-slate-100">
                   {selectedTrivia}
                 </p>
-                <p className="mt-3 text-xs italic text-slate-700">
+                <p className="mt-3 text-xs italic text-slate-700 dark:text-slate-200">
                   Refresh the page to see another fun fact about Canada's most interesting prairie city.
                 </p>
               </div>
             </div>
           );
-        })()}
+        }, [])}
       </div>
     </div>
   );

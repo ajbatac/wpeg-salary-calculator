@@ -1,9 +1,45 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { MapPin, Calculator, Info, TrendingDown, DollarSign } from 'lucide-react';
 import SalaryForm from '@/react-app/components/SalaryForm';
 import SalaryBreakdownComponent from '@/react-app/components/SalaryBreakdown';
+import DarkModeToggle from '@/react-app/components/DarkModeToggle';
+import ShareButton from '@/react-app/components/ShareButton';
 import { SalaryInput, SalaryBreakdown } from '@/shared/types';
 import { calculateSalary } from '@/react-app/utils/salaryCalculator';
+
+const federalTaxBrackets = [
+  { range: 'Up to $55,867', rate: '15%' },
+  { range: '$55,867 – $111,733', rate: '20.5%' },
+  { range: '$111,733 – $173,205', rate: '26%' },
+  { range: '$173,205 – $246,752', rate: '29%' },
+  { range: 'Above $246,752', rate: '33%' },
+];
+
+const manitobaTaxBrackets = [
+  { range: 'Up to $36,842', rate: '10.8%' },
+  { range: '$36,843 – $79,625', rate: '12.75%' },
+  { range: 'Above $79,625', rate: '17.4%' },
+];
+
+const payrollContributions = [
+  {
+    label: 'CPP',
+    rate: '5.95%',
+    description: 'On earnings $3,500 – $68,500',
+    accentClass: 'from-blue-500/20 to-transparent',
+    textClass: 'text-blue-500',
+    dotClass: 'bg-blue-500',
+  },
+  {
+    label: 'EI',
+    rate: '1.66%',
+    description: 'On earnings up to $63,200',
+    accentClass: 'from-green-500/20 to-transparent',
+    textClass: 'text-green-500',
+    dotClass: 'bg-green-500',
+  },
+];
+
 
 export default function Home() {
   const [salaryInput, setSalaryInput] = useState<SalaryInput>({
@@ -17,38 +53,61 @@ export default function Home() {
   });
 
   const [breakdown, setBreakdown] = useState<SalaryBreakdown | null>(null);
+  const [isCalculating, setIsCalculating] = useState(false);
 
+  // Debounced calculation
   useEffect(() => {
-    const result = calculateSalary(salaryInput);
-    setBreakdown(result);
+    setIsCalculating(true);
+    const timer = setTimeout(() => {
+      const result = calculateSalary(salaryInput);
+      setBreakdown(result);
+      setIsCalculating(false);
+    }, 300); // 300ms debounce
+
+    return () => clearTimeout(timer);
   }, [salaryInput]);
 
-  const handleInputChange = (input: SalaryInput) => {
+  const handleInputChange = useCallback((input: SalaryInput) => {
     setSalaryInput(input);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--background)' }}>
+      {/* Skip to main content link for keyboard navigation */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      
       {/* Header */}
-      <header className="theme-surface border-b border-border sticky top-0 z-10 backdrop-blur-xl">
+      <header className="theme-surface border-b border-border sticky top-0 z-10 backdrop-blur-xl print:static print:border-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center gap-3">
-            <div className="p-3 theme-gradient-primary rounded-[var(--radius)] shadow-lg">
-              <Calculator className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground font-serif"><a href='https://portal.wpeg.ca/' target='_blank' rel='noreferrer'>WPEG: Winnipeg Salary Calculator 2025</a></h1>
-              <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4" />
-                <span>Manitoba, Canada</span>
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none">
+                <img
+                  src="/logo.png"
+                  alt="WPEG logo"
+                  className="w-10 h-10 object-contain"
+                />
               </div>
+              <div>
+                <h1 className="text-2xl font-bold text-foreground font-serif"><a href='https://portal.wpeg.app/' target='_blank' rel='noopener noreferrer'>WPEG: Winnipeg Salary Calculator 2026</a></h1>
+                <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                  <MapPin className="w-4 h-4" />
+                  <span>Manitoba, Canada</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 print:hidden">
+              {breakdown && <ShareButton breakdown={breakdown} />}
+              <DarkModeToggle />
             </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Introduction */}
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-bold text-foreground mb-4">
@@ -56,7 +115,7 @@ export default function Home() {
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
             Get accurate calculations for your salary after federal and Manitoba provincial taxes, 
-            CPP contributions, and EI premiums based on current 2025 tax rates.
+            CPP contributions, and EI premiums based on current 2026 tax rates.
           </p>
           
           {/* Navigation Pills */}
@@ -94,91 +153,82 @@ export default function Home() {
 
         {/* Tax Information Banner */}
         <div className="mb-8 space-y-6" id="tax-rates">
-          {/* 2025 Tax Rates */}
-          <div className="theme-card border border-primary/20">
+          {/* 2026 Tax Rates */}
+          <div className="theme-card border border-border">
             <div className="flex items-start gap-3 mb-6">
               <Info className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
-              <h3 className="text-xl font-bold text-primary font-serif">2025 Tax Rates Used</h3>
+              <div>
+                <h3 className="text-xl font-bold text-primary font-serif">2026 Tax Rates Used</h3>
+                <p className="text-sm text-foreground/80">
+                  High-contrast cards make it easier to skim each bracket at a glance.
+                </p>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Federal Tax Rates */}
-              <div className="space-y-3">
-                <h4 className="text-lg font-semibold text-foreground font-serif flex items-center gap-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  Federal Tax Brackets
-                </h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between items-center p-2 rounded-lg bg-red-50/50 dark:bg-red-950/20">
-                    <span className="text-muted-foreground">Up to $55,867</span>
-                    <span className="font-bold text-foreground">15%</span>
+              <section className="space-y-4 p-4 rounded-2xl bg-card border border-border shadow-sm">
+                <header className="flex items-center justify-between border-b border-border/50 pb-3">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500" />
+                    <h4 className="text-lg font-semibold text-foreground font-serif">Federal Tax Brackets</h4>
                   </div>
-                  <div className="flex justify-between items-center p-2 rounded-lg bg-red-50/50 dark:bg-red-950/20">
-                    <span className="text-muted-foreground">$55,867 – $111,733</span>
-                    <span className="font-bold text-foreground">20.5%</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 rounded-lg bg-red-50/50 dark:bg-red-950/20">
-                    <span className="text-muted-foreground">$111,733 – $173,205</span>
-                    <span className="font-bold text-foreground">26%</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 rounded-lg bg-red-50/50 dark:bg-red-950/20">
-                    <span className="text-muted-foreground">$173,205 – $246,752</span>
-                    <span className="font-bold text-foreground">29%</span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 rounded-lg bg-red-50/50 dark:bg-red-950/20">
-                    <span className="text-muted-foreground">Above $246,752</span>
-                    <span className="font-bold text-foreground">33%</span>
-                  </div>
+                  <span className="text-xs uppercase tracking-wide text-foreground/70">CRA 2026</span>
+                </header>
+                <div className="space-y-3">
+                  {federalTaxBrackets.map((bracket) => (
+                    <div
+                      key={bracket.range}
+                      className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
+                    >
+                      <span className="text-base font-semibold text-foreground">{bracket.range}</span>
+                      <span className="text-2xl font-bold text-red-500">{bracket.rate}</span>
+                    </div>
+                  ))}
                 </div>
-              </div>
+              </section>
 
               {/* Provincial & Other Rates */}
               <div className="space-y-4">
                 {/* Manitoba Tax Rates */}
-                <div className="space-y-3">
-                  <h4 className="text-lg font-semibold text-foreground font-serif flex items-center gap-2">
-                    <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                    Manitoba Provincial Tax
-                  </h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between items-center p-2 rounded-lg bg-orange-50/50 dark:bg-orange-950/20">
-                      <span className="text-muted-foreground">Up to $36,842</span>
-                      <span className="font-bold text-foreground">10.8%</span>
+                <section className="space-y-4 p-4 rounded-2xl bg-card border border-border shadow-sm">
+                  <header className="flex items-center justify-between border-b border-border/50 pb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-orange-500" />
+                      <h4 className="text-lg font-semibold text-foreground font-serif">Manitoba Provincial Tax</h4>
                     </div>
-                    <div className="flex justify-between items-center p-2 rounded-lg bg-orange-50/50 dark:bg-orange-950/20">
-                      <span className="text-muted-foreground">$36,843 – $79,625</span>
-                      <span className="font-bold text-foreground">12.75%</span>
-                    </div>
-                    <div className="flex justify-between items-center p-2 rounded-lg bg-orange-50/50 dark:bg-orange-950/20">
-                      <span className="text-muted-foreground">Above $79,625</span>
-                      <span className="font-bold text-foreground">17.4%</span>
-                    </div>
+                    <span className="text-xs uppercase tracking-wide text-foreground/70">2026 Budget</span>
+                  </header>
+                  <div className="space-y-3">
+                    {manitobaTaxBrackets.map((bracket) => (
+                      <div
+                        key={bracket.range}
+                        className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
+                      >
+                        <span className="text-base font-semibold text-foreground">{bracket.range}</span>
+                        <span className="text-2xl font-bold text-orange-500">{bracket.rate}</span>
+                      </div>
+                    ))}
                   </div>
-                </div>
+                </section>
 
                 {/* CPP & EI Rates */}
                 <div className="grid grid-cols-1 gap-3">
-                  <div className="p-3 rounded-lg bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200/30 dark:border-blue-800/30">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                        <span className="font-semibold text-foreground">CPP</span>
+                  {payrollContributions.map((item) => (
+                    <div
+                      key={item.label}
+                      className={`rounded-2xl border border-border bg-gradient-to-r ${item.accentClass} bg-card px-4 py-4 shadow-sm`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className={`w-3 h-3 rounded-full ${item.dotClass}`} />
+                          <span className="text-xl font-semibold text-foreground">{item.label}</span>
+                        </div>
+                        <span className={`text-2xl font-bold ${item.textClass}`}>{item.rate}</span>
                       </div>
-                      <span className="font-bold text-blue-600 dark:text-blue-400">5.95%</span>
+                      <p className="text-base text-foreground/80 mt-2">{item.description}</p>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-1">On earnings $3,500 – $68,500</p>
-                  </div>
-
-                  <div className="p-3 rounded-lg bg-green-50/50 dark:bg-green-950/20 border border-green-200/30 dark:border-green-800/30">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span className="font-semibold text-foreground">EI</span>
-                      </div>
-                      <span className="font-bold text-green-600 dark:text-green-400">1.66%</span>
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">On earnings up to $63,200</p>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -204,7 +254,7 @@ export default function Home() {
               
               <div className="text-sm text-muted-foreground leading-relaxed">
                 <p className="mb-3">
-                  The average apartment rent in August 2025 sits near <strong className="text-foreground">$1,353 a month</strong>. 
+                  The average apartment rent in August 2026 sits near <strong className="text-foreground">$1,353 a month</strong>.
                   At that price, just under <strong className="text-primary">
                     {(() => {
                       const monthlyGross = breakdown ? breakdown.grossAnnual / 12 : salaryInput.grossSalary / 12;
@@ -390,7 +440,13 @@ export default function Home() {
 
           {/* Results */}
           <div id="breakdown">
-            {breakdown && <SalaryBreakdownComponent breakdown={breakdown} />}
+            {isCalculating && (
+              <div className="theme-card text-center py-12">
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent mb-4"></div>
+                <p className="text-muted-foreground">Calculating...</p>
+              </div>
+            )}
+            {!isCalculating && breakdown && <SalaryBreakdownComponent breakdown={breakdown} />}
           </div>
         </div>
 
@@ -400,7 +456,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted-foreground">
             <div>
               <h4 className="font-semibold text-foreground mb-2">Accuracy</h4>
-              <p>This calculator uses 2025 federal and Manitoba tax rates. Results are estimates and should not replace professional tax advice.</p>
+              <p>This calculator uses 2026 federal and Manitoba tax rates. Results are estimates and should not replace professional tax advice.</p>
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-2">Privacy</h4>
@@ -572,10 +628,10 @@ export default function Home() {
                 <div className="flex items-start gap-3">
                   <div className="text-2xl mt-1 flex-shrink-0">{item.icon}</div>
                   <div>
-                    <h4 className="font-bold text-emerald-800 dark:text-grey-200 mb-2 font-serif">
+                    <h4 className="font-bold text-emerald-800 dark:text-emerald-200 mb-2 font-serif">
                       {index + 1}. {item.title}
                     </h4>
-                    <p className="text-sm text-emerald-600 dark:text-grey-100 leading-relaxed">
+                    <p className="text-sm text-emerald-600 dark:text-emerald-100 leading-relaxed">
                       {item.description}
                     </p>
                   </div>
@@ -584,14 +640,14 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-6 p-4 bg-emerald-100/50 dark:bg-grey-900/20 rounded-lg border border-grey-200/30 dark:border-emerald-800/20 text-center">
-            <p className="text-lg font-medium text-black-100">
+          <div className="mt-6 p-4 bg-emerald-100/50 dark:bg-emerald-900/20 rounded-lg border border-emerald-200/30 dark:border-emerald-800/20 text-center">
+            <p className="text-lg font-medium text-emerald-900 dark:text-emerald-100">
               This puts your annual deductions in perspective: They're enough to buy a car, cover a mortgage down payment, or fund major life experiences.
             </p>
           </div>
         </div>
         <div className="mt-12 theme-card border border-blue-400/30 bg-gradient-to-br from-blue-50/50 to-indigo-50/30 dark:from-blue-950/20 dark:to-indigo-950/10">
-          <a href='https://portal.wpeg.ca/' target='_blank' rel='noreferrer'>&lt;&lt; Back to WPEG</a>
+          <a href='https://portal.wpeg.app/' target='_blank' rel='noopener noreferrer'>&lt;&lt; Back to WPEG</a>
         </div>
       </main>
     </div>

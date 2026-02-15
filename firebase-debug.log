@@ -1,0 +1,170 @@
+[debug] [2026-02-15T02:49:31.733Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T02:49:31.735Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T02:49:31.735Z] Checked if tokens are valid: false, expires at: 1771120011827
+[debug] [2026-02-15T02:49:31.735Z] Checked if tokens are valid: false, expires at: 1771120011827
+[debug] [2026-02-15T02:49:31.735Z] > refreshing access token with scopes: []
+[debug] [2026-02-15T02:49:31.736Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-15T02:49:31.736Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-15T02:49:31.746Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T02:49:31.746Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T02:49:31.746Z] Checked if tokens are valid: false, expires at: 1771120011827
+[debug] [2026-02-15T02:49:31.746Z] Checked if tokens are valid: false, expires at: 1771120011827
+[debug] [2026-02-15T02:49:31.746Z] > refreshing access token with scopes: []
+[debug] [2026-02-15T02:49:31.747Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-02-15T02:49:31.747Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-15T02:49:31.881Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-15T02:49:31.881Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-15T02:49:31.900Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo [none]
+[debug] [2026-02-15T02:49:31.902Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-02-15T02:49:31.902Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-02-15T02:49:31.921Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo [none]
+[debug] [2026-02-15T02:49:32.102Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo 200
+[debug] [2026-02-15T02:49:32.102Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo {"name":"projects/wpeg-micro-apps-portal/billingInfo","projectId":"wpeg-micro-apps-portal","billingAccountName":"billingAccounts/017942-46D773-EFB0C3","billingEnabled":true}
+[debug] [2026-02-15T02:49:32.104Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.104Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.104Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.104Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.104Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.104Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.108Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.108Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.108Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com [none]
+[debug] [2026-02-15T02:49:32.108Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T02:49:32.109Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-15T02:49:32.109Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T02:49:32.109Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-15T02:49:32.109Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T02:49:32.110Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com [none]
+[debug] [2026-02-15T02:49:32.110Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T02:49:32.125Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo 200
+[debug] [2026-02-15T02:49:32.125Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo {"name":"projects/wpeg-micro-apps-portal/billingInfo","projectId":"wpeg-micro-apps-portal","billingAccountName":"billingAccounts/017942-46D773-EFB0C3","billingEnabled":true}
+[debug] [2026-02-15T02:49:32.125Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.125Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.125Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.125Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.125Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.125Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.126Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.126Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.126Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com [none]
+[debug] [2026-02-15T02:49:32.126Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T02:49:32.127Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-15T02:49:32.127Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T02:49:32.128Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-15T02:49:32.128Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T02:49:32.128Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com [none]
+[debug] [2026-02-15T02:49:32.128Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T02:49:32.379Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com 403
+[debug] [2026-02-15T02:49:32.379Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com [omitted]
+[debug] [2026-02-15T02:49:32.380Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com 403
+[debug] [2026-02-15T02:49:32.380Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com [omitted]
+[debug] [2026-02-15T02:49:32.444Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-15T02:49:32.444Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-15T02:49:32.445Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-15T02:49:32.445Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-15T02:49:32.448Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-15T02:49:32.448Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-15T02:49:32.449Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-15T02:49:32.449Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-15T02:49:32.453Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com 200
+[debug] [2026-02-15T02:49:32.453Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com [omitted]
+[debug] [2026-02-15T02:49:32.454Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com 200
+[debug] [2026-02-15T02:49:32.454Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com [omitted]
+[debug] [2026-02-15T02:49:32.454Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T02:49:32.454Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T02:49:32.454Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.454Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.454Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo [none]
+[debug] [2026-02-15T02:49:32.564Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo 200
+[debug] [2026-02-15T02:49:32.564Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo {"name":"projects/wpeg-micro-apps-portal/billingInfo","projectId":"wpeg-micro-apps-portal","billingAccountName":"billingAccounts/017942-46D773-EFB0C3","billingEnabled":true}
+[debug] [2026-02-15T02:49:32.565Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T02:49:32.566Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T02:49:32.569Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T02:49:32.569Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T02:49:32.569Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.569Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T02:49:32.569Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo [none]
+[debug] [2026-02-15T02:49:32.671Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo 200
+[debug] [2026-02-15T02:49:32.671Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo {"name":"projects/wpeg-micro-apps-portal/billingInfo","projectId":"wpeg-micro-apps-portal","billingAccountName":"billingAccounts/017942-46D773-EFB0C3","billingEnabled":true}
+[debug] [2026-02-15T02:49:32.672Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T02:49:32.672Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T03:22:31.346Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T03:22:31.347Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T03:22:31.347Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.347Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.347Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T03:22:31.348Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T03:22:31.348Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.348Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.348Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo [none]
+[debug] [2026-02-15T03:22:31.358Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo [none]
+[debug] [2026-02-15T03:22:31.550Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo 200
+[debug] [2026-02-15T03:22:31.550Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo {"name":"projects/wpeg-micro-apps-portal/billingInfo","projectId":"wpeg-micro-apps-portal","billingAccountName":"billingAccounts/017942-46D773-EFB0C3","billingEnabled":true}
+[debug] [2026-02-15T03:22:31.555Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.555Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.556Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.556Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.556Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.556Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.562Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.562Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.562Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com [none]
+[debug] [2026-02-15T03:22:31.562Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T03:22:31.563Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-15T03:22:31.563Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T03:22:31.563Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-15T03:22:31.563Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T03:22:31.564Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com [none]
+[debug] [2026-02-15T03:22:31.564Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T03:22:31.572Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo 200
+[debug] [2026-02-15T03:22:31.572Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo {"name":"projects/wpeg-micro-apps-portal/billingInfo","projectId":"wpeg-micro-apps-portal","billingAccountName":"billingAccounts/017942-46D773-EFB0C3","billingEnabled":true}
+[debug] [2026-02-15T03:22:31.572Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.572Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.572Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.572Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.573Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.573Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.574Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.574Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.574Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com [none]
+[debug] [2026-02-15T03:22:31.574Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T03:22:31.575Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com [none]
+[debug] [2026-02-15T03:22:31.575Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T03:22:31.575Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-02-15T03:22:31.575Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T03:22:31.576Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com [none]
+[debug] [2026-02-15T03:22:31.576Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com  x-goog-user-project=wpeg-micro-apps-portal
+[debug] [2026-02-15T03:22:31.834Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com 403
+[debug] [2026-02-15T03:22:31.834Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com [omitted]
+[debug] [2026-02-15T03:22:31.835Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com 403
+[debug] [2026-02-15T03:22:31.835Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebaseio.com [omitted]
+[debug] [2026-02-15T03:22:31.872Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-15T03:22:31.872Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-15T03:22:31.873Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-15T03:22:31.873Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-15T03:22:31.879Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com 200
+[debug] [2026-02-15T03:22:31.879Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2026-02-15T03:22:31.884Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com 200
+[debug] [2026-02-15T03:22:31.884Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2026-02-15T03:22:31.888Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com 200
+[debug] [2026-02-15T03:22:31.888Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com [omitted]
+[debug] [2026-02-15T03:22:31.928Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com 200
+[debug] [2026-02-15T03:22:31.928Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/wpeg-micro-apps-portal/services/firestore.googleapis.com [omitted]
+[debug] [2026-02-15T03:22:31.929Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T03:22:31.929Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T03:22:31.929Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.929Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:31.929Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo [none]
+[debug] [2026-02-15T03:22:32.256Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo 200
+[debug] [2026-02-15T03:22:32.256Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo {"name":"projects/wpeg-micro-apps-portal/billingInfo","projectId":"wpeg-micro-apps-portal","billingAccountName":"billingAccounts/017942-46D773-EFB0C3","billingEnabled":true}
+[debug] [2026-02-15T03:22:32.258Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T03:22:32.258Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T03:22:32.262Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T03:22:32.262Z] > authorizing via signed-in user (ajbatac@gmail.com)
+[debug] [2026-02-15T03:22:32.262Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:32.262Z] Checked if tokens are valid: true, expires at: 1771127370902
+[debug] [2026-02-15T03:22:32.262Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo [none]
+[debug] [2026-02-15T03:22:32.562Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo 200
+[debug] [2026-02-15T03:22:32.562Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/wpeg-micro-apps-portal/billingInfo {"name":"projects/wpeg-micro-apps-portal/billingInfo","projectId":"wpeg-micro-apps-portal","billingAccountName":"billingAccounts/017942-46D773-EFB0C3","billingEnabled":true}
+[debug] [2026-02-15T03:22:32.563Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-15T03:22:32.563Z] > authorizing via signed-in user (ajbatac@gmail.com)
