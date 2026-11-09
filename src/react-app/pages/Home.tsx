@@ -168,7 +168,7 @@ export default function Home() {
 
       {/* Header */}
       <header className="theme-surface border-b border-border sticky top-0 z-10 backdrop-blur-xl print:static print:border-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-4">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none">
@@ -191,7 +191,7 @@ export default function Home() {
                 />
               </a>
               <div>
-                <h1 className="text-lg sm:text-2xl font-bold text-foreground font-serif">
+                <h1 className="text-lg sm:text-2xl lg:text-3xl tracking-tight font-bold text-foreground font-serif">
                   <a href="https://portal.wpeg.app/" target="_blank" rel="noopener noreferrer">
                     WPEG: Winnipeg Salary Calculator 2026
                   </a>
@@ -212,11 +212,13 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main id="main-content" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main id="main-content" className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-12">
         {/* Introduction */}
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">Calculate Your Net Take-Home Pay</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+        <div className="mb-12 text-center">
+          <h2 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-foreground font-serif tracking-tight leading-[1.05] mb-4">
+            Calculate Your Net Take-Home Pay
+          </h2>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Get accurate calculations for your salary after federal and Manitoba provincial taxes, CPP
             contributions, and EI premiums based on current 2026 tax rates.
           </p>
@@ -225,28 +227,28 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto xl:hidden">
             <a
               href="#tax-rates"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
             >
               <Info className="w-4 h-4" />
               Tax Rates
             </a>
             <a
               href="#calculator"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 hover:bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 hover:bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
             >
               <Calculator className="w-4 h-4" />
               Calculator
             </a>
             <a
               href="#breakdown"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-700 dark:text-blue-400 border border-blue-500/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-700 dark:text-blue-400 border border-blue-500/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
             >
               <TrendingDown className="w-4 h-4" />
               Breakdown
             </a>
             <a
               href="#coffee-coin"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
             >
               <DollarSign className="w-4 h-4" />
               Coffee Coin
@@ -259,13 +261,15 @@ export default function Home() {
           <TableOfContents />
           <div className="flex-1 min-w-0">
             {/* Tax Information Banner */}
-            <div className="mb-8 space-y-6" id="tax-rates">
+            <div className="mb-12 space-y-6" id="tax-rates">
               {/* 2026 Tax Rates */}
               <div className="theme-card border border-border">
                 <div className="flex items-start gap-3 mb-6">
                   <Info className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
                   <div>
-                    <h3 className="text-xl font-bold text-primary font-serif">2026 Tax Rates Used</h3>
+                    <h3 className="text-2xl xl:text-3xl font-bold text-primary font-serif">
+                      2026 Tax Rates Used
+                    </h3>
                     <p className="text-sm text-foreground/80">
                       Rates effective January 1, 2026, indexed by the 2.0% CRA factor.
                     </p>
@@ -278,7 +282,7 @@ export default function Home() {
                     <header className="flex items-center justify-between border-b border-border/50 pb-3">
                       <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-full bg-red-500" />
-                        <h4 className="text-lg font-semibold text-foreground font-serif">
+                        <h4 className="text-xl font-semibold text-foreground font-serif">
                           Federal Tax Brackets
                         </h4>
                       </div>
@@ -298,7 +302,7 @@ export default function Home() {
                           className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
                         >
                           <span className="text-base font-semibold text-foreground">{bracket.range}</span>
-                          <span className="text-2xl font-bold text-red-600 dark:text-red-500">
+                          <span className="text-3xl font-bold text-red-600 dark:text-red-500">
                             {bracket.rate}
                           </span>
                         </div>
@@ -313,7 +317,7 @@ export default function Home() {
                       <header className="flex items-center justify-between border-b border-border/50 pb-3">
                         <div className="flex items-center gap-2">
                           <div className="w-3 h-3 rounded-full bg-orange-500" />
-                          <h4 className="text-lg font-semibold text-foreground font-serif">
+                          <h4 className="text-xl font-semibold text-foreground font-serif">
                             Manitoba Provincial Tax
                           </h4>
                         </div>
@@ -333,7 +337,7 @@ export default function Home() {
                             className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
                           >
                             <span className="text-base font-semibold text-foreground">{bracket.range}</span>
-                            <span className="text-2xl font-bold text-orange-600 dark:text-orange-500">
+                            <span className="text-3xl font-bold text-orange-600 dark:text-orange-500">
                               {bracket.rate}
                             </span>
                           </div>
@@ -353,7 +357,7 @@ export default function Home() {
                               <span className={`w-3 h-3 rounded-full ${item.dotClass}`} />
                               <span className="text-xl font-semibold text-foreground">{item.label}</span>
                             </div>
-                            <span className={`text-2xl font-bold ${item.textClass}`}>{item.rate}</span>
+                            <span className={`text-3xl font-bold ${item.textClass}`}>{item.rate}</span>
                           </div>
                           <p className="text-base text-foreground/80 mt-2">{item.description}</p>
                         </div>
@@ -376,7 +380,9 @@ export default function Home() {
                     <div className="p-3 theme-gradient-secondary rounded-[var(--radius)] shadow-lg">
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-foreground font-serif">Rent-to-Income Snapshot</h3>
+                    <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">
+                      Rent-to-Income Snapshot
+                    </h3>
                   </div>
 
                   <div className="text-sm text-muted-foreground leading-relaxed">
@@ -401,11 +407,13 @@ export default function Home() {
                     <div className="p-3 theme-gradient-warning rounded-[var(--radius)] shadow-lg">
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-foreground font-serif">Trivia and Fun Facts</h3>
+                    <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">
+                      Trivia and Fun Facts
+                    </h3>
                   </div>
 
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-primary font-serif">Slurpee Capital Math</h4>
+                    <h4 className="text-xl font-semibold text-primary font-serif">Slurpee Capital Math</h4>
                     <div className="text-sm text-muted-foreground leading-relaxed">
                       <p className="mb-3">
                         Winnipeg has been crowned{' '}
@@ -437,7 +445,9 @@ export default function Home() {
                     <div className="p-3 theme-gradient-warning rounded-[var(--radius)] shadow-lg">
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-foreground font-serif">Sunshine Dividend</h3>
+                    <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">
+                      Sunshine Dividend
+                    </h3>
                   </div>
 
                   <div className="text-sm text-muted-foreground leading-relaxed">
@@ -466,7 +476,9 @@ export default function Home() {
                     <div className="p-3 theme-gradient-warning rounded-[var(--radius)] shadow-lg">
                       <MapPin className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-foreground font-serif">Cold-Hard Perspective</h3>
+                    <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">
+                      Cold-Hard Perspective
+                    </h3>
                   </div>
 
                   <div className="text-sm text-muted-foreground leading-relaxed">
@@ -489,7 +501,7 @@ export default function Home() {
                     <div className="p-3 theme-gradient-secondary rounded-[var(--radius)] shadow-lg">
                       <Calculator className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-foreground font-serif">
+                    <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">
                       Quick &quot;Could-Buy&quot; Comparisons (Annual)
                     </h3>
                   </div>
@@ -535,7 +547,7 @@ export default function Home() {
 
             {/* Footer Information */}
             <div className="mt-12 theme-card" id="important-notes">
-              <h3 className="text-lg font-bold text-foreground mb-3">Important Notes</h3>
+              <h3 className="text-2xl font-bold text-foreground font-serif mb-3">Important Notes</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted-foreground">
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">Accuracy</h4>
@@ -575,7 +587,9 @@ export default function Home() {
                 <div className="p-3 theme-gradient-secondary rounded-[var(--radius)] shadow-lg">
                   <ExternalLink className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground font-serif">Sources & References</h3>
+                <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">
+                  Sources & References
+                </h3>
               </div>
               <p className="text-sm text-muted-foreground mb-4">
                 Every 2026 rate, bracket, and credit used by this calculator comes from the official
@@ -614,7 +628,7 @@ export default function Home() {
                   <Calculator className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-amber-700 dark:text-amber-300 font-serif">
+                  <h3 className="text-3xl xl:text-4xl font-bold text-amber-700 dark:text-amber-300 font-serif">
                     Coffee Coin
                   </h3>
                   <p className="text-sm text-amber-700 dark:text-amber-400">
@@ -670,7 +684,7 @@ export default function Home() {
                   <DollarSign className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-emerald-700 dark:text-emerald-300 font-serif">
+                  <h3 className="text-3xl xl:text-4xl font-bold text-emerald-700 dark:text-emerald-300 font-serif">
                     What Your Deductions Could Buy
                   </h3>
                   <p className="text-sm text-emerald-700 dark:text-emerald-400">

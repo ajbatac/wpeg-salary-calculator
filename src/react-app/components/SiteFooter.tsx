@@ -87,7 +87,7 @@ export default function SiteFooter() {
           WPEG
         </span>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+        <div className="relative max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 pt-16 pb-10">
           {/* Brand block */}
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.6fr] gap-12 lg:gap-16 pb-12 border-b border-border">
             <div>
@@ -113,7 +113,7 @@ export default function SiteFooter() {
                 </a>
               </div>
 
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground font-serif mb-4 leading-tight">
+              <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-serif tracking-tight mb-4 leading-tight">
                 Part of the <span className="text-primary">WPEG</span> family.
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-md mb-6">

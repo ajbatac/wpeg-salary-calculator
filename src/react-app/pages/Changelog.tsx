@@ -68,7 +68,7 @@ export default function ChangelogPage() {
       </a>
 
       <header className="theme-surface border-b border-border sticky top-0 z-10 backdrop-blur-xl print:static print:border-none">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-4">
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none">
@@ -91,7 +91,7 @@ export default function ChangelogPage() {
                 />
               </a>
               <div>
-                <h1 className="text-lg sm:text-2xl font-bold text-foreground font-serif">
+                <h1 className="text-lg sm:text-2xl lg:text-3xl tracking-tight font-bold text-foreground font-serif">
                   <Link to="/">WPEG Salary Calculator</Link>
                 </h1>
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -108,10 +108,12 @@ export default function ChangelogPage() {
         </div>
       </header>
 
-      <main id="main-content" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <main id="main-content" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-10">
         {/* Intro */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-foreground font-serif mb-3">Changelog</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-serif tracking-tight mb-4">
+            Changelog
+          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl">
             New features, fixes, and improvements to the Winnipeg Salary Calculator — newest first.
           </p>
@@ -139,7 +141,7 @@ export default function ChangelogPage() {
                 )}
                 <time className="text-sm text-muted-foreground">{release.date}</time>
               </div>
-              <h3 className="text-xl font-bold text-foreground font-serif mb-4">{release.headline}</h3>
+              <h3 className="text-2xl font-bold text-foreground font-serif mb-4">{release.headline}</h3>
               <ul className="space-y-3">
                 {release.items.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">

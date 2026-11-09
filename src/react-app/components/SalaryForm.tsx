@@ -34,7 +34,7 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
         <div className="p-3 theme-gradient-primary rounded-[var(--radius)] shadow-lg">
           <Calculator className="w-6 h-6 text-white" />
         </div>
-        <h2 className="text-2xl font-bold text-foreground font-serif">Salary Information</h2>
+        <h2 className="text-3xl font-bold text-foreground font-serif tracking-tight">Salary Information</h2>
       </div>
 
       <div className="space-y-6">
@@ -52,7 +52,7 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
             inputMode="decimal"
             value={input.grossSalary}
             onChange={(e) => handleInputChange('grossSalary', e.target.value)}
-            className="w-full theme-input text-lg font-medium text-foreground placeholder:text-muted-foreground"
+            className="w-full theme-input text-xl font-medium text-foreground placeholder:text-muted-foreground"
             placeholder="Enter your gross salary"
             aria-label="Gross Salary"
             aria-required="true"
@@ -69,7 +69,7 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
             id="pay-frequency"
             value={input.payFrequency}
             onChange={(e) => handleInputChange('payFrequency', e.target.value as PayFrequency)}
-            className="w-full theme-input text-lg font-medium text-foreground"
+            className="w-full theme-input text-xl font-medium text-foreground"
             aria-label="Pay Frequency"
           >
             <option value="annual">Annual</option>
@@ -89,7 +89,7 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
             id="employment-type"
             value={input.employmentType}
             onChange={(e) => handleInputChange('employmentType', e.target.value as EmploymentType)}
-            className="w-full theme-input text-lg font-medium text-foreground"
+            className="w-full theme-input text-xl font-medium text-foreground"
             aria-label="Employment Type"
           >
             <option value="full-time">Full-time</option>

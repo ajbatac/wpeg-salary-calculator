@@ -147,7 +147,9 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
             <h3 className="text-lg font-semibold text-foreground font-sans">Gross Income</h3>
           </div>
           <div className="space-y-2">
-            <p className="text-3xl font-bold text-primary">{formatCurrency(breakdown.grossPerPeriod)}</p>
+            <p className="text-4xl sm:text-5xl font-bold text-primary tabular-nums tracking-tight">
+              {formatCurrency(breakdown.grossPerPeriod)}
+            </p>
             <p className="text-sm text-muted-foreground">{formatPayFrequency(breakdown.payFrequency)}</p>
             <p className="text-sm text-muted-foreground">{formatCurrency(breakdown.grossAnnual)} annually</p>
           </div>
@@ -162,7 +164,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
             <h3 className="text-lg font-semibold text-foreground font-sans">Net Take-Home</h3>
           </div>
           <div className="space-y-2">
-            <p className="text-3xl font-bold text-green-700 dark:text-green-400">
+            <p className="text-4xl sm:text-5xl font-bold text-green-700 dark:text-green-400 tabular-nums tracking-tight">
               {formatCurrency(breakdown.netPerPeriod)}
             </p>
             <p className="text-sm text-muted-foreground">{formatPayFrequency(breakdown.payFrequency)}</p>
@@ -177,17 +179,21 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
           <div className="p-3 theme-gradient-warning rounded-[var(--radius)] shadow-lg">
             <MapPin className="w-5 h-5 text-white" />
           </div>
-          <h3 className="text-xl font-bold text-foreground font-serif">Winnipeg, Manitoba Tax Summary</h3>
+          <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">
+            Winnipeg, Manitoba Tax Summary
+          </h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="text-center p-4 theme-surface rounded-[var(--radius)] border border-border">
             <p className="text-sm text-muted-foreground">Effective Tax Rate</p>
-            <p className="text-2xl font-bold text-foreground">{effectiveTaxRate.toFixed(1)}%</p>
+            <p className="text-3xl font-bold text-foreground tabular-nums">{effectiveTaxRate.toFixed(1)}%</p>
           </div>
           <div className="text-center p-4 theme-surface rounded-[var(--radius)] border border-border">
             <p className="text-sm text-muted-foreground">Total Deductions</p>
-            <p className="text-2xl font-bold text-foreground">{totalDeductionRate.toFixed(1)}%</p>
+            <p className="text-3xl font-bold text-foreground tabular-nums">
+              {totalDeductionRate.toFixed(1)}%
+            </p>
           </div>
           <div className="text-center p-4 theme-surface rounded-[var(--radius)] border border-border">
             <p className="text-sm text-muted-foreground">Net Rate</p>
@@ -204,7 +210,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
           <div className="p-3 theme-gradient-secondary rounded-[var(--radius)] shadow-lg">
             <TrendingDown className="w-5 h-5 text-white" />
           </div>
-          <h3 className="text-xl font-bold text-foreground font-serif">Deduction Breakdown</h3>
+          <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">Deduction Breakdown</h3>
         </div>
 
         <div className="space-y-4">
@@ -241,7 +247,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
           <div className="p-3 theme-gradient-warning rounded-[var(--radius)] shadow-lg">
             <DollarSign className="w-5 h-5 text-white" />
           </div>
-          <h3 className="text-xl font-bold text-foreground font-serif">Deduction Perspective</h3>
+          <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">Deduction Perspective</h3>
         </div>
 
         <div className="space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
