@@ -25,9 +25,24 @@ import {
   PieChart,
   LineChart as LineIcon,
   Trophy,
+  Cake,
+  Snowflake,
+  CarFront,
+  CalendarDays,
+  MapPinned,
+  Wallet,
 } from 'lucide-react';
 import DarkModeToggle from '@/react-app/components/DarkModeToggle';
 import ColorThemeSelector from '@/react-app/components/ColorThemeSelector';
+import {
+  CurrencyConverter,
+  SeasonalBudget,
+  CommuteTradeOff,
+  FreedomCalendar,
+  NeighbourhoodMap,
+  LifestyleSlider,
+  SeriesSection,
+} from '@/react-app/components/charts/WinnipegLifeCharts';
 import { DEFAULT_SALARY_INPUT, SalaryBreakdown } from '@/shared/types';
 import { decodeSalaryInput } from '@/shared/query';
 import { calculateSalary } from '@/react-app/utils/salaryCalculator';
@@ -583,6 +598,51 @@ export default function ChartPage() {
             </div>
             <EffectiveRateCurve breakdown={breakdown} />
           </section>
+        </div>
+
+        {/* Winnipeg life series: the numbers, translated into everyday life */}
+        <div className="mt-14 mb-8">
+          <h3 className="text-3xl xl:text-4xl font-bold text-foreground font-serif tracking-tight">
+            Winnipeg life, charted.
+          </h3>
+          <p className="text-base text-muted-foreground mt-2 max-w-2xl">
+            The same take-home pay, translated into cakes, commutes, calendars, and neighbourhoods. Local
+            prices and benchmarks below are illustrative — the tax math is not.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          <SeriesSection title="The Winnipeg Unit of Currency" icon={Cake} gradient="theme-gradient-primary">
+            <CurrencyConverter breakdown={breakdown} />
+          </SeriesSection>
+
+          <SeriesSection
+            title="The seasonal survival budget"
+            icon={Snowflake}
+            gradient="theme-gradient-secondary"
+          >
+            <SeasonalBudget />
+          </SeriesSection>
+
+          <SeriesSection title="Potholes vs. pedals" icon={CarFront} gradient="theme-gradient-warning">
+            <CommuteTradeOff breakdown={breakdown} />
+          </SeriesSection>
+
+          <SeriesSection title="Your Freedom Date" icon={CalendarDays} gradient="theme-gradient-success">
+            <FreedomCalendar breakdown={breakdown} />
+          </SeriesSection>
+
+          <SeriesSection
+            title="Where can you afford to live?"
+            icon={MapPinned}
+            gradient="theme-gradient-secondary"
+          >
+            <NeighbourhoodMap breakdown={breakdown} />
+          </SeriesSection>
+
+          <SeriesSection title="The lifestyle reality check" icon={Wallet} gradient="theme-gradient-warning">
+            <LifestyleSlider breakdown={breakdown} />
+          </SeriesSection>
         </div>
       </main>
     </div>
