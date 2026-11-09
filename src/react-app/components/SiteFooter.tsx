@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { ArrowUpRight, Snowflake } from 'lucide-react';
+import { ArrowUpRight, Snowflake, Camera, AtSign, ThumbsUp, Play } from 'lucide-react';
 import { APP_VERSION, PORTAL_URL } from '@/shared/constants';
 
 interface FooterLink {
@@ -36,15 +36,15 @@ const TOOL_LINKS: readonly FooterLink[] = [
 ];
 
 /**
- * Social chips use typographic monograms (not brand marks): lucide v1 ships no
- * brand icons, and a drawn look-alike of a real logo is worse than honest type.
- * Threads keeps the AtSign glyph it actually uses.
+ * Lucide v1 ships no brand icons, so each platform gets lucide's closest
+ * semantic glyph plus a visible label — never a drawn look-alike logo.
+ * Threads genuinely uses the @ glyph.
  */
 const SOCIAL_LINKS = [
-  { label: 'Facebook', url: 'https://www.facebook.com/wpegca', monogram: 'F' },
-  { label: 'Instagram', url: 'https://www.instagram.com/wpeg.ca', monogram: 'IG' },
-  { label: 'Threads', url: 'https://threads.com/@wpeg.ca', monogram: '@' },
-  { label: 'YouTube', url: 'https://www.youtube.com/@WPEGCA', monogram: 'YT' },
+  { label: 'Instagram', url: 'https://www.instagram.com/wpeg.app/', Icon: Camera },
+  { label: 'Threads', url: 'https://www.threads.com/@wpeg.app', Icon: AtSign },
+  { label: 'Facebook', url: 'https://www.facebook.com/wpegapp', Icon: ThumbsUp },
+  { label: 'YouTube', url: 'https://www.youtube.com/@WPEGapp', Icon: Play },
 ];
 
 function FooterColumn({ title, links }: { title: string; links: readonly FooterLink[] }) {
@@ -136,17 +136,18 @@ export default function SiteFooter() {
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
                   Connect
                 </h3>
-                <div className="flex items-center gap-2">
-                  {SOCIAL_LINKS.map(({ label, url, monogram }) => (
+                <div className="flex flex-wrap items-center gap-2">
+                  {SOCIAL_LINKS.map(({ label, url, Icon }) => (
                     <a
                       key={label}
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`WPEG on ${label}`}
-                      className="w-10 h-10 flex items-center justify-center rounded-[var(--radius)] bg-card border border-border hover:border-primary/50 hover:text-primary transition-colors text-sm font-semibold"
+                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[var(--radius)] bg-card border border-border text-sm font-medium hover:border-primary/50 hover:text-primary transition-colors"
                     >
-                      {monogram}
+                      <Icon className="w-4 h-4" aria-hidden="true" />
+                      {label}
                     </a>
                   ))}
                 </div>
