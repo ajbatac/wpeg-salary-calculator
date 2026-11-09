@@ -135,9 +135,20 @@
     font-family: var(--font-sans);
   }
 
-  /* Smooth scrolling */
+  /* Smooth scrolling (respects the OS reduced-motion setting) */
   html {
     scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Anchor jumps land below the sticky header instead of under it */
+  [id] {
+    scroll-margin-top: 6.5rem;
   }
 
   /* Visible focus indicators for accessibility */
@@ -289,6 +300,12 @@
     background: var(--card);
     border: 1px solid var(--border);
     box-shadow: var(--shadow);
+  }
+
+  /* Left-rail jump menu: thin themed scrollbar for short viewports */
+  .toc-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
   }
 
   .theme-gradient-primary {
