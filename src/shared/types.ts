@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from 'zod';
 
 export const PayFrequencySchema = z.enum(['annual', 'monthly', 'bi-weekly', 'weekly']);
 export type PayFrequency = z.infer<typeof PayFrequencySchema>;
@@ -39,6 +39,25 @@ export interface SalaryBreakdown {
   netPerPeriod: number;
   payFrequency: PayFrequency;
 }
+
+/** Number of pay periods per year for each supported frequency. */
+export const PERIODS_PER_YEAR: Record<PayFrequency, number> = {
+  annual: 1,
+  monthly: 12,
+  'bi-weekly': 26,
+  weekly: 52,
+};
+
+/** Single source of truth for the initial form state shared by form and page. */
+export const DEFAULT_SALARY_INPUT: SalaryInput = {
+  grossSalary: 65000,
+  payFrequency: 'annual',
+  employmentType: 'full-time',
+  additionalIncome: 0,
+  rrspContributions: 0,
+  unionDues: 0,
+  otherDeductions: 0,
+};
 
 // 2026 Tax Brackets and Rates
 export const FEDERAL_TAX_BRACKETS: TaxBracket[] = [

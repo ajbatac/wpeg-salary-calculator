@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Firebase / Genkit remnants — keep out for good
+.firebase/
+.firebaserc
+firebase.json
+.genkit/
+firebase-debug.log
+*-debug.log
+
+# OS
+.DS_Store
+
+# Environment
+.env
+.env.*
+
+# Build caches
+*.tsbuildinfo

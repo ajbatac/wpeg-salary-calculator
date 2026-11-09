@@ -1,27 +1,28 @@
 import { useState } from 'react';
 import { Calculator, DollarSign, Calendar, Briefcase, Plus, Minus } from 'lucide-react';
-import { SalaryInput, PayFrequency, EmploymentType } from '@/shared/types';
+import { SalaryInput, PayFrequency, EmploymentType, DEFAULT_SALARY_INPUT } from '@/shared/types';
 
 interface SalaryFormProps {
   onInputChange: (input: SalaryInput) => void;
 }
 
+const NUMERIC_FIELDS: ReadonlySet<keyof SalaryInput> = new Set([
+  'grossSalary',
+  'additionalIncome',
+  'rrspContributions',
+  'unionDues',
+  'otherDeductions',
+]);
+
+/** Parses raw input into a finite, non-negative number (empty or invalid -> 0). */
+const parseAmount = (raw: string): number => Math.max(0, parseFloat(raw) || 0);
+
 export default function SalaryForm({ onInputChange }: SalaryFormProps) {
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [input, setInput] = useState<SalaryInput>({
-    grossSalary: 65000,
-    payFrequency: 'annual' as PayFrequency,
-    employmentType: 'full-time' as EmploymentType,
-    additionalIncome: 0,
-    rrspContributions: 0,
-    unionDues: 0,
-    otherDeductions: 0,
-  });
+  const [input, setInput] = useState<SalaryInput>(DEFAULT_SALARY_INPUT);
 
   const handleInputChange = (field: keyof SalaryInput, value: string | PayFrequency | EmploymentType) => {
-    const numericFields = ['grossSalary', 'additionalIncome', 'rrspContributions', 'unionDues', 'otherDeductions'];
-    const newValue = numericFields.includes(field) ? parseFloat(value as string) || 0 : value;
-    
+    const newValue = NUMERIC_FIELDS.has(field) ? parseAmount(value as string) : value;
     const newInput = { ...input, [field]: newValue };
     setInput(newInput);
     onInputChange(newInput);
@@ -46,6 +47,9 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
           <input
             id="gross-salary"
             type="number"
+            min="0"
+            step="any"
+            inputMode="decimal"
             value={input.grossSalary}
             onChange={(e) => handleInputChange('grossSalary', e.target.value)}
             className="w-full theme-input text-lg font-medium text-foreground placeholder:text-muted-foreground"
@@ -96,16 +100,13 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
 
         {/* Advanced Options Toggle */}
         <button
+          type="button"
           onClick={() => setShowAdvanced(!showAdvanced)}
           className="flex items-center gap-2 px-6 py-3 text-primary hover:text-primary/80 font-medium transition-all duration-300 theme-button hover:scale-105"
           aria-expanded={showAdvanced}
           aria-controls="advanced-options"
         >
-          {showAdvanced ? (
-            <Minus className="w-4 h-4" />
-          ) : (
-            <Plus className="w-4 h-4" />
-          )}
+          {showAdvanced ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
           {showAdvanced ? 'Hide' : 'Show'} Additional Options
         </button>
 
@@ -119,6 +120,9 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
               <input
                 id="additional-income"
                 type="number"
+                min="0"
+                step="any"
+                inputMode="decimal"
                 value={input.additionalIncome}
                 onChange={(e) => handleInputChange('additionalIncome', e.target.value)}
                 className="w-full theme-input text-foreground placeholder:text-muted-foreground"
@@ -128,12 +132,18 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
             </div>
 
             <div>
-              <label htmlFor="rrsp-contributions" className="block text-sm font-semibold text-foreground mb-2">
+              <label
+                htmlFor="rrsp-contributions"
+                className="block text-sm font-semibold text-foreground mb-2"
+              >
                 RRSP Contributions
               </label>
               <input
                 id="rrsp-contributions"
                 type="number"
+                min="0"
+                step="any"
+                inputMode="decimal"
                 value={input.rrspContributions}
                 onChange={(e) => handleInputChange('rrspContributions', e.target.value)}
                 className="w-full theme-input text-foreground placeholder:text-muted-foreground"
@@ -149,6 +159,9 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
               <input
                 id="union-dues"
                 type="number"
+                min="0"
+                step="any"
+                inputMode="decimal"
                 value={input.unionDues}
                 onChange={(e) => handleInputChange('unionDues', e.target.value)}
                 className="w-full theme-input text-foreground placeholder:text-muted-foreground"
@@ -164,6 +177,9 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
               <input
                 id="other-deductions"
                 type="number"
+                min="0"
+                step="any"
+                inputMode="decimal"
                 value={input.otherDeductions}
                 onChange={(e) => handleInputChange('otherDeductions', e.target.value)}
                 className="w-full theme-input text-foreground placeholder:text-muted-foreground"

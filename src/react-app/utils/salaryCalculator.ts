@@ -10,111 +10,84 @@ import {
   CPP_BASIC_EXEMPTION,
   EI_RATE,
   EI_MAX_EARNINGS,
+  PERIODS_PER_YEAR,
 } from '@/shared/types';
 
+const roundToCents = (amount: number): number => Math.round(amount * 100) / 100;
+
+/** Normalizes any incoming value to a finite, non-negative number. */
+const nonNegative = (value: number | undefined): number => {
+  const amount = value ?? 0;
+  return Number.isFinite(amount) ? Math.max(0, amount) : 0;
+};
+
+/** Progressive tax: each bracket taxes only the income that falls inside it. */
 function calculateTax(income: number, brackets: TaxBracket[]): number {
   let tax = 0;
-  let remainingIncome = income;
-
-  for (const bracket of brackets) {
-    if (remainingIncome <= 0) break;
-
-    const taxableAtThisBracket = bracket.max 
-      ? Math.min(remainingIncome, bracket.max - bracket.min)
-      : remainingIncome;
-
-    if (income > bracket.min) {
-      tax += Math.max(0, taxableAtThisBracket) * bracket.rate;
-    }
-
-    remainingIncome -= taxableAtThisBracket;
+  for (const { min, max, rate } of brackets) {
+    const taxableInBracket = Math.min(income, max ?? Number.POSITIVE_INFINITY) - min;
+    if (taxableInBracket <= 0) continue;
+    tax += taxableInBracket * rate;
   }
-
-  return Math.round(tax * 100) / 100;
+  return roundToCents(tax);
 }
 
 function calculateCPP(annualIncome: number): number {
-  const pensionableIncome = Math.min(annualIncome, CPP_MAX_EARNINGS) - CPP_BASIC_EXEMPTION;
-  const cpp = Math.max(0, pensionableIncome) * CPP_RATE;
-  return Math.round(cpp * 100) / 100;
+  const pensionableIncome = Math.min(nonNegative(annualIncome), CPP_MAX_EARNINGS) - CPP_BASIC_EXEMPTION;
+  return roundToCents(Math.max(0, pensionableIncome) * CPP_RATE);
 }
 
 function calculateEI(annualIncome: number): number {
-  const insurableIncome = Math.min(annualIncome, EI_MAX_EARNINGS);
-  const ei = insurableIncome * EI_RATE;
-  return Math.round(ei * 100) / 100;
+  const insurableIncome = Math.min(nonNegative(annualIncome), EI_MAX_EARNINGS);
+  return roundToCents(insurableIncome * EI_RATE);
 }
 
-function convertToAnnual(amount: number, frequency: PayFrequency): number {
-  switch (frequency) {
-    case 'annual':
-      return amount;
-    case 'monthly':
-      return amount * 12;
-    case 'bi-weekly':
-      return amount * 26;
-    case 'weekly':
-      return amount * 52;
-    default:
-      return amount;
-  }
+export function toAnnual(amount: number, frequency: PayFrequency): number {
+  return amount * PERIODS_PER_YEAR[frequency];
 }
 
-function convertFromAnnual(amount: number, frequency: PayFrequency): number {
-  switch (frequency) {
-    case 'annual':
-      return amount;
-    case 'monthly':
-      return amount / 12;
-    case 'bi-weekly':
-      return amount / 26;
-    case 'weekly':
-      return amount / 52;
-    default:
-      return amount;
-  }
+export function fromAnnual(amount: number, frequency: PayFrequency): number {
+  return amount / PERIODS_PER_YEAR[frequency];
 }
 
 export function calculateSalary(input: SalaryInput): SalaryBreakdown {
-  // Convert all inputs to annual amounts
-  const grossAnnual = convertToAnnual(input.grossSalary, input.payFrequency);
-  const additionalIncomeAnnual = convertToAnnual(input.additionalIncome || 0, input.payFrequency);
-  const rrspAnnual = convertToAnnual(input.rrspContributions || 0, input.payFrequency);
-  const unionDuesAnnual = convertToAnnual(input.unionDues || 0, input.payFrequency);
-  const otherDeductionsAnnual = convertToAnnual(input.otherDeductions || 0, input.payFrequency);
+  const { payFrequency } = input;
+
+  // Normalize at the boundary so the math below only ever sees clean numbers.
+  const grossAnnual = nonNegative(toAnnual(input.grossSalary, payFrequency));
+  const additionalIncomeAnnual = nonNegative(toAnnual(input.additionalIncome, payFrequency));
+  const rrspAnnual = nonNegative(toAnnual(input.rrspContributions, payFrequency));
+  const unionDuesAnnual = nonNegative(toAnnual(input.unionDues, payFrequency));
+  const otherDeductionsAnnual = nonNegative(toAnnual(input.otherDeductions, payFrequency));
 
   const totalGrossIncome = grossAnnual + additionalIncomeAnnual;
-  const taxableIncome = totalGrossIncome - rrspAnnual; // RRSP reduces taxable income
+  // RRSP contributions reduce taxable income (floored at zero).
+  const taxableIncome = Math.max(0, totalGrossIncome - rrspAnnual);
 
-  // Calculate taxes
   const federalTax = calculateTax(taxableIncome, FEDERAL_TAX_BRACKETS);
   const provincialTax = calculateTax(taxableIncome, MANITOBA_TAX_BRACKETS);
 
-  // Calculate CPP and EI (based on total gross income, not reduced by RRSP)
+  // CPP and EI are based on total gross income, not the RRSP-reduced amount.
   const cpp = calculateCPP(totalGrossIncome);
   const ei = calculateEI(totalGrossIncome);
 
-  // Calculate totals
-  const totalDeductions = federalTax + provincialTax + cpp + ei + rrspAnnual + unionDuesAnnual + otherDeductionsAnnual;
+  const totalDeductions =
+    federalTax + provincialTax + cpp + ei + rrspAnnual + unionDuesAnnual + otherDeductionsAnnual;
   const netAnnual = totalGrossIncome - totalDeductions;
 
-  // Convert to per-period amounts
-  const grossPerPeriod = convertFromAnnual(totalGrossIncome, input.payFrequency);
-  const netPerPeriod = convertFromAnnual(netAnnual, input.payFrequency);
-
   return {
-    grossAnnual: Math.round(totalGrossIncome * 100) / 100,
-    grossPerPeriod: Math.round(grossPerPeriod * 100) / 100,
-    federalTax: Math.round(federalTax * 100) / 100,
-    provincialTax: Math.round(provincialTax * 100) / 100,
-    cpp: Math.round(cpp * 100) / 100,
-    ei: Math.round(ei * 100) / 100,
-    rrsp: Math.round(rrspAnnual * 100) / 100,
-    unionDues: Math.round(unionDuesAnnual * 100) / 100,
-    otherDeductions: Math.round(otherDeductionsAnnual * 100) / 100,
-    totalDeductions: Math.round(totalDeductions * 100) / 100,
-    netAnnual: Math.round(netAnnual * 100) / 100,
-    netPerPeriod: Math.round(netPerPeriod * 100) / 100,
-    payFrequency: input.payFrequency,
+    grossAnnual: roundToCents(totalGrossIncome),
+    grossPerPeriod: roundToCents(fromAnnual(totalGrossIncome, payFrequency)),
+    federalTax,
+    provincialTax,
+    cpp,
+    ei,
+    rrsp: roundToCents(rrspAnnual),
+    unionDues: roundToCents(unionDuesAnnual),
+    otherDeductions: roundToCents(otherDeductionsAnnual),
+    totalDeductions: roundToCents(totalDeductions),
+    netAnnual: roundToCents(netAnnual),
+    netPerPeriod: roundToCents(fromAnnual(netAnnual, payFrequency)),
+    payFrequency,
   };
 }
