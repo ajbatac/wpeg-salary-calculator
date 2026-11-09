@@ -4,6 +4,7 @@ import ChangelogPage from '@/react-app/pages/Changelog';
 import ChartPage from '@/react-app/pages/Chart';
 import NotFoundPage from '@/react-app/pages/NotFound';
 import SiteFooter from '@/react-app/components/SiteFooter';
+import BackToTop from '@/react-app/components/BackToTop';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <SiteFooter />
+      <BackToTop />
     </BrowserRouter>
   );
 }
