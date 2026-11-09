@@ -32,9 +32,13 @@ export default function SiteHeader({
               keeps a readable line length instead of wrapping word-by-word. */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3 min-w-0">
-              <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none">
-                <img src="/logo.png" alt="WPEG logo" className="w-10 h-10 object-contain" />
-              </div>
+              <Link
+                to="/"
+                aria-label="WPEG Salary Calculator home"
+                className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none hover:border-primary/50 transition-colors"
+              >
+                <img src="/logo.png" alt="" className="w-10 h-10 object-contain" />
+              </Link>
               <span className="text-muted-foreground font-serif text-xl hidden sm:inline" aria-hidden="true">
                 ×
               </span>

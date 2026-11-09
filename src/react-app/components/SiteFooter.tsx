@@ -92,13 +92,13 @@ export default function SiteFooter() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.6fr] gap-12 lg:gap-16 pb-12 border-b border-border">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg">
-                  <img
-                    src="/logo.png"
-                    alt="WPEG Salary Calculator logo"
-                    className="w-12 h-12 object-contain"
-                  />
-                </div>
+                <Link
+                  to="/"
+                  aria-label="WPEG Salary Calculator home"
+                  className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg hover:border-primary/50 transition-colors"
+                >
+                  <img src="/logo.png" alt="" className="w-12 h-12 object-contain" />
+                </Link>
                 <span className="text-muted-foreground font-serif text-2xl" aria-hidden="true">
                   ×
                 </span>
