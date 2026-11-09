@@ -30,6 +30,7 @@ Gross Income: ${formatCurrency(breakdown.grossAnnual)}
 Federal Tax: ${formatCurrency(breakdown.federalTax)}
 Provincial Tax: ${formatCurrency(breakdown.provincialTax)}
 CPP: ${formatCurrency(breakdown.cpp)}
+CPP2: ${formatCurrency(breakdown.cpp2)}
 EI: ${formatCurrency(breakdown.ei)}
 Total Deductions: ${formatCurrency(breakdown.totalDeductions)}
 Net Take-Home: ${formatCurrency(breakdown.netAnnual)}

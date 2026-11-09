@@ -30,6 +30,7 @@ export interface SalaryBreakdown {
   federalTax: number;
   provincialTax: number;
   cpp: number;
+  cpp2: number;
   ei: number;
   rrsp: number;
   unionDues: number;
@@ -59,25 +60,41 @@ export const DEFAULT_SALARY_INPUT: SalaryInput = {
   otherDeductions: 0,
 };
 
-// 2026 Tax Brackets and Rates
+// 2026 Tax Brackets and Rates (CRA-indexed, 2.0% factor)
 export const FEDERAL_TAX_BRACKETS: TaxBracket[] = [
-  { min: 0, max: 55867, rate: 0.15 },
-  { min: 55867, max: 111733, rate: 0.205 },
-  { min: 111733, max: 173205, rate: 0.26 },
-  { min: 173205, max: 246752, rate: 0.29 },
-  { min: 246752, max: null, rate: 0.33 },
+  { min: 0, max: 58523, rate: 0.14 },
+  { min: 58523, max: 117045, rate: 0.205 },
+  { min: 117045, max: 181440, rate: 0.26 },
+  { min: 181440, max: 258482, rate: 0.29 },
+  { min: 258482, max: null, rate: 0.33 },
 ];
 
 export const MANITOBA_TAX_BRACKETS: TaxBracket[] = [
-  { min: 0, max: 36842, rate: 0.108 },
-  { min: 36842, max: 79625, rate: 0.1275 },
-  { min: 79625, max: null, rate: 0.174 },
+  { min: 0, max: 47564, rate: 0.108 },
+  { min: 47564, max: 101200, rate: 0.1275 },
+  { min: 101200, max: null, rate: 0.174 },
 ];
 
-// 2026 CPP and EI Rates
+// Basic Personal Amounts (non-refundable credits valued at the lowest bracket rate).
+// Federal: enhanced BPA is reduced by 3% of income above the phase-out start,
+// down to the un-enhanced floor. Manitoba: phased out linearly $200k–$400k.
+export const FEDERAL_BPA_MAX = 16452;
+export const FEDERAL_BPA_FLOOR = 14829;
+export const FEDERAL_BPA_PHASEOUT_START = 181440;
+export const FEDERAL_BPA_PHASEOUT_RATE = 0.03;
+
+export const MANITOBA_BPA_MAX = 16140;
+export const MANITOBA_BPA_PHASEOUT_START = 200000;
+export const MANITOBA_BPA_PHASEOUT_END = 400000;
+
+// 2026 CPP: base 5.95% between the exemption and YMPE; CPP2 4.00% up to YAMPE.
 export const CPP_RATE = 0.0595;
-export const CPP_MAX_EARNINGS = 68500;
+export const CPP_MAX_EARNINGS = 74600;
 export const CPP_BASIC_EXEMPTION = 3500;
 
-export const EI_RATE = 0.0166;
-export const EI_MAX_EARNINGS = 63200;
+export const CPP2_RATE = 0.04;
+export const CPP2_MAX_EARNINGS = 85000;
+
+// 2026 EI (employee rate; max annual premium $1,123.07)
+export const EI_RATE = 0.0163;
+export const EI_MAX_EARNINGS = 68900;

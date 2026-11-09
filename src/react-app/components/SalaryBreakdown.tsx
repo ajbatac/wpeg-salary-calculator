@@ -1,7 +1,13 @@
 import { useMemo } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, MapPin } from 'lucide-react';
 import { SalaryBreakdown } from '@/shared/types';
-import { AVG_MONTHLY_RENT, CAPPUCCINO_PRICE, MONTH_NAMES } from '@/shared/constants';
+import {
+  AVG_MONTHLY_RENT,
+  CAPPUCCINO_PRICE,
+  MONTH_NAMES,
+  SLURPEE_DAILY_COST,
+  SLURPEE_DAILY_CUPS,
+} from '@/shared/constants';
 import { formatCurrency, formatPayFrequency } from '@/react-app/utils/format';
 
 interface SalaryBreakdownProps {
@@ -66,6 +72,15 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
       amount: breakdown.cpp,
       color: 'bg-blue-500/20 text-blue-400 border-blue-500/20',
     },
+    ...(breakdown.cpp2 > 0
+      ? [
+          {
+            label: 'CPP2 (Enhanced)',
+            amount: breakdown.cpp2,
+            color: 'bg-blue-500/20 text-blue-400 border-blue-500/20',
+          },
+        ]
+      : []),
     {
       label: 'EI Premiums',
       amount: breakdown.ei,
@@ -109,11 +124,15 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
 
   const federalRentMonths = Math.max(1, Math.round(breakdown.federalTax / AVG_MONTHLY_RENT));
   const rentMonthName = MONTH_NAMES[Math.min(federalRentMonths - 1, MONTH_NAMES.length - 1)];
+  const totalCpp = breakdown.cpp + breakdown.cpp2;
   const provincialCappuccinos = Math.round(breakdown.provincialTax / CAPPUCCINO_PRICE);
-  const cppCappuccinos = Math.round(breakdown.cpp / CAPPUCCINO_PRICE);
+  const cppCappuccinos = Math.round(totalCpp / CAPPUCCINO_PRICE);
   const eiCappuccinos = Math.round(breakdown.ei / CAPPUCCINO_PRICE);
   const totalRentMonths = Math.round((breakdown.totalDeductions / AVG_MONTHLY_RENT) * 10) / 10;
   const totalCappuccinos = Math.round(breakdown.totalDeductions / CAPPUCCINO_PRICE);
+  // The 190,000-cup figure is *monthly*; the daily habit is that divided across the month,
+  // so funding duration is measured in days at the derived daily city-wide cost.
+  const slurpeeDays = Math.round((breakdown.totalDeductions / SLURPEE_DAILY_COST) * 10) / 10;
 
   return (
     <div className="space-y-6">
@@ -239,7 +258,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
 
           <p>
             Your annual CPP contribution of{' '}
-            <strong className="text-foreground">{formatCurrency(breakdown.cpp)}</strong> converts to about{' '}
+            <strong className="text-foreground">{formatCurrency(totalCpp)}</strong> converts to about{' '}
             <strong className="text-primary">{cppCappuccinos.toLocaleString()} cappuccinos</strong>, or enough
             lattes to fuel the morning commute for every Bomber fan in the north-end grandstand on game day.
           </p>
@@ -257,13 +276,10 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
             roughly <strong className="text-primary">{totalRentMonths} months</strong> of average Winnipeg
             rent or more than{' '}
             <strong className="text-primary">{totalCappuccinos.toLocaleString()} cappuccinos</strong>. Put
-            another way, your withholdings could fund the city&apos;s entire daily Slurpee habit (about
-            190,000 cups) for more than{' '}
-            <strong className="text-primary">
-              {Math.round(breakdown.totalDeductions / (190000 * 2))} weeks
-            </strong>
-            , underscoring just how much of your paycheque is redirected before it ever hits your bank
-            account.
+            another way, your withholdings could fund the city&apos;s daily Slurpee habit (about{' '}
+            {SLURPEE_DAILY_CUPS.toLocaleString()} cups, from 190,000 a month) for{' '}
+            <strong className="text-primary">{slurpeeDays} days</strong>, underscoring just how much of your
+            paycheque is redirected before it ever hits your bank account.
           </p>
         </div>
 

@@ -15,32 +15,40 @@ import { calculateSalary, toAnnual } from '@/react-app/utils/salaryCalculator';
 import { formatCurrency, formatCurrencyPrecise } from '@/react-app/utils/format';
 
 const federalTaxBrackets = [
-  { range: 'Up to $55,867', rate: '15%' },
-  { range: '$55,867 – $111,733', rate: '20.5%' },
-  { range: '$111,733 – $173,205', rate: '26%' },
-  { range: '$173,205 – $246,752', rate: '29%' },
-  { range: 'Above $246,752', rate: '33%' },
+  { range: 'Up to $58,523', rate: '14%' },
+  { range: '$58,523 – $117,045', rate: '20.5%' },
+  { range: '$117,045 – $181,440', rate: '26%' },
+  { range: '$181,440 – $258,482', rate: '29%' },
+  { range: 'Above $258,482', rate: '33%' },
 ];
 
 const manitobaTaxBrackets = [
-  { range: 'Up to $36,842', rate: '10.8%' },
-  { range: '$36,843 – $79,625', rate: '12.75%' },
-  { range: 'Above $79,625', rate: '17.4%' },
+  { range: 'Up to $47,564', rate: '10.8%' },
+  { range: '$47,564 – $101,200', rate: '12.75%' },
+  { range: 'Above $101,200', rate: '17.4%' },
 ];
 
 const payrollContributions = [
   {
     label: 'CPP',
     rate: '5.95%',
-    description: 'On earnings $3,500 – $68,500',
+    description: 'On earnings $3,500 – $74,600',
+    accentClass: 'from-blue-500/20 to-transparent',
+    textClass: 'text-blue-500',
+    dotClass: 'bg-blue-500',
+  },
+  {
+    label: 'CPP2',
+    rate: '4.00%',
+    description: 'On earnings $74,600 – $85,000',
     accentClass: 'from-blue-500/20 to-transparent',
     textClass: 'text-blue-500',
     dotClass: 'bg-blue-500',
   },
   {
     label: 'EI',
-    rate: '1.66%',
-    description: 'On earnings up to $63,200',
+    rate: '1.63%',
+    description: 'On earnings up to $68,900',
     accentClass: 'from-green-500/20 to-transparent',
     textClass: 'text-green-500',
     dotClass: 'bg-green-500',
@@ -82,7 +90,7 @@ export default function Home() {
   const hourlyGross = annualGross / WORK_HOURS_PER_YEAR;
   const rentPercentage = monthlyGross > 0 ? ((AVG_MONTHLY_RENT / monthlyGross) * 100).toFixed(1) : '—';
 
-  const cppAmount = breakdown?.cpp ?? 0;
+  const cppAmount = (breakdown?.cpp ?? 0) + (breakdown?.cpp2 ?? 0);
   const eiAmount = breakdown?.ei ?? 0;
   const totalDeductions = breakdown?.totalDeductions ?? 0;
   const cappuccinoCount = Math.floor(cppAmount / CAPPUCCINO_PRICE);
@@ -483,8 +491,9 @@ export default function Home() {
             <div>
               <h4 className="font-semibold text-foreground mb-2">Accuracy</h4>
               <p>
-                This calculator uses 2026 federal and Manitoba tax rates. Results are estimates and should not
-                replace professional tax advice.
+                This calculator uses official 2026 federal and Manitoba tax brackets, basic personal amount
+                credits, and CPP, CPP2 and EI maximums. Results are estimates and should not replace
+                professional tax advice.
               </p>
             </div>
             <div>
