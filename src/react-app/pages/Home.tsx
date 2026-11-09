@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MapPin, Calculator, Info, TrendingDown, DollarSign } from 'lucide-react';
+import { MapPin, Calculator, Info, TrendingDown, DollarSign, ExternalLink } from 'lucide-react';
 import SalaryForm from '@/react-app/components/SalaryForm';
 import SalaryBreakdownComponent from '@/react-app/components/SalaryBreakdown';
 import DarkModeToggle from '@/react-app/components/DarkModeToggle';
@@ -10,6 +10,9 @@ import {
   CAPPUCCINO_PRICE,
   SMALL_SLURPEE_PRICE,
   WORK_HOURS_PER_YEAR,
+  TAX_SOURCES,
+  CRA_TAX_BRACKETS_URL,
+  MANITOBA_TAX_RATES_URL,
 } from '@/shared/constants';
 import { calculateSalary, toAnnual } from '@/react-app/utils/salaryCalculator';
 import { formatCurrency, formatCurrencyPrecise } from '@/react-app/utils/format';
@@ -254,7 +257,14 @@ export default function Home() {
                     <div className="w-3 h-3 rounded-full bg-red-500" />
                     <h4 className="text-lg font-semibold text-foreground font-serif">Federal Tax Brackets</h4>
                   </div>
-                  <span className="text-xs uppercase tracking-wide text-foreground/70">CRA 2026</span>
+                  <a
+                    href={CRA_TAX_BRACKETS_URL}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/70 hover:text-primary hover:underline"
+                  >
+                    CRA 2026 <ExternalLink className="w-3 h-3" />
+                  </a>
                 </header>
                 <div className="space-y-3">
                   {federalTaxBrackets.map((bracket) => (
@@ -280,7 +290,14 @@ export default function Home() {
                         Manitoba Provincial Tax
                       </h4>
                     </div>
-                    <span className="text-xs uppercase tracking-wide text-foreground/70">2026 Budget</span>
+                    <a
+                      href={MANITOBA_TAX_RATES_URL}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/70 hover:text-primary hover:underline"
+                    >
+                      MB Finance <ExternalLink className="w-3 h-3" />
+                    </a>
                   </header>
                   <div className="space-y-3">
                     {manitobaTaxBrackets.map((bracket) => (
@@ -518,6 +535,41 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Sources & References */}
+        <div className="mt-8 theme-card">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-3 theme-gradient-secondary rounded-[var(--radius)] shadow-lg">
+              <ExternalLink className="w-5 h-5 text-white" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground font-serif">Sources & References</h3>
+          </div>
+          <p className="text-sm text-muted-foreground mb-4">
+            Every 2026 rate, bracket, and credit used by this calculator comes from the official government
+            publications below. Last verified November 2026.
+          </p>
+          <ul className="space-y-3">
+            {TAX_SOURCES.map((source) => (
+              <li
+                key={source.url}
+                className="flex items-start gap-3 py-2 px-4 rounded-[var(--radius)] theme-surface border border-border"
+              >
+                <ExternalLink className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
+                <div>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    className="font-medium text-primary hover:underline"
+                  >
+                    {source.label}
+                  </a>
+                  <p className="text-sm text-muted-foreground">{source.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Coffee Coin Section */}
