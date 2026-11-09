@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WPEG Salary Calculator Changelog</title>
+    <link>https://salary.wpeg.app/changelog</link>
+    <description>New features, fixes, and improvements to the Winnipeg Salary Calculator — newest first.</description>
+    <language>en-ca</language>
+    <atom:link href="https://salary.wpeg.app/changelog/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>v1.1.0 — The big 2026 accuracy update</title>
+      <link>https://salary.wpeg.app/changelog#v1.1.0</link>
+      <guid isPermaLink="true">https://salary.wpeg.app/changelog#v1.1.0</guid>
+      <pubDate>Mon, 09 Nov 2026 08:00:00 +0000</pubDate>
+      <description><![CDATA[<p>The big 2026 accuracy update — November 9, 2026</p><ul><li>Corrected every tax figure to the official 2026 federal and Manitoba rates — including the new lowest federal tax rate, basic personal amount credits, the enhanced CPP2 tier, and updated EI premiums and ceilings.</li><li>Refreshed brand colours with stronger contrast, and added 22 selectable colour themes with full light and dark mode support.</li><li>Added an &quot;On this page&quot; jump menu on desktop so you can hop straight to any section.</li><li>Every rate now cites its official government source, linked directly to the CRA and Manitoba Finance pages.</li><li>Fixed the rent-to-income and perspective cards at $0 salary, and the Slurpee math in the deduction perspective.</li><li>Faster, cleaner, and more accessible under the hood — zero console errors and AA contrast throughout.</li></ul>]]></description>
+    </item>
+    <item>
+      <title>v1.0.0 — Initial release</title>
+      <link>https://salary.wpeg.app/changelog#v1.0.0</link>
+      <guid isPermaLink="true">https://salary.wpeg.app/changelog#v1.0.0</guid>
+      <pubDate>Wed, 20 Aug 2025 08:00:00 +0000</pubDate>
+      <description><![CDATA[<p>Initial release — August 2025</p><ul><li>Winnipeg salary calculator with federal and Manitoba tax, CPP and EI estimates, dark mode, one-click sharing, and a healthy dose of Winnipeg fun facts.</li></ul>]]></description>
+    </item>
+  </channel>
+</rss>

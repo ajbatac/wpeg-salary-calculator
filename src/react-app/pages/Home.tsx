@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { MapPin, Calculator, Info, TrendingDown, DollarSign, ExternalLink } from 'lucide-react';
 import SalaryForm from '@/react-app/components/SalaryForm';
 import SalaryBreakdownComponent from '@/react-app/components/SalaryBreakdown';
@@ -692,9 +693,22 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-12 theme-card border border-blue-400/30 bg-gradient-to-br from-blue-50/50 to-indigo-50/30 dark:from-blue-950/20 dark:to-indigo-950/10">
-              <a href="https://portal.wpeg.app/" target="_blank" rel="noopener noreferrer">
-                &lt;&lt; Back to WPEG
-              </a>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <a
+                  href="https://portal.wpeg.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  &lt;&lt; Back to WPEG
+                </a>
+                <Link
+                  to="/changelog"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  v1.1.0 · <span className="hover:underline">Changelog</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

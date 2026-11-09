@@ -1,0 +1,40 @@
+# WPEG Salary Calculator
+
+> Free, private, browser-based net salary calculator for Winnipeg, Manitoba, Canada. Computes federal tax, Manitoba provincial tax, CPP, CPP2, and EI deductions using official 2026 CRA and Manitoba Finance parameters, then shows take-home pay per pay period along with plain-English perspective on what those deductions would buy.
+
+- Canonical URL: https://salary.wpeg.app/
+- Language: English (en-CA)
+- Currency: CAD
+- Author/Publisher: AJ Batac (WPEG)
+- Privacy: all calculations run locally in the browser; no salary data is stored or transmitted
+
+## Key pages
+
+- Calculator: https://salary.wpeg.app/
+- Changelog (public release history): https://salary.wpeg.app/changelog
+- Changelog RSS feed: https://salary.wpeg.app/changelog/rss.xml
+- Parent portal: https://portal.wpeg.app/
+
+## 2026 calculation parameters (verified against official sources)
+
+- Federal brackets: 14% up to $58,523; 20.5% to $117,045; 26% to $181,440; 29% to $258,482; 33% above (2.0% CRA indexation)
+- Federal basic personal amount: $16,452 (phased out above $181,440, floor $14,829), credited at 14%
+- Manitoba brackets: 10.8% up to $47,564; 12.75% to $101,200; 17.4% above
+- Manitoba basic personal amount: $16,140 (phased out between $200,000 and $400,000), credited at 10.8%
+- CPP: 5.95% on earnings $3,500–$74,600 (max $4,230.45); CPP2: 4.00% on $74,600–$85,000 (max $416.00)
+- EI: 1.63% employee rate on earnings up to $68,900 (max $1,123.07)
+
+## Source citations
+
+- CRA federal and provincial tax rates: https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html
+- CRA CPP rates and maximums: https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html
+- CRA CPP2 rates and maximums: https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/calculating-deductions/making-deductions/second-additional-cpp-contribution-rates-maximums.html
+- CRA EI premium rates: https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html
+- Manitoba personal income taxes: https://www.gov.mb.ca/finance/personal/ptaxes.html
+- Manitoba personal tax credits: https://www.gov.mb.ca/finance/personal/pcredits.html
+
+## Usage notes
+
+- Estimates only; does not replace professional tax advice
+- Basic personal amount credits are applied; CPP/EI contribution tax credits are not
+- Rates are updated annually after official CRA and Manitoba Finance publications
