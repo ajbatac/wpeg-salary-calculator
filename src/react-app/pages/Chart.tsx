@@ -427,7 +427,7 @@ function EffectiveRateCurve({ breakdown }: ChartPageProps) {
       </div>
       <p className="mt-3 text-sm text-muted-foreground">
         Your effective income-tax rate is <strong className="text-foreground">{yourPoint.y}%</strong> at{' '}
-        {formatCurrency(breakdown.grossAnnual)} — the purple dot is you on Manitoba's 2026 curve.
+        {formatCurrency(breakdown.grossAnnual)}. The purple dot is you on Manitoba's 2026 curve.
       </p>
     </div>
   );
@@ -477,7 +477,7 @@ export default function ChartPage() {
               Your salary, charted.
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Every number from your calculation, drawn as living charts — where your money goes, how you
+              Every number from your calculation, drawn as living charts: where your money goes, how you
               stack up, and where you sit on Manitoba's 2026 curve.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -574,7 +574,7 @@ export default function ChartPage() {
           </h3>
           <p className="text-base text-muted-foreground mt-2 max-w-2xl">
             The same take-home pay, translated into cakes, commutes, calendars, and neighbourhoods. Local
-            prices and benchmarks below are illustrative — the tax math is not.
+            prices and benchmarks below are illustrative; the tax math is not.
           </p>
         </div>
 

@@ -1,7 +1,7 @@
 /**
  * Color theme registry. Palettes are transcribed exactly from the LinkN theme
  * catalog (resolved Light and Dark values per preset). Values are raw HSL
- * channels (e.g. "267 84% 81%") — never wrapped in hsl() — matching the token
+ * channels (e.g. "267 84% 81%"), never wrapped in hsl(), matching the token
  * architecture in index.css and tailwind.config.js.
  */
 
@@ -760,7 +760,7 @@ const LIGHT_CONTRAST_TARGET = 5; // margin over AA 4.5 for tinted surfaces
 const DARK_CONTRAST_TARGET = 4.8;
 
 function channelsToRgb(channels: string): [number, number, number] {
-  // parseFloat (not Number) — channel strings carry '%' suffixes.
+  // parseFloat (not Number): channel strings carry '%' suffixes.
   const [h, s, l] = channels.split(' ').map((part) => parseFloat(part));
   const chroma = (1 - Math.abs(2 * (l / 100) - 1)) * (s / 100);
   const hp = h / 60;

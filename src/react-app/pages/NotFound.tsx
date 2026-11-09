@@ -39,12 +39,12 @@ const THEORIES = [
   {
     icon: Snowflake,
     title: 'The cold snap',
-    text: 'Last seen near −40° — the only temperature where Celsius and Fahrenheit agree, and roughly how found this page is.',
+    text: 'Last seen near −40°, the only temperature where Celsius and Fahrenheit agree, and roughly how found this page is.',
   },
   {
     icon: CupSoda,
     title: 'The Slurpee defence',
-    text: 'Even the Slurpee Capital of the World — 190,000 cups a month — couldn\u2019t freeze this URL back into existence.',
+    text: 'Even the Slurpee Capital of the World (190,000 cups a month) couldn\u2019t freeze this URL back into existence.',
   },
   {
     icon: Bug,
@@ -160,7 +160,7 @@ function Receipt({ url }: { url: string }) {
           <span>$0.00</span>
         </div>
         <p className="mt-3 text-center text-xs text-muted-foreground">
-          THIS PAGE EARNS NOTHING — EVEN THE CRA CAN&apos;T TAX IT.
+          THIS PAGE EARNS NOTHING. EVEN THE CRA CAN&apos;T TAX IT.
         </p>
 
         <div className="my-4 border-t-2 border-dashed border-border" aria-hidden="true" />
@@ -187,7 +187,7 @@ export default function NotFoundPage() {
       <SiteHeader />
 
       <main id="main-content">
-        {/* ── Hero: aurora, blizzard, and a very large 404 ─────────────── */}
+        {/* === Hero: aurora, blizzard, and a very large 404 ============== */}
         <section className="relative overflow-hidden">
           {/* Manitoba-aurora glow bed */}
           <div className="absolute inset-0" aria-hidden="true">
@@ -235,7 +235,7 @@ export default function NotFoundPage() {
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               We combed both rivers, the whole Forks market, and every kilometre of Portage Avenue. Whatever
-              this URL promised, it isn&apos;t here — it may have moved, or it never survived its first
+              this URL promised, it isn&apos;t here. It may have moved, or it never survived its first
               Manitoba winter.
             </p>
 
@@ -259,7 +259,7 @@ export default function NotFoundPage() {
           </div>
         </section>
 
-        {/* ── Winnipeg brag ticker ─────────────────────────────────────── */}
+        {/* === Winnipeg brag ticker ======================================== */}
         <div className="ink-band overflow-hidden py-3 print:hidden" aria-hidden="true">
           <div className="wpeg-marquee flex w-max whitespace-nowrap font-mono text-xs uppercase tracking-[0.2em] opacity-90 sm:text-sm">
             {[0, 1].map((copy) => (
@@ -275,7 +275,7 @@ export default function NotFoundPage() {
           </div>
         </div>
 
-        {/* ── The investigation: receipt + case file ───────────────────── */}
+        {/* === The investigation: receipt + case file ===================== */}
         <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:px-10">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <Receipt url={displayUrl} />
@@ -310,7 +310,7 @@ export default function NotFoundPage() {
               </ul>
 
               <p className="mt-6 border-t border-border pt-4 text-sm text-muted-foreground">
-                If found, please return it to the homepage. No reward — but we&apos;ll calculate your taxes,
+                If found, please return it to the homepage. No reward, but we&apos;ll calculate your taxes,
                 which is basically the same thing.
               </p>
             </div>
@@ -318,7 +318,7 @@ export default function NotFoundPage() {
         </section>
 
         <p className="px-4 pb-10 text-center font-mono text-xs tracking-widest text-muted-foreground">
-          — NO PAGES WERE HARMED IN THE MAKING OF THIS ERROR —
+          * NO PAGES WERE HARMED IN THE MAKING OF THIS ERROR *
         </p>
       </main>
     </div>

@@ -37,7 +37,7 @@ const TOOL_LINKS: readonly FooterLink[] = [
 
 /**
  * Lucide v1 ships no brand icons, so each platform gets lucide's closest
- * semantic glyph plus a visible label — never a drawn look-alike logo.
+ * semantic glyph plus a visible label, never a drawn look-alike logo.
  * Threads genuinely uses the @ glyph.
  */
 const SOCIAL_LINKS = [
@@ -107,7 +107,7 @@ export default function SiteFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2.5 bg-card rounded-[var(--radius)] border border-border hover:border-primary/50 transition-colors"
-                  aria-label="WPEG.app — visit the portal"
+                  aria-label="Visit the WPEG.app portal"
                 >
                   <img src="/wpeg-logo.png" alt="WPEG.app wordmark" className="h-8 w-auto object-contain" />
                 </a>
@@ -117,7 +117,7 @@ export default function SiteFooter() {
                 Part of the <span className="text-primary">WPEG</span> family.
               </h2>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-md mb-6">
-                This salary calculator is one of many free Winnipeg tools from the team behind WPEG.app — your
+                This salary calculator is one of many free Winnipeg tools from the team behind WPEG.app, your
                 central hub for city services and local attractions, all in one place.
               </p>
 
@@ -198,7 +198,7 @@ export default function SiteFooter() {
             <Link
               to="/changelog"
               className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label={`Version ${APP_VERSION} — view the changelog`}
+              aria-label={`Version ${APP_VERSION}: view the changelog`}
             >
               {APP_VERSION}
             </Link>

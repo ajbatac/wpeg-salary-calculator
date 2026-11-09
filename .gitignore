@@ -1,7 +1,7 @@
 # Dependencies
 node_modules/
 
-# Firebase / Genkit remnants — keep out for good
+# Firebase / Genkit remnants, keep out for good
 .firebase/
 .firebaserc
 firebase.json

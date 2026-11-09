@@ -306,7 +306,7 @@
 @layer utilities {
   /**
    * Editorial masthead band. Inverts the palette's own foreground/background
-   * pair — by construction the highest-contrast combination in every theme
+   * pair, by construction the highest-contrast combination in every theme
    * and both display modes. Children inherit the band colour and use
    * opacity for secondary text; borders use background/20-30 utilities.
    */
@@ -332,7 +332,7 @@
   }
 
   /* Gradient text. Self-contained because combining theme-gradient-primary
-     (a background shorthand) with bg-clip-text is source-order dependent —
+     (a background shorthand) with bg-clip-text is source-order dependent:
      the shorthand resets background-clip and the text renders invisible.
      Named theme-gradient-* so the Basic theme's solid-fill rescue rule
      ([class*='theme-gradient']) keeps the glyphs visible when gradients
@@ -384,7 +384,7 @@
     border-color: hsl(var(--ring));
   }
 
-  /* ── 404 page motion ──────────────────────────────────────────────
+  /* === 404 page motion ==============================================
      Purely decorative; disabled by prefers-reduced-motion below, and
      the Basic theme strips all animation globally via its own rules.
      Rotation/tilt lives in the separate CSS `rotate` property so the

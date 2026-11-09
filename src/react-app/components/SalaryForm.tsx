@@ -4,7 +4,7 @@ import { SalaryInput, PayFrequency, EmploymentType, DEFAULT_SALARY_INPUT } from 
 
 interface SalaryFormProps {
   onInputChange: (input: SalaryInput) => void;
-  /** Fired on submit (button click or Enter) — the parent decides what happens next. */
+  /** Fired on submit (button click or Enter); the parent decides what happens next. */
   onSubmitInput?: (input: SalaryInput) => void;
 }
 

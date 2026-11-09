@@ -34,7 +34,7 @@ const COLORS = {
 const gridColor = () => cssHsl('--border');
 const tickColor = () => cssHsl('--muted-foreground');
 
-/** 1 — The Winnipeg Unit of Currency converter. */
+/** 1. The Winnipeg Unit of Currency converter. */
 const WUC_UNITS = [
   { id: 'cake', label: "Jeanne's cakes", price: 26, note: 'the banana-crust legend of St. Boniface' },
   { id: 'slurpee', label: 'Large Slurpees', price: 2.5, note: 'civic duty in the Slurpee capital' },
@@ -71,7 +71,7 @@ export function CurrencyConverter({ breakdown }: SeriesProps) {
         <span className="text-lg font-semibold text-muted-foreground">{unit.label}</span>
       </p>
       <p className="text-sm text-muted-foreground mt-1 mb-4">
-        per year — about {perWeek.toLocaleString()} a week — {unit.note}. Prices illustrative.
+        per year, or about {perWeek.toLocaleString()} a week ({unit.note}). Prices illustrative.
       </p>
       <div className="h-24">
         <ReactChart
@@ -99,7 +99,7 @@ export function CurrencyConverter({ breakdown }: SeriesProps) {
   );
 }
 
-/** 2 — Seasonal survival budget (illustrative monthly Winnipeg extras). */
+/** 2. Seasonal survival budget (illustrative monthly Winnipeg extras). */
 const SEASON_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const SEASON_SERIES = [
   { label: 'Winterizing & car', color: COLORS.federal, data: [40, 40, 150, 90, 0, 0, 0, 0, 0, 60, 200, 50] },
@@ -150,13 +150,13 @@ export function SeasonalBudget() {
         />
       </div>
       <p className="mt-3 text-xs italic text-muted-foreground">
-        Illustrative seasonal extras on top of your regular budget — the months Winnipeg treats differently.
+        Illustrative seasonal extras on top of your regular budget, in the months Winnipeg treats differently.
       </p>
     </div>
   );
 }
 
-/** 3 — Commute trade-off: driving vs Transit vs cycling (illustrative rates). */
+/** 3. Commute trade-off: driving vs Transit vs cycling (illustrative rates). */
 export function CommuteTradeOff({ breakdown }: SeriesProps) {
   const [km, setKm] = useState(18);
   const [days, setDays] = useState(5);
@@ -237,14 +237,14 @@ export function CommuteTradeOff({ breakdown }: SeriesProps) {
       <p className="mt-3 text-sm text-muted-foreground">
         Cycling saves{' '}
         <strong className="text-green-600 dark:text-green-400">{formatCurrency(savingVsDriving)}</strong> a
-        year over driving — about {Math.round((savingVsDriving / Math.max(breakdown.netAnnual, 1)) * 100)}% of
+        year over driving, about {Math.round((savingVsDriving / Math.max(breakdown.netAnnual, 1)) * 100)}% of
         your take-home. Rates illustrative ($0.28/km + a $650 pothole levy).
       </p>
     </div>
   );
 }
 
-/** 4 — Tax Freedom Day calendar, computed straight from the breakdown. */
+/** 4. Tax Freedom Day calendar, computed straight from the breakdown. */
 interface DayCell {
   month: number;
   day: number;
@@ -315,7 +315,7 @@ export function FreedomCalendar({ breakdown }: SeriesProps) {
     <div>
       <p className="text-sm text-muted-foreground mb-4">
         Your <strong className="text-green-600 dark:text-green-400">Freedom Date</strong> is{' '}
-        <strong className="text-foreground">{freedomLabel}</strong> — every dollar you earn after that is
+        <strong className="text-foreground">{freedomLabel}</strong>. Every dollar you earn after that is
         yours to keep.
       </p>
       <div className="grid grid-cols-12 gap-1.5">
@@ -330,7 +330,7 @@ export function FreedomCalendar({ breakdown }: SeriesProps) {
                   key={`${cell.month}-${cell.day}`}
                   className="w-full aspect-square rounded-[3px] transition-transform hover:scale-125"
                   style={{ background: cell.color }}
-                  title={`${MONTH_NAMES[cell.month]} ${cell.day}${cell.isFreedom ? ' — yours' : ''}`}
+                  title={`${MONTH_NAMES[cell.month]} ${cell.day}${cell.isFreedom ? ', yours' : ''}`}
                 />
               ))}
             </div>
@@ -349,7 +349,7 @@ export function FreedomCalendar({ breakdown }: SeriesProps) {
   );
 }
 
-/** 5 — Neighborhood affordability vs the 30% / 40% rules (illustrative rents). */
+/** 5. Neighborhood affordability vs the 30% / 40% rules (illustrative rents). */
 const NEIGHBOURHOODS: ReadonlyArray<{ name: string; rent: number }> = [
   { name: 'North End', rent: 995 },
   { name: 'Transcona', rent: 1050 },
@@ -388,7 +388,7 @@ export function NeighbourhoodMap({ breakdown }: SeriesProps) {
                   label: (ctx) => {
                     const rent = Number(ctx.parsed.x ?? 0);
                     const share = Math.round((rent / monthlyNet) * 100);
-                    return ` ${formatCurrency(rent)}/mo — ${share}% of your take-home`;
+                    return ` ${formatCurrency(rent)}/mo (${share}% of your take-home)`;
                   },
                 },
               },
@@ -421,7 +421,7 @@ export function NeighbourhoodMap({ breakdown }: SeriesProps) {
   );
 }
 
-/** 6 — Lifestyle reality check: sliders against the monthly net. */
+/** 6. Lifestyle reality check: sliders against the monthly net. */
 export function LifestyleSlider({ breakdown }: SeriesProps) {
   const [rent, setRent] = useState(1353);
   const [savingsPct, setSavingsPct] = useState(10);

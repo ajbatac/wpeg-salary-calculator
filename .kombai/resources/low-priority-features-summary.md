@@ -363,7 +363,7 @@ While all planned features are complete, potential future additions could includ
 
 ---
 
-## ✨ Summary
+## Summary
 
 All three low-priority features from the design review have been successfully implemented:
 

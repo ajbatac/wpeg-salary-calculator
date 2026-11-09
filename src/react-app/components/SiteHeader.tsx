@@ -41,11 +41,11 @@ export default function SiteHeader({
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 bg-card rounded-[var(--radius)] border border-border hover:border-primary/50 transition-colors hidden sm:flex items-center"
-                aria-label="WPEG.app — part of the WPEG family"
+                aria-label="WPEG.app, part of the WPEG family"
               >
                 <img
                   src="/wpeg-logo.png"
-                  alt="WPEG.app — part of the WPEG family"
+                  alt="WPEG.app, part of the WPEG family"
                   className="h-6 w-auto object-contain"
                 />
               </a>

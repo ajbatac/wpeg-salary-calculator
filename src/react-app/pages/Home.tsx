@@ -97,7 +97,7 @@ export default function Home() {
   const monthlyGross = annualGross / 12;
   const weeklyGross = annualGross / 52;
   const hourlyGross = annualGross / WORK_HOURS_PER_YEAR;
-  const rentPercentage = monthlyGross > 0 ? ((AVG_MONTHLY_RENT / monthlyGross) * 100).toFixed(1) : '—';
+  const rentPercentage = monthlyGross > 0 ? ((AVG_MONTHLY_RENT / monthlyGross) * 100).toFixed(1) : 'N/A';
 
   const cppAmount = (breakdown?.cpp ?? 0) + (breakdown?.cpp2 ?? 0);
   const eiAmount = breakdown?.ei ?? 0;
@@ -125,7 +125,7 @@ export default function Home() {
     },
     {
       title: 'High-End MacBook Pro M4 (Maxed Out)',
-      description: `Top-tier MacBook Pro M4 models with large storage and memory options run close to $4,000—so you could buy ${Math.floor(totalDeductions / 4000)} with your deductions.`,
+      description: `Top-tier MacBook Pro M4 models with large storage and memory options run close to $4,000, so you could buy ${Math.floor(totalDeductions / 4000)} with your deductions.`,
       icon: '💻',
     },
     {
@@ -255,7 +255,7 @@ export default function Home() {
               <p className="text-3xl xl:text-4xl font-semibold tabular-nums tracking-tight opacity-80">
                 {instant.grossAnnual > 0
                   ? `${(((instant.federalTax + instant.provincialTax) / instant.grossAnnual) * 100).toFixed(1)}%`
-                  : '—'}
+                  : 'N/A'}
               </p>
             </div>
           </div>
@@ -334,7 +334,8 @@ export default function Home() {
                           {Math.floor(weeklyGross / SMALL_SLURPEE_PRICE).toLocaleString()} small Slurpees each
                           week
                         </strong>
-                        —enough to treat a sold-out Jets game plus most of the arena staff.
+                        each week. That&apos;s enough to treat a sold-out Jets game plus most of the arena
+                        staff.
                       </p>
                     </div>
                   </div>
@@ -365,8 +366,7 @@ export default function Home() {
                       hour, you&apos;re essentially being paid{' '}
                       <strong className="text-primary">
                         {formatCurrencyPrecise(hourlyGross / 1.18)} per sun-hour
-                      </strong>
-                      —a uniquely Winnipeg way to measure your time&apos;s worth.
+                      </strong>, a uniquely Winnipeg way to measure your time&apos;s worth.
                     </p>
                   </div>
                 </div>
@@ -668,8 +668,7 @@ export default function Home() {
                     Here are ten useful products or purchases you could make with{' '}
                     <strong className="text-emerald-700 dark:text-emerald-300">
                       {formatCurrency(totalDeductions)}
-                    </strong>
-                    —the total amount deducted from your salary in a year
+                    </strong>, the total amount deducted from your salary in a year
                   </p>
                 </div>
               </div>
@@ -721,7 +720,7 @@ export default function Home() {
                       >
                         {source.label}
                       </a>
-                      <span className="text-muted-foreground"> — {source.description}</span>
+                        <span className="text-muted-foreground"> · {source.description}</span>
                     </span>
                   </li>
                 ))}

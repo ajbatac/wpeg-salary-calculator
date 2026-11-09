@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import SiteHeader from '@/react-app/components/SiteHeader';
-import { Rss, Sparkles, Check, ArrowLeft } from 'lucide-react';
+import { Rss, Star, Check, ArrowLeft } from 'lucide-react';
 
 const CANONICAL_URL = 'https://salary.wpeg.app';
 
@@ -21,7 +21,7 @@ const RELEASES: readonly Release[] = [
     items: [
       {
         icon: 'star',
-        text: 'Corrected every tax figure to the official 2026 federal and Manitoba rates — including the new lowest federal tax rate, basic personal amount credits, the enhanced CPP2 tier, and updated EI premiums and ceilings.',
+        text: 'Corrected every tax figure to the official 2026 federal and Manitoba rates, including the new lowest federal tax rate, basic personal amount credits, the enhanced CPP2 tier, and updated EI premiums and ceilings.',
       },
       {
         icon: 'star',
@@ -41,7 +41,7 @@ const RELEASES: readonly Release[] = [
       },
       {
         icon: 'check',
-        text: 'Faster, cleaner, and more accessible under the hood — zero console errors and AA contrast throughout.',
+        text: 'Faster, cleaner, and more accessible under the hood: zero console errors and AA contrast throughout.',
       },
     ],
   },
@@ -71,7 +71,7 @@ export default function ChangelogPage() {
             Changelog
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            New features, fixes, and improvements to the Winnipeg Salary Calculator — newest first.
+            New features, fixes, and improvements to the Winnipeg Salary Calculator, newest first.
           </p>
           <a
             href={`${CANONICAL_URL}/changelog/rss.xml`}
@@ -102,7 +102,7 @@ export default function ChangelogPage() {
                 {release.items.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
                     {item.icon === 'star' ? (
-                      <Sparkles className="w-4 h-4 mt-1 text-primary flex-shrink-0" aria-hidden="true" />
+                      <Star className="w-4 h-4 mt-1 text-primary flex-shrink-0" aria-hidden="true" />
                     ) : (
                       <Check className="w-4 h-4 mt-1 text-green-500 flex-shrink-0" aria-hidden="true" />
                     )}

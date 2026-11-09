@@ -15,12 +15,12 @@ interface SalaryBreakdownProps {
 }
 
 const TRIVIA_FACTS = [
-  "Winnipeg has more trees per capita than any other prairie city, with over 400,000 boulevard trees—that's roughly one tree for every two residents.",
+  "Winnipeg has more trees per capita than any other prairie city, with over 400,000 boulevard trees. That's roughly one tree for every two residents.",
   "The city's underground walkway system spans 30 blocks, originally built in the 1970s to help workers escape winter temperatures that can drop to -40°C.",
   "Winnipeg's Portage and Main intersection was once called 'the windiest corner in Canada' due to unique wind tunnel effects between buildings.",
   'The Royal Canadian Mint produces coins for over 75 countries worldwide right here in Winnipeg, including Canada\u2019s own currency.',
   'Winnipeg is home to the world\u2019s longest naturally frozen skating trail at 10 kilometers along the Red and Assiniboine rivers.',
-  'The city consumes more Slurpees per capita than anywhere else in the world—even during winter months when temperatures plummet.',
+  'The city consumes more Slurpees per capita than anywhere else in the world, even during winter months when temperatures plummet.',
   "Winnipeg's Exchange District has the largest collection of heritage buildings in North America, with over 150 heritage structures.",
   'The city experiences more sunshine hours annually than Vancouver, Toronto, or Montreal despite its harsh winter reputation.',
   "Winnipeg's Grand Beach was rated as one of the world's best beaches by Playboy magazine in the 1960s for its fine white sand.",
@@ -32,7 +32,7 @@ const TRIVIA_FACTS = [
   "Winnipeg has produced more NHL players per capita than any other Canadian city, earning it the nickname 'Hockey Capital of Canada.'",
   'The Red River flows north to Hudson Bay, making Winnipeg one of the few major cities where the river doesn\u2019t flow to the nearest ocean.',
   "Winnipeg's Chinatown is the oldest in Western Canada, established in the 1890s by Chinese railway workers.",
-  "The city's mosquito population is so legendary that locals joke about the 'Manitoba air force'—but the season only lasts about 6 weeks.",
+  "The city's mosquito population is so legendary that locals joke about the 'Manitoba air force', but the season only lasts about 6 weeks.",
   "Winnipeg's Canadian Museum for Human Rights is the only national museum outside of Ottawa, featuring a striking glass cloud design.",
   'The city experiences more hours of daylight in summer than Miami, with nearly 17 hours of daylight during peak summer solstice.',
 ];
@@ -264,7 +264,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
             <strong className="text-foreground">{formatCurrency(breakdown.provincialTax)}</strong> would buy a
             caffeine fiend more than{' '}
             <strong className="text-primary">{provincialCappuccinos.toLocaleString()} cappuccinos</strong> at
-            Winnipeg&apos;s going rate of $3.53 each—one foamy pick-me-up every workday for{' '}
+            Winnipeg&apos;s going rate of $3.53 each. That&apos;s one foamy pick-me-up every workday for{' '}
             <strong className="text-primary">{Math.round(provincialCappuccinos / 250)} full years</strong>.
           </p>
 
@@ -277,8 +277,8 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
 
           <p>
             The <strong className="text-foreground">{formatCurrency(breakdown.ei)}</strong> in EI premiums is
-            the price of just under <strong className="text-primary">{eiCappuccinos} cappuccinos</strong>
-            —think of it as an emergency stash that would keep you caffeinated from the first snowfall to
+            the price of just under <strong className="text-primary">{eiCappuccinos} cappuccinos</strong>.
+            Think of it as an emergency stash that would keep you caffeinated from the first snowfall to
             playoff hockey season.
           </p>
 
