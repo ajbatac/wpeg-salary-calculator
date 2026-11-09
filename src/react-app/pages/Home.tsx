@@ -6,6 +6,7 @@ import DarkModeToggle from '@/react-app/components/DarkModeToggle';
 import ShareButton from '@/react-app/components/ShareButton';
 import ColorThemeSelector from '@/react-app/components/ColorThemeSelector';
 import TableOfContents from '@/react-app/components/TableOfContents';
+import ChartSidebarCard from '@/react-app/components/ChartSidebarCard';
 import { SalaryInput, SalaryBreakdown, DEFAULT_SALARY_INPUT } from '@/shared/types';
 import {
   AVG_MONTHLY_RENT,
@@ -314,7 +315,10 @@ export default function Home() {
       <main id="main-content" className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-12">
         {/* Content with left jump-menu rail (xl+) */}
         <div className="xl:flex xl:items-start xl:gap-8">
-          <TableOfContents />
+          <div className="hidden xl:block w-60 flex-shrink-0 sticky top-24 print:hidden">
+            <TableOfContents />
+            <ChartSidebarCard input={salaryInput} className="mt-4" />
+          </div>
           <div className="flex-1 min-w-0">
             {/* Calculator Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" id="calculator">
@@ -489,6 +493,11 @@ export default function Home() {
                 )}
                 {!isCalculating && breakdown && <SalaryBreakdownComponent breakdown={breakdown} />}
               </div>
+            </div>
+
+            {/* Chart CTA for screens without the left rail */}
+            <div className="xl:hidden max-w-md">
+              <ChartSidebarCard input={salaryInput} className="mt-8" />
             </div>
 
             {/* Tax Information Banner */}

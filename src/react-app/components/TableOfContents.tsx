@@ -60,7 +60,7 @@ export default function TableOfContents() {
   return (
     <nav
       aria-label="Page sections"
-      className="hidden xl:block w-60 flex-shrink-0 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto toc-scroll print:hidden xl:theme-surface xl:rounded-[var(--radius)] xl:px-4 xl:pt-4 xl:pb-5 xl:shadow-sm"
+      className="toc-scroll print:hidden xl:theme-surface xl:rounded-[var(--radius)] xl:px-4 xl:pt-4 xl:pb-5 xl:shadow-sm"
     >
       <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-3 px-3">
         On this page
