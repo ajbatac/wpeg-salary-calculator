@@ -200,6 +200,12 @@
     color: black !important;
   }
 
+  /* The inverted masthead band prints as plain paper */
+  .ink-band {
+    background: white !important;
+    color: black !important;
+  }
+
   /* Remove shadows and borders for cleaner print */
   .theme-surface,
   .theme-card,
@@ -298,6 +304,17 @@
 }
 
 @layer utilities {
+  /**
+   * Editorial masthead band. Inverts the palette's own foreground/background
+   * pair — by construction the highest-contrast combination in every theme
+   * and both display modes. Children inherit the band colour and use
+   * opacity for secondary text; borders use background/20-30 utilities.
+   */
+  .ink-band {
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+  }
+
   .theme-surface {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));

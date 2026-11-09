@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { MapPin, Calculator, Info, TrendingDown, DollarSign, ExternalLink } from 'lucide-react';
 import SalaryForm from '@/react-app/components/SalaryForm';
 import SalaryBreakdownComponent from '@/react-app/components/SalaryBreakdown';
@@ -84,6 +84,10 @@ export default function Home() {
   const breakdown = result?.breakdown ?? null;
   // "Calculating" is derived: the latest input has no matching result yet.
   const isCalculating = result === null || result.sourceInput !== salaryInput;
+
+  // Instant headline numbers for the masthead stat strip: pure and cheap, so it
+  // updates on every keystroke without waiting for the debounced detail view.
+  const instant = useMemo(() => calculateSalary(salaryInput), [salaryInput]);
 
   // Derived display values. Before the first (debounced) calculation lands,
   // annualize the raw input so the fallback cards never mix period and annual figures.
@@ -211,51 +215,86 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main id="main-content" className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-12">
-        {/* Introduction */}
-        <div className="mb-12 text-center">
-          <h2 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-foreground font-serif tracking-tight leading-[1.05] mb-4">
+      {/* Editorial masthead: full-bleed ink band with the live answer up front.
+          The band inverts the theme's own foreground/background pair, so it
+          stays high-contrast under every palette and both display modes. */}
+      <section className="ink-band relative overflow-hidden" aria-label="Introduction">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none select-none absolute -right-4 -bottom-20 font-serif font-bold leading-none text-[16rem] xl:text-[22rem] opacity-[0.05]"
+        >
+          2026
+        </span>
+
+        <div className="relative max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-14 xl:py-20">
+          <h2 className="text-4xl sm:text-5xl xl:text-6xl font-bold font-serif tracking-tight leading-[1.05] mb-4 max-w-4xl [text-wrap:balance]">
             Calculate Your Net Take-Home Pay
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+          <p className="text-lg sm:text-xl max-w-3xl opacity-70 mb-8">
             Get accurate calculations for your salary after federal and Manitoba provincial taxes, CPP
             contributions, and EI premiums based on current 2026 tax rates.
           </p>
 
           {/* Navigation Pills (the left rail takes over on xl+ screens) */}
-          <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto xl:hidden">
-            <a
-              href="#tax-rates"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-            >
-              <Info className="w-4 h-4" />
-              Tax Rates
-            </a>
-            <a
-              href="#calculator"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 hover:bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-            >
-              <Calculator className="w-4 h-4" />
-              Calculator
-            </a>
-            <a
-              href="#breakdown"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-700 dark:text-blue-400 border border-blue-500/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-            >
-              <TrendingDown className="w-4 h-4" />
-              Breakdown
-            </a>
-            <a
-              href="#coffee-coin"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-            >
-              <DollarSign className="w-4 h-4" />
-              Coffee Coin
-            </a>
+          <div className="flex flex-wrap gap-3 max-w-2xl xl:hidden">
+            {[
+              { href: '#tax-rates', Icon: Info, label: 'Tax Rates' },
+              { href: '#calculator', Icon: Calculator, label: 'Calculator' },
+              { href: '#breakdown', Icon: TrendingDown, label: 'Breakdown' },
+              { href: '#coffee-coin', Icon: DollarSign, label: 'Coffee Coin' },
+            ].map(({ href, Icon, label }) => (
+              <a
+                key={href}
+                href={href}
+                className="inline-flex items-center gap-2 px-4 py-2 border border-background/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 hover:bg-background/10"
+              >
+                <Icon className="w-4 h-4" />
+                {label}
+              </a>
+            ))}
+          </div>
+
+          {/* Live stat strip: computed straight from the current input (no debounce),
+              so the headline answer ticks as you type. */}
+          <div className="mt-10 xl:mt-14 pt-8 border-t border-background/20 grid grid-cols-2 gap-x-6 gap-y-8 xl:grid-cols-4 pb-2">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-2">
+                Take-home per month
+              </p>
+              <p className="text-3xl xl:text-4xl font-bold tabular-nums tracking-tight">
+                {formatCurrency(instant.netAnnual / 12)}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-2">Net per year</p>
+              <p className="text-3xl xl:text-4xl font-bold tabular-nums tracking-tight">
+                {formatCurrency(instant.netAnnual)}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-2">
+                Total deductions
+              </p>
+              <p className="text-3xl xl:text-4xl font-semibold tabular-nums tracking-tight opacity-80">
+                {formatCurrency(instant.totalDeductions)}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-2">
+                Effective tax rate
+              </p>
+              <p className="text-3xl xl:text-4xl font-semibold tabular-nums tracking-tight opacity-80">
+                {instant.grossAnnual > 0
+                  ? `${(((instant.federalTax + instant.provincialTax) / instant.grossAnnual) * 100).toFixed(1)}%`
+                  : '—'}
+              </p>
+            </div>
           </div>
         </div>
+      </section>
 
+      {/* Main Content */}
+      <main id="main-content" className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-12">
         {/* Content with left jump-menu rail (xl+) */}
         <div className="xl:flex xl:items-start xl:gap-8">
           <TableOfContents />
