@@ -799,12 +799,7 @@ function contrastRatio(a: string, b: string): number {
 /** Shifts lightness (down on light surfaces, up on dark ones) until the
  * colour reaches the target contrast against the given base. Hue and
  * saturation are preserved, so the palette keeps its identity. */
-function ensureReadableAgainst(
-  channels: string,
-  against: string,
-  target: number,
-  darken: boolean,
-): string {
+function ensureReadableAgainst(channels: string, against: string, target: number, darken: boolean): string {
   if (contrastRatio(channels, against) >= target) return channels;
   const [h, s, lString] = channels.split(' ');
   let l = parseFloat(lString);
@@ -837,9 +832,19 @@ export const COLOR_THEMES: readonly ColorTheme[] = RAW_THEMES.map((theme) => {
   // Mirror of the light floor: on dark surfaces, brand text that is too dark
   // (e.g. Basic's link blue) is lightened against the palette's own card.
   const darkVars = { ...theme.darkVars };
-  darkVars.primary = ensureReadableAgainst(darkVars.primary, theme.darkVars.card, DARK_CONTRAST_TARGET, false);
+  darkVars.primary = ensureReadableAgainst(
+    darkVars.primary,
+    theme.darkVars.card,
+    DARK_CONTRAST_TARGET,
+    false,
+  );
   darkVars.accent = ensureReadableAgainst(darkVars.accent, theme.darkVars.card, DARK_CONTRAST_TARGET, false);
-  darkVars.mutedForeground = ensureReadableAgainst(darkVars.mutedForeground, theme.darkVars.card, DARK_CONTRAST_TARGET, false);
+  darkVars.mutedForeground = ensureReadableAgainst(
+    darkVars.mutedForeground,
+    theme.darkVars.card,
+    DARK_CONTRAST_TARGET,
+    false,
+  );
 
   return { ...theme, lightVars, darkVars };
 });
