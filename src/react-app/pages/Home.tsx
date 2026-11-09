@@ -2,9 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { MapPin, Calculator, Info, TrendingDown, DollarSign, ExternalLink } from 'lucide-react';
 import SalaryForm from '@/react-app/components/SalaryForm';
 import SalaryBreakdownComponent from '@/react-app/components/SalaryBreakdown';
-import DarkModeToggle from '@/react-app/components/DarkModeToggle';
 import ShareButton from '@/react-app/components/ShareButton';
-import ColorThemeSelector from '@/react-app/components/ColorThemeSelector';
+import SiteHeader from '@/react-app/components/SiteHeader';
 import TableOfContents from '@/react-app/components/TableOfContents';
 import ChartSidebarCard from '@/react-app/components/ChartSidebarCard';
 import { SalaryInput, SalaryBreakdown, DEFAULT_SALARY_INPUT } from '@/shared/types';
@@ -166,55 +165,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" style={{ background: 'hsl(var(--background))' }}>
-      {/* Skip to main content link for keyboard navigation */}
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
-
-      {/* Header */}
-      <header className="theme-surface border-b border-border sticky top-0 z-10 backdrop-blur-xl print:static print:border-none">
-        <div className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-4">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none">
-                <img src="/logo.png" alt="WPEG logo" className="w-10 h-10 object-contain" />
-              </div>
-              <span className="text-muted-foreground font-serif text-xl hidden sm:inline" aria-hidden="true">
-                ×
-              </span>
-              <a
-                href="https://portal.wpeg.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 bg-card rounded-[var(--radius)] border border-border hover:border-primary/50 transition-colors hidden sm:flex items-center"
-                aria-label="WPEG.app — part of the WPEG family"
-              >
-                <img
-                  src="/wpeg-logo.png"
-                  alt="WPEG.app — part of the WPEG family"
-                  className="h-6 w-auto object-contain"
-                />
-              </a>
-              <div>
-                <h1 className="text-lg sm:text-2xl lg:text-3xl tracking-tight font-bold text-foreground font-serif">
-                  <a href="https://portal.wpeg.app/" target="_blank" rel="noopener noreferrer">
-                    Winnipeg Salary Calculator 2026-2027
-                  </a>
-                </h1>
-                <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                  <MapPin className="w-4 h-4" />
-                  <span>Part of the WPEG family · Manitoba, Canada</span>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 print:hidden">
-              {breakdown && <ShareButton breakdown={breakdown} />}
-              <ColorThemeSelector />
-              <DarkModeToggle />
-            </div>
-          </div>
-        </div>
-      </header>
+      <SiteHeader>{breakdown && <ShareButton breakdown={breakdown} />}</SiteHeader>
 
       {/* Editorial masthead: full-bleed ink band with the live answer up front.
           The band inverts the theme's own foreground/background pair, so it

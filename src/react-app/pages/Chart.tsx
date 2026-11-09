@@ -18,7 +18,6 @@ import {
 } from 'chart.js';
 import { Chart as ReactChart } from 'react-chartjs-2';
 import {
-  MapPin,
   ArrowLeft,
   ArrowDown,
   Briefcase,
@@ -32,8 +31,7 @@ import {
   MapPinned,
   Wallet,
 } from 'lucide-react';
-import DarkModeToggle from '@/react-app/components/DarkModeToggle';
-import ColorThemeSelector from '@/react-app/components/ColorThemeSelector';
+import SiteHeader from '@/react-app/components/SiteHeader';
 import {
   CurrencyConverter,
   SeasonalBudget,
@@ -439,39 +437,11 @@ export default function ChartPage() {
   const location = useLocation();
   const input = useMemo(() => decodeSalaryInput(location.search), [location.search]);
 
-  const header = (
-    <header className="theme-surface border-b border-border sticky top-0 z-10 backdrop-blur-xl print:static print:border-none">
-      <div className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-4">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none">
-              <img src="/logo.png" alt="WPEG logo" className="w-10 h-10 object-contain" />
-            </div>
-            <div>
-              <h1 className="text-lg sm:text-2xl lg:text-3xl tracking-tight font-bold text-foreground font-serif">
-                Winnipeg Salary Calculator 2026-2027
-              </h1>
-              <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                <MapPin className="w-4 h-4" />
-                <span>Your money, charted · Manitoba, Canada</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 print:hidden">
-            <ColorThemeSelector />
-            <DarkModeToggle />
-          </div>
-        </div>
-      </div>
-    </header>
-  );
+  const header = <SiteHeader subtitle="Your money, charted · Manitoba, Canada" />;
 
   if (!input) {
     return (
       <div className="min-h-screen" style={{ background: 'hsl(var(--background))' }}>
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
         {header}
         <main id="main-content" className="max-w-2xl mx-auto px-4 sm:px-6 py-20 text-center">
           <div className="theme-card">
@@ -497,9 +467,6 @@ export default function ChartPage() {
 
   return (
     <div className="min-h-screen" style={{ background: 'hsl(var(--background))' }}>
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
       {header}
 
       <main id="main-content" className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-10">

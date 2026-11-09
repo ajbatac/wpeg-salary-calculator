@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
-import { Rss, Sparkles, Check, ArrowLeft, MapPin } from 'lucide-react';
-import DarkModeToggle from '@/react-app/components/DarkModeToggle';
-import ColorThemeSelector from '@/react-app/components/ColorThemeSelector';
+import SiteHeader from '@/react-app/components/SiteHeader';
+import { Rss, Sparkles, Check, ArrowLeft } from 'lucide-react';
 
 const CANONICAL_URL = 'https://salary.wpeg.app';
 
@@ -63,50 +62,7 @@ const RELEASES: readonly Release[] = [
 export default function ChangelogPage() {
   return (
     <div className="min-h-screen" style={{ background: 'hsl(var(--background))' }}>
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
-
-      <header className="theme-surface border-b border-border sticky top-0 z-10 backdrop-blur-xl print:static print:border-none">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-4">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none">
-                <img src="/logo.png" alt="WPEG logo" className="w-10 h-10 object-contain" />
-              </div>
-              <span className="text-muted-foreground font-serif text-xl hidden sm:inline" aria-hidden="true">
-                ×
-              </span>
-              <a
-                href="https://portal.wpeg.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 bg-card rounded-[var(--radius)] border border-border hover:border-primary/50 transition-colors hidden sm:flex items-center"
-                aria-label="WPEG.app — part of the WPEG family"
-              >
-                <img
-                  src="/wpeg-logo.png"
-                  alt="WPEG.app — part of the WPEG family"
-                  className="h-6 w-auto object-contain"
-                />
-              </a>
-              <div>
-                <h1 className="text-lg sm:text-2xl lg:text-3xl tracking-tight font-bold text-foreground font-serif">
-                  <Link to="/">WPEG Salary Calculator</Link>
-                </h1>
-                <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                  <MapPin className="w-4 h-4" />
-                  <span>Part of the WPEG family · Manitoba, Canada</span>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 print:hidden">
-              <ColorThemeSelector />
-              <DarkModeToggle />
-            </div>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main id="main-content" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-10">
         {/* Intro */}

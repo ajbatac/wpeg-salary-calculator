@@ -5,6 +5,7 @@
 
 /** App version shown in the footer; keep in sync with package.json. */
 export const APP_VERSION = 'v1.1.0';
+export const APP_TITLE = 'Winnipeg Salary Calculator 2026-2027';
 export const PORTAL_URL = 'https://portal.wpeg.app';
 
 export const AVG_MONTHLY_RENT = 1353;
