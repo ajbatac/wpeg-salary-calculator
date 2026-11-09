@@ -139,7 +139,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Gross Income */}
-        <div className="theme-card border border-primary/20">
+        <div className="theme-card elastic-card border border-primary/20">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-3 theme-gradient-primary rounded-[var(--radius)] shadow-lg">
               <TrendingUp className="w-5 h-5 text-white" />
@@ -147,7 +147,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
             <h3 className="text-lg font-semibold text-foreground font-sans">Gross Income</h3>
           </div>
           <div className="space-y-2">
-            <p className="text-4xl sm:text-5xl font-bold text-primary tabular-nums tracking-tight">
+            <p className="elastic-number font-bold text-primary tabular-nums tracking-tight">
               {formatCurrency(breakdown.grossPerPeriod)}
             </p>
             <p className="text-sm text-muted-foreground">{formatPayFrequency(breakdown.payFrequency)}</p>
@@ -156,7 +156,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
         </div>
 
         {/* Net Income */}
-        <div className="theme-card border border-green-400/20">
+        <div className="theme-card elastic-card border border-green-400/20">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-3 theme-gradient-success rounded-[var(--radius)] shadow-lg">
               <DollarSign className="w-5 h-5 text-white" />
@@ -164,7 +164,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
             <h3 className="text-lg font-semibold text-foreground font-sans">Net Take-Home</h3>
           </div>
           <div className="space-y-2">
-            <p className="text-4xl sm:text-5xl font-bold text-green-700 dark:text-green-400 tabular-nums tracking-tight">
+            <p className="elastic-number font-bold text-green-700 dark:text-green-400 tabular-nums tracking-tight">
               {formatCurrency(breakdown.netPerPeriod)}
             </p>
             <p className="text-sm text-muted-foreground">{formatPayFrequency(breakdown.payFrequency)}</p>

@@ -179,7 +179,7 @@ export default function Home() {
         </span>
 
         <div className="relative max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-14 xl:py-20">
-          <div className="grid grid-cols-1 xl:grid-cols-[1.15fr_1fr] xl:gap-16 items-start">
+          <div className="grid grid-cols-1 gap-10 xl:grid-cols-[1.15fr_1fr] xl:gap-16 items-start">
             <div>
               <h2 className="text-4xl sm:text-5xl xl:text-6xl font-bold font-serif tracking-tight leading-[1.05] mb-4 max-w-2xl [text-wrap:balance]">
                 Calculate Your Net Take-Home Pay
@@ -226,33 +226,33 @@ export default function Home() {
           {/* Live stat strip: computed straight from the current input (no debounce),
               so the headline answer ticks as you type. */}
           <div className="mt-10 xl:mt-14 pt-8 border-t border-background/20 grid grid-cols-2 gap-x-6 gap-y-8 xl:grid-cols-4 pb-2">
-            <div>
+            <div className="elastic-card">
               <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-2">
                 Take-home per month
               </p>
-              <p className="text-3xl xl:text-4xl font-bold tabular-nums tracking-tight">
+              <p className="elastic-number-sm font-bold tabular-nums tracking-tight">
                 {formatCurrency(instant.netAnnual / 12)}
               </p>
             </div>
-            <div>
+            <div className="elastic-card">
               <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-2">Net per year</p>
-              <p className="text-3xl xl:text-4xl font-bold tabular-nums tracking-tight">
+              <p className="elastic-number-sm font-bold tabular-nums tracking-tight">
                 {formatCurrency(instant.netAnnual)}
               </p>
             </div>
-            <div>
+            <div className="elastic-card">
               <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-2">
                 Total deductions
               </p>
-              <p className="text-3xl xl:text-4xl font-semibold tabular-nums tracking-tight opacity-80">
+              <p className="elastic-number-sm font-semibold tabular-nums tracking-tight opacity-80">
                 {formatCurrency(instant.totalDeductions)}
               </p>
             </div>
-            <div>
+            <div className="elastic-card">
               <p className="text-xs font-semibold uppercase tracking-wider opacity-70 mb-2">
                 Effective tax rate
               </p>
-              <p className="text-3xl xl:text-4xl font-semibold tabular-nums tracking-tight opacity-80">
+              <p className="elastic-number-sm font-semibold tabular-nums tracking-tight opacity-80">
                 {instant.grossAnnual > 0
                   ? `${(((instant.federalTax + instant.provincialTax) / instant.grossAnnual) * 100).toFixed(1)}%`
                   : 'N/A'}

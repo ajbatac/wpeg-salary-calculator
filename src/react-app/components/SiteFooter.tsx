@@ -106,10 +106,10 @@ export default function SiteFooter() {
                   href={PORTAL_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 bg-card rounded-[var(--radius)] border border-border hover:border-primary/50 transition-colors"
+                  className="p-2 bg-card rounded-[var(--radius)] border border-border hover:border-primary/50 transition-colors"
                   aria-label="Visit the WPEG.app portal"
                 >
-                  <img src="/wpeg-logo.png" alt="WPEG.app wordmark" className="h-8 w-auto object-contain" />
+                  <img src="/wpeg-logo.png" alt="WPEG.app wordmark" className="h-12 w-auto object-contain" />
                 </a>
               </div>
 

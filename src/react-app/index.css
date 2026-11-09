@@ -331,6 +331,29 @@
     background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--chart-2)));
   }
 
+  /* Elastic big numbers. The card opts in as a container; the figure then
+     scales with the card's own width instead of a fixed text-4xl/5xl, so
+     long values ($1,250,000) or widened theme fonts can never spill out.
+     The plain font-size line first keeps a sane size where container
+     query units are unsupported. */
+  .elastic-card {
+    container-type: inline-size;
+  }
+
+  .elastic-number {
+    font-size: 2.25rem;
+    font-size: clamp(1.625rem, 13cqi, 3rem);
+    line-height: 1.1;
+  }
+
+  /* Smaller scale for stat strips: caps at text-4xl like the old
+     text-3xl/xl:text-4xl pair, shrinks in narrow 2-up grid cells. */
+  .elastic-number-sm {
+    font-size: 1.875rem;
+    font-size: clamp(1.5rem, 10cqi, 2.25rem);
+    line-height: 1.1;
+  }
+
   /* Gradient text. Self-contained because combining theme-gradient-primary
      (a background shorthand) with bg-clip-text is source-order dependent:
      the shorthand resets background-clip and the text renders invisible.
