@@ -271,7 +271,7 @@ export default function Home() {
                         href={CRA_TAX_BRACKETS_URL}
                         target="_blank"
                         rel="nofollow noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/80 hover:text-primary hover:underline"
+                        className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/90 hover:text-primary hover:underline"
                       >
                         CRA 2026 <ExternalLink className="w-3 h-3" />
                       </a>
@@ -306,7 +306,7 @@ export default function Home() {
                           href={MANITOBA_TAX_RATES_URL}
                           target="_blank"
                           rel="nofollow noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/80 hover:text-primary hover:underline"
+                          className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/90 hover:text-primary hover:underline"
                         >
                           MB Finance <ExternalLink className="w-3 h-3" />
                         </a>

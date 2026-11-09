@@ -382,7 +382,7 @@ html[data-basic-theme] [class*='theme-gradient'] {
   background-color: hsl(var(--primary)) !important;
 }
 
-/* Classic early-web link colours inside the page body, fixed in both modes. */
+/* Classic early-web link colours inside the page body. */
 html[data-basic-theme] main a:not([role='button']):not([class*='bg-']) {
   text-decoration: underline;
   color: #0645ad;
@@ -390,4 +390,14 @@ html[data-basic-theme] main a:not([role='button']):not([class*='bg-']) {
 
 html[data-basic-theme] main a:not([role='button']):not([class*='bg-']):visited {
   color: #551a8b;
+}
+
+/* The classic blue is unreadable on Basic's dark surfaces; use the era's
+   brighter link blues there instead. */
+html.dark[data-basic-theme] main a:not([role='button']):not([class*='bg-']) {
+  color: #8cb4ff;
+}
+
+html.dark[data-basic-theme] main a:not([role='button']):not([class*='bg-']):visited {
+  color: #c5a8ff;
 }

@@ -31,7 +31,7 @@ export interface ColorTheme {
   darkVars: ColorThemeVars;
 }
 
-export const COLOR_THEMES: readonly ColorTheme[] = [
+const RAW_THEMES: readonly ColorTheme[] = [
   {
     id: 'catppuccin',
     name: 'Catppuccin',
@@ -748,11 +748,108 @@ export const COLOR_THEMES: readonly ColorTheme[] = [
   },
 ];
 
+/** --- Light-mode accessibility floor ---------------------------------------
+ * Presets authored for dark mode keep bright brand colours; used as text on
+ * light surfaces they fall far below WCAG AA (some primaries are lighter than
+ * the background). Before a palette is applied in light mode, any brand or
+ * secondary colour that fails the target contrast against white is darkened
+ * (hue and saturation preserved) until it passes. Swatch previews keep the
+ * authored colours via getAuthoredVars. */
+
+const LIGHT_CONTRAST_TARGET = 5; // margin over AA 4.5 for tinted surfaces
+const DARK_CONTRAST_TARGET = 4.8;
+
+function channelsToRgb(channels: string): [number, number, number] {
+  // parseFloat (not Number) — channel strings carry '%' suffixes.
+  const [h, s, l] = channels.split(' ').map((part) => parseFloat(part));
+  const chroma = (1 - Math.abs(2 * (l / 100) - 1)) * (s / 100);
+  const hp = h / 60;
+  const x = chroma * (1 - Math.abs((hp % 2) - 1));
+  const rgb: [number, number, number] =
+    hp < 1
+      ? [chroma, x, 0]
+      : hp < 2
+        ? [x, chroma, 0]
+        : hp < 3
+          ? [0, chroma, x]
+          : hp < 4
+            ? [0, x, chroma]
+            : hp < 5
+              ? [x, 0, chroma]
+              : [chroma, 0, x];
+  const m = l / 100 - chroma / 2;
+  return rgb.map((v) => Math.round((v + m) * 255)) as [number, number, number];
+}
+
+function channelLuminance(channels: string): number {
+  const [r, g, b] = channelsToRgb(channels);
+  const f = (v: number) => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+}
+
+function contrastRatio(a: string, b: string): number {
+  const l1 = channelLuminance(a);
+  const l2 = channelLuminance(b);
+  return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+}
+
+/** Shifts lightness (down on light surfaces, up on dark ones) until the
+ * colour reaches the target contrast against the given base. Hue and
+ * saturation are preserved, so the palette keeps its identity. */
+function ensureReadableAgainst(
+  channels: string,
+  against: string,
+  target: number,
+  darken: boolean,
+): string {
+  if (contrastRatio(channels, against) >= target) return channels;
+  const [h, s, lString] = channels.split(' ');
+  let l = parseFloat(lString);
+  while (darken ? l > 4 : l < 96) {
+    l += darken ? -1 : 1;
+    if (contrastRatio(`${h} ${s} ${l}%`, against) >= target) break;
+  }
+  return `${h} ${s} ${Math.round(l)}%`;
+}
+
+const ensureReadableOnLight = (channels: string): string =>
+  ensureReadableAgainst(channels, '0 0% 100%', LIGHT_CONTRAST_TARGET, true);
+
+const LIGHT_FOREGROUND = '210 40% 98%';
+
+export const COLOR_THEMES: readonly ColorTheme[] = RAW_THEMES.map((theme) => {
+  const lightVars = { ...theme.lightVars };
+  lightVars.primary = ensureReadableOnLight(lightVars.primary);
+  lightVars.accent = ensureReadableOnLight(lightVars.accent);
+  lightVars.mutedForeground = ensureReadableOnLight(lightVars.mutedForeground);
+  lightVars.charts = lightVars.charts.map(ensureReadableOnLight) as ColorThemeVars['charts'];
+  // A brand colour that ended up dark needs a light foreground on top of it.
+  if (parseFloat(lightVars.primary.split(' ')[2]) <= 50) {
+    lightVars.primaryForeground = LIGHT_FOREGROUND;
+  }
+  if (parseFloat(lightVars.accent.split(' ')[2]) <= 50) {
+    lightVars.accentForeground = LIGHT_FOREGROUND;
+  }
+
+  // Mirror of the light floor: on dark surfaces, brand text that is too dark
+  // (e.g. Basic's link blue) is lightened against the palette's own card.
+  const darkVars = { ...theme.darkVars };
+  darkVars.primary = ensureReadableAgainst(darkVars.primary, theme.darkVars.card, DARK_CONTRAST_TARGET, false);
+  darkVars.accent = ensureReadableAgainst(darkVars.accent, theme.darkVars.card, DARK_CONTRAST_TARGET, false);
+  darkVars.mutedForeground = ensureReadableAgainst(darkVars.mutedForeground, theme.darkVars.card, DARK_CONTRAST_TARGET, false);
+
+  return { ...theme, lightVars, darkVars };
+});
+
 export function getColorThemeById(id: string): ColorTheme | null {
   return COLOR_THEMES.find((theme) => theme.id === id) ?? null;
 }
 
 /** Authored-mode palette for previews (never switches with display mode). */
 export function getAuthoredVars(theme: ColorTheme): ColorThemeVars {
-  return theme.authoredMode === 'dark' ? theme.darkVars : theme.lightVars;
+  const raw = RAW_THEMES.find((candidate) => candidate.id === theme.id) ?? theme;
+  return raw.authoredMode === 'dark' ? raw.darkVars : raw.lightVars;
 }

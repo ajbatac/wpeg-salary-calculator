@@ -129,6 +129,31 @@ export const PERIODS_PER_YEAR: Record<PayFrequency, number> = {
   self-link, full bulleted descriptions mirroring the public page), `llms.txt` (canonical
   URL, parameters, citations).
 
+### 9. Follow-up: WCAG audit engine + theme-palette accessibility floor
+
+- Built a WCAG contrast crawler (runs in-browser): walks every text node, composites
+  stacked translucent backgrounds (`/20` tints, `/60` cards, gradients) into effective
+  colors, applies 4.5:1 body / 3:1 large-text thresholds. First pass found 17 light-mode
+  failures in the default palette (dark-only 400-level colors shown in light mode: badge
+  chips at 1.37:1, big numbers, amber smalls, mobile pills) — all fixed with light/dark
+  pairs; dark mode was already clean.
+- Re-ran the crawler across **all 22 palettes × both modes**: 20 of 22 presets failed
+  light mode (up to 40 failures each, worst 1.0:1 — presets authored for dark mode kept
+  bright brand colours as light-mode text; Vercel's light primary was literally white).
+- Fix in the engine (`src/shared/themes.ts`): a per-palette **accessibility floor** —
+  light-mode `primary`/`accent`/`mutedForeground`/`charts` are darkened (hue and
+  saturation preserved) until they reach 5:1 against white; dark-mode brand colours are
+  lightened against the palette's own card when too dark (Basic's link blue 35%→65%).
+  Hue-aware: yellows drop further than blues. Authored values remain untouched for
+  selector swatches via `getAuthoredVars` (raw-registry lookup). Two bugs found en route:
+  `Number('84%')` is `NaN` (use `parseFloat`), and a loop bound that aborted darkening
+  above L=96 (Vercel white).
+- Basic preset's forced early-web link blue (`#0645ad`) was 4.14:1 on its dark surfaces;
+  dark mode now uses the era's brighter `#8cb4ff`/`#c5a8ff`. Citation chips bumped
+  `text-foreground/80` → `/90`.
+- Final state: **44/44 palette×mode combinations pass with zero failures** (verified by
+  the crawler in-browser), plus a visual pass on the worst prior case (Vercel light).
+
 ## v1.0.0 — 2025-08
 
 Initial release: React + Vite calculator, Tailwind/shadcn token layer, dark mode, share/export,
