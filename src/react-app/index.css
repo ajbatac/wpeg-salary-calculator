@@ -25,38 +25,41 @@
 
 @layer base {
   :root {
-    --background: #f8f7fa;
-    --foreground: #3d3c4f;
-    --card: #ffffff;
-    --card-foreground: #3d3c4f;
-    --popover: #ffffff;
-    --popover-foreground: #3d3c4f;
-    --primary: #8a79ab;
-    --primary-foreground: #f8f7fa;
-    --secondary: #dfd9ec;
-    --secondary-foreground: #3d3c4f;
-    --muted: #dcd9e3;
-    --muted-foreground: #6b6880;
-    --accent: #e6a5b8;
-    --accent-foreground: #4b2e36;
-    --destructive: #d95c5c;
-    --destructive-foreground: #f8f7fa;
-    --border: #cec9d9;
-    --input: #eae7f0;
-    --ring: #8a79ab;
-    --chart-1: #8a79ab;
-    --chart-2: #e6a5b8;
-    --chart-3: #77b8a1;
-    --chart-4: #f0c88d;
-    --chart-5: #a0bbe3;
-    --sidebar: #f1eff5;
-    --sidebar-foreground: #3d3c4f;
-    --sidebar-primary: #8a79ab;
-    --sidebar-primary-foreground: #f8f7fa;
-    --sidebar-accent: #e6a5b8;
-    --sidebar-accent-foreground: #4b2e36;
-    --sidebar-border: #d7d2e0;
-    --sidebar-ring: #8a79ab;
+    /* WPEG brand: refined iris & rose on warm paper.
+       Values are raw HSL channels so Tailwind alpha modifiers (bg-primary/10)
+       and the preset theme engine share one format. */
+    --background: 252 33% 97%;
+    --foreground: 251 21% 22%;
+    --card: 0 0% 100%;
+    --card-foreground: 251 21% 22%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 251 21% 22%;
+    --primary: 256 31% 47%;
+    --primary-foreground: 255 40% 98%;
+    --secondary: 254 41% 94%;
+    --secondary-foreground: 251 25% 28%;
+    --muted: 252 30% 94%;
+    --muted-foreground: 251 15% 42%;
+    --accent: 341 56% 66%;
+    --accent-foreground: 340 60% 16%;
+    --destructive: 0 62% 55%;
+    --destructive-foreground: 255 40% 98%;
+    --border: 251 22% 88%;
+    --input: 252 27% 94%;
+    --ring: 256 31% 47%;
+    --chart-1: 256 31% 47%;
+    --chart-2: 341 56% 66%;
+    --chart-3: 165 30% 44%;
+    --chart-4: 38 65% 55%;
+    --chart-5: 217 44% 66%;
+    --sidebar: 252 30% 95%;
+    --sidebar-foreground: 251 21% 22%;
+    --sidebar-primary: 256 31% 47%;
+    --sidebar-primary-foreground: 255 40% 98%;
+    --sidebar-accent: 252 30% 94%;
+    --sidebar-accent-foreground: 251 21% 22%;
+    --sidebar-border: 251 22% 88%;
+    --sidebar-ring: 256 31% 47%;
     --font-sans:
       Geist, 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
       Cantarell, sans-serif;
@@ -76,38 +79,38 @@
   }
 
   .dark {
-    --background: #1a1823;
-    --foreground: #e0ddef;
-    --card: #232030;
-    --card-foreground: #e0ddef;
-    --popover: #232030;
-    --popover-foreground: #e0ddef;
-    --primary: #a995c9;
-    --primary-foreground: #1a1823;
-    --secondary: #5a5370;
-    --secondary-foreground: #e0ddef;
-    --muted: #242031;
-    --muted-foreground: #a09aad;
-    --accent: #372e3f;
-    --accent-foreground: #f2b8c6;
-    --destructive: #e57373;
-    --destructive-foreground: #1a1823;
-    --border: #302c40;
-    --input: #2a273a;
-    --ring: #a995c9;
-    --chart-1: #a995c9;
-    --chart-2: #f2b8c6;
-    --chart-3: #77b8a1;
-    --chart-4: #f0c88d;
-    --chart-5: #a0bbe3;
-    --sidebar: #16141e;
-    --sidebar-foreground: #e0ddef;
-    --sidebar-primary: #a995c9;
-    --sidebar-primary-foreground: #1a1823;
-    --sidebar-accent: #372e3f;
-    --sidebar-accent-foreground: #f2b8c6;
-    --sidebar-border: #2a273a;
-    --sidebar-ring: #a995c9;
+    --background: 251 24% 10%;
+    --foreground: 252 30% 93%;
+    --card: 251 24% 13%;
+    --card-foreground: 252 30% 93%;
+    --popover: 251 24% 13%;
+    --popover-foreground: 252 30% 93%;
+    --primary: 258 55% 78%;
+    --primary-foreground: 251 30% 12%;
+    --secondary: 251 20% 20%;
+    --secondary-foreground: 252 25% 88%;
+    --muted: 251 20% 17%;
+    --muted-foreground: 250 15% 70%;
+    --accent: 337 65% 76%;
+    --accent-foreground: 340 65% 14%;
+    --destructive: 0 72% 63%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 251 20% 26%;
+    --input: 251 20% 20%;
+    --ring: 258 55% 78%;
+    --chart-1: 258 55% 78%;
+    --chart-2: 337 65% 76%;
+    --chart-3: 163 35% 60%;
+    --chart-4: 40 65% 65%;
+    --chart-5: 220 45% 75%;
+    --sidebar: 251 24% 9%;
+    --sidebar-foreground: 252 30% 93%;
+    --sidebar-primary: 258 55% 78%;
+    --sidebar-primary-foreground: 251 30% 12%;
+    --sidebar-accent: 251 20% 17%;
+    --sidebar-accent-foreground: 252 30% 93%;
+    --sidebar-border: 251 20% 26%;
+    --sidebar-ring: 258 55% 78%;
     --font-sans:
       Geist, 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
       Cantarell, sans-serif;
@@ -130,8 +133,8 @@
     border-color: var(--border);
   }
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     font-family: var(--font-sans);
   }
 
@@ -157,7 +160,7 @@
   input:focus-visible,
   select:focus-visible,
   textarea:focus-visible {
-    outline: 2px solid var(--ring);
+    outline: 2px solid hsl(var(--ring));
     outline-offset: 2px;
     border-radius: var(--radius);
   }
@@ -167,8 +170,8 @@
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--primary);
-    color: var(--primary-foreground);
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
     padding: 8px 16px;
     text-decoration: none;
     z-index: 100;
@@ -187,8 +190,7 @@
   .print\:hidden,
   .skip-link,
   button:not(.print\:block),
-  nav,
-  .navigation-pills {
+  nav {
     display: none !important;
   }
 
@@ -297,23 +299,23 @@
 
 @layer utilities {
   .theme-surface {
-    background: var(--card);
-    border: 1px solid var(--border);
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
     box-shadow: var(--shadow);
   }
 
-  /* Left-rail jump menu: thin themed scrollbar for short viewports */
+  /* Left-rail jump menu and theme menu: thin themed scrollbar for short viewports */
   .toc-scroll {
     scrollbar-width: thin;
-    scrollbar-color: var(--muted) transparent;
+    scrollbar-color: hsl(var(--muted)) transparent;
   }
 
   .theme-gradient-primary {
-    background: linear-gradient(135deg, var(--primary), var(--chart-2));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--chart-2)));
   }
 
   .theme-gradient-secondary {
-    background: linear-gradient(135deg, var(--chart-3), var(--chart-4));
+    background: linear-gradient(135deg, hsl(var(--chart-3)), hsl(var(--chart-4)));
   }
 
   .theme-gradient-success {
@@ -327,27 +329,65 @@
   .theme-button {
     @apply theme-surface rounded-[var(--radius)] px-6 py-3 font-medium transition-all duration-300;
     @apply hover:scale-105 hover:shadow-lg active:scale-95;
-    background: var(--card);
-    color: var(--card-foreground);
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
   }
 
   .theme-card {
     @apply theme-surface rounded-[var(--radius)] p-6 transition-all duration-300;
     @apply hover:scale-[1.02];
-    background: var(--card);
-    color: var(--card-foreground);
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
     box-shadow: var(--shadow-lg);
   }
 
   .theme-input {
     @apply rounded-[var(--radius)] px-4 py-3 border focus:ring-2 transition-all duration-300;
-    background: var(--card);
-    color: var(--card-foreground);
-    border-color: var(--border);
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border-color: hsl(var(--border));
   }
 
   .theme-input:focus {
-    ring-color: var(--ring);
-    border-color: var(--ring);
+    --tw-ring-color: hsl(var(--ring));
+    border-color: hsl(var(--ring));
   }
+}
+
+/* Basic preset: plain early-web presentation. The engine sets this attribute
+   only while the Basic theme is active. */
+html[data-basic-theme] * {
+  border-radius: 0 !important;
+}
+
+html[data-basic-theme] *,
+html[data-basic-theme] *::before,
+html[data-basic-theme] *::after {
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+html[data-basic-theme] body {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Gradient chips get a solid primary fill so their white icons stay visible
+   once background images are stripped. */
+html[data-basic-theme] [class*='theme-gradient'] {
+  background-color: hsl(var(--primary)) !important;
+}
+
+/* Classic early-web link colours inside the page body, fixed in both modes. */
+html[data-basic-theme] main a:not([role='button']):not([class*='bg-']) {
+  text-decoration: underline;
+  color: #0645ad;
+}
+
+html[data-basic-theme] main a:not([role='button']):not([class*='bg-']):visited {
+  color: #551a8b;
 }

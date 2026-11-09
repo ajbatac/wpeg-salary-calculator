@@ -4,6 +4,7 @@ import SalaryForm from '@/react-app/components/SalaryForm';
 import SalaryBreakdownComponent from '@/react-app/components/SalaryBreakdown';
 import DarkModeToggle from '@/react-app/components/DarkModeToggle';
 import ShareButton from '@/react-app/components/ShareButton';
+import ColorThemeSelector from '@/react-app/components/ColorThemeSelector';
 import TableOfContents from '@/react-app/components/TableOfContents';
 import { SalaryInput, SalaryBreakdown, DEFAULT_SALARY_INPUT } from '@/shared/types';
 import {
@@ -159,7 +160,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--background)' }}>
+    <div className="min-h-screen" style={{ background: 'hsl(var(--background))' }}>
       {/* Skip to main content link for keyboard navigation */}
       <a href="#main-content" className="skip-link">
         Skip to main content
@@ -187,6 +188,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-3 print:hidden">
               {breakdown && <ShareButton breakdown={breakdown} />}
+              <ColorThemeSelector />
               <DarkModeToggle />
             </div>
           </div>
@@ -249,7 +251,7 @@ export default function Home() {
                   <div>
                     <h3 className="text-xl font-bold text-primary font-serif">2026 Tax Rates Used</h3>
                     <p className="text-sm text-foreground/80">
-                      High-contrast cards make it easier to skim each bracket at a glance.
+                      Rates effective January 1, 2026, indexed by the 2.0% CRA factor.
                     </p>
                   </div>
                 </div>
@@ -268,7 +270,7 @@ export default function Home() {
                         href={CRA_TAX_BRACKETS_URL}
                         target="_blank"
                         rel="nofollow noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/70 hover:text-primary hover:underline"
+                        className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/80 hover:text-primary hover:underline"
                       >
                         CRA 2026 <ExternalLink className="w-3 h-3" />
                       </a>
@@ -301,7 +303,7 @@ export default function Home() {
                           href={MANITOBA_TAX_RATES_URL}
                           target="_blank"
                           rel="nofollow noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/70 hover:text-primary hover:underline"
+                          className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/80 hover:text-primary hover:underline"
                         >
                           MB Finance <ExternalLink className="w-3 h-3" />
                         </a>
