@@ -60,38 +60,38 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
     {
       label: 'Federal Tax',
       amount: breakdown.federalTax,
-      color: 'bg-red-500/20 text-red-400 border-red-500/20',
+      color: 'bg-red-500/20 text-red-700 dark:text-red-400 border-red-500/20',
     },
     {
       label: 'Manitoba Provincial Tax',
       amount: breakdown.provincialTax,
-      color: 'bg-orange-500/20 text-orange-400 border-orange-500/20',
+      color: 'bg-orange-500/20 text-orange-700 dark:text-orange-400 border-orange-500/20',
     },
     {
       label: 'CPP Contributions',
       amount: breakdown.cpp,
-      color: 'bg-blue-500/20 text-blue-400 border-blue-500/20',
+      color: 'bg-blue-500/20 text-blue-700 dark:text-blue-400 border-blue-500/20',
     },
     ...(breakdown.cpp2 > 0
       ? [
           {
             label: 'CPP2 (Enhanced)',
             amount: breakdown.cpp2,
-            color: 'bg-blue-500/20 text-blue-400 border-blue-500/20',
+            color: 'bg-blue-500/20 text-blue-700 dark:text-blue-400 border-blue-500/20',
           },
         ]
       : []),
     {
       label: 'EI Premiums',
       amount: breakdown.ei,
-      color: 'bg-green-500/20 text-green-400 border-green-500/20',
+      color: 'bg-green-500/20 text-green-700 dark:text-green-400 border-green-500/20',
     },
     ...(breakdown.rrsp > 0
       ? [
           {
             label: 'RRSP Contributions',
             amount: breakdown.rrsp,
-            color: 'bg-purple-500/20 text-purple-400 border-purple-500/20',
+            color: 'bg-purple-500/20 text-purple-700 dark:text-purple-400 border-purple-500/20',
           },
         ]
       : []),
@@ -100,7 +100,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
           {
             label: 'Union Dues',
             amount: breakdown.unionDues,
-            color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/20',
+            color: 'bg-yellow-500/20 text-yellow-800 dark:text-yellow-400 border-yellow-500/20',
           },
         ]
       : []),
@@ -109,7 +109,7 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
           {
             label: 'Other Deductions',
             amount: breakdown.otherDeductions,
-            color: 'bg-gray-500/20 text-gray-400 border-gray-500/20',
+            color: 'bg-gray-500/20 text-gray-700 dark:text-gray-400 border-gray-500/20',
           },
         ]
       : []),
@@ -162,7 +162,9 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
             <h3 className="text-lg font-semibold text-foreground font-sans">Net Take-Home</h3>
           </div>
           <div className="space-y-2">
-            <p className="text-3xl font-bold text-green-400">{formatCurrency(breakdown.netPerPeriod)}</p>
+            <p className="text-3xl font-bold text-green-700 dark:text-green-400">
+              {formatCurrency(breakdown.netPerPeriod)}
+            </p>
             <p className="text-sm text-muted-foreground">{formatPayFrequency(breakdown.payFrequency)}</p>
             <p className="text-sm text-muted-foreground">{formatCurrency(breakdown.netAnnual)} annually</p>
           </div>
@@ -189,7 +191,9 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
           </div>
           <div className="text-center p-4 theme-surface rounded-[var(--radius)] border border-border">
             <p className="text-sm text-muted-foreground">Net Rate</p>
-            <p className="text-2xl font-bold text-green-400">{(100 - totalDeductionRate).toFixed(1)}%</p>
+            <p className="text-2xl font-bold text-green-700 dark:text-green-400">
+              {(100 - totalDeductionRate).toFixed(1)}%
+            </p>
           </div>
         </div>
       </div>
@@ -223,8 +227,10 @@ export default function SalaryBreakdownComponent({ breakdown }: SalaryBreakdownP
 
           {/* Total Deductions */}
           <div className="flex items-center justify-between py-4 px-4 rounded-[var(--radius)] bg-red-500/20 border-2 border-red-500/30 font-bold backdrop-blur-sm">
-            <span className="text-red-400">Total Deductions</span>
-            <span className="text-red-400 text-lg">{formatCurrency(breakdown.totalDeductions)}</span>
+            <span className="text-red-700 dark:text-red-400">Total Deductions</span>
+            <span className="text-red-700 dark:text-red-400 text-lg">
+              {formatCurrency(breakdown.totalDeductions)}
+            </span>
           </div>
         </div>
       </div>

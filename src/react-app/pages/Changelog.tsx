@@ -117,7 +117,7 @@ export default function ChangelogPage() {
                   {release.version}
                 </span>
                 {release.isLatest && (
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold border bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/30">
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold border bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/30">
                     Latest
                   </span>
                 )}

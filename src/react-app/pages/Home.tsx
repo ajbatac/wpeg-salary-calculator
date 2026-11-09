@@ -40,7 +40,7 @@ const payrollContributions = [
     rate: '5.95%',
     description: 'On earnings $3,500 – $74,600',
     accentClass: 'from-blue-500/20 to-transparent',
-    textClass: 'text-blue-500',
+    textClass: 'text-blue-700 dark:text-blue-500',
     dotClass: 'bg-blue-500',
   },
   {
@@ -48,7 +48,7 @@ const payrollContributions = [
     rate: '4.00%',
     description: 'On earnings $74,600 – $85,000',
     accentClass: 'from-blue-500/20 to-transparent',
-    textClass: 'text-blue-500',
+    textClass: 'text-blue-700 dark:text-blue-500',
     dotClass: 'bg-blue-500',
   },
   {
@@ -56,7 +56,7 @@ const payrollContributions = [
     rate: '1.63%',
     description: 'On earnings up to $68,900',
     accentClass: 'from-green-500/20 to-transparent',
-    textClass: 'text-green-500',
+    textClass: 'text-green-700 dark:text-green-500',
     dotClass: 'bg-green-500',
   },
 ];
@@ -217,21 +217,21 @@ export default function Home() {
             </a>
             <a
               href="#calculator"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 hover:bg-green-500/20 text-green-600 dark:text-green-400 border border-green-500/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 hover:bg-green-500/20 text-green-700 dark:text-green-400 border border-green-500/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
             >
               <Calculator className="w-4 h-4" />
               Calculator
             </a>
             <a
               href="#breakdown"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border border-blue-500/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 hover:bg-blue-500/20 text-blue-700 dark:text-blue-400 border border-blue-500/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
             >
               <TrendingDown className="w-4 h-4" />
               Breakdown
             </a>
             <a
               href="#coffee-coin"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 backdrop-blur-sm"
             >
               <DollarSign className="w-4 h-4" />
               Coffee Coin
@@ -283,7 +283,9 @@ export default function Home() {
                           className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
                         >
                           <span className="text-base font-semibold text-foreground">{bracket.range}</span>
-                          <span className="text-2xl font-bold text-red-500">{bracket.rate}</span>
+                          <span className="text-2xl font-bold text-red-600 dark:text-red-500">
+                            {bracket.rate}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -316,7 +318,9 @@ export default function Home() {
                             className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
                           >
                             <span className="text-base font-semibold text-foreground">{bracket.range}</span>
-                            <span className="text-2xl font-bold text-orange-500">{bracket.rate}</span>
+                            <span className="text-2xl font-bold text-orange-600 dark:text-orange-500">
+                              {bracket.rate}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -598,7 +602,7 @@ export default function Home() {
                   <h3 className="text-2xl font-bold text-amber-700 dark:text-amber-300 font-serif">
                     Coffee Coin
                   </h3>
-                  <p className="text-sm text-amber-600 dark:text-amber-400">
+                  <p className="text-sm text-amber-700 dark:text-amber-400">
                     Putting your CPP contribution into perspective
                   </p>
                 </div>
@@ -608,13 +612,13 @@ export default function Home() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-amber-700 dark:text-amber-300">$3.53</div>
-                    <div className="text-sm text-amber-600 dark:text-amber-400">Average cappuccino price</div>
+                    <div className="text-sm text-amber-700 dark:text-amber-400">Average cappuccino price</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-amber-700 dark:text-amber-300">
                       {formatCurrency(cppAmount)}
                     </div>
-                    <div className="text-sm text-amber-600 dark:text-amber-400">
+                    <div className="text-sm text-amber-700 dark:text-amber-400">
                       Your annual CPP contribution
                     </div>
                   </div>
@@ -622,7 +626,7 @@ export default function Home() {
                     <div className="text-3xl font-bold text-amber-700 dark:text-amber-300">
                       {cappuccinoCount.toLocaleString()}
                     </div>
-                    <div className="text-sm text-amber-600 dark:text-amber-400">Cappuccinos per year</div>
+                    <div className="text-sm text-amber-700 dark:text-amber-400">Cappuccinos per year</div>
                   </div>
                 </div>
 
@@ -634,7 +638,7 @@ export default function Home() {
                     </strong>{' '}
                     every single day of the year
                   </p>
-                  <p className="text-sm text-amber-600 dark:text-amber-400 mt-2">
+                  <p className="text-sm text-amber-700 dark:text-amber-400 mt-2">
                     With enough change left over for a pastry on Fridays! ☕️
                   </p>
                 </div>
