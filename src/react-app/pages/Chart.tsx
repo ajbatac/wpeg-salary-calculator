@@ -136,14 +136,19 @@ function MoneyFlowDoughnut({ breakdown }: ChartPageProps) {
   const netRate = Math.round((breakdown.netAnnual / breakdown.grossAnnual) * 100);
   const options: ChartOptions<'doughnut'> & { netRate?: number } = {
     netRate,
+    responsive: true,
+    maintainAspectRatio: false,
     cutout: '62%',
     plugins: {
       legend: {
-        position: 'right',
+        // Bottom legend lets the doughnut own the full card width and sit
+        // dead-centre (a right legend squeezes it into the left half).
+        position: 'bottom',
         labels: {
           color: cssHsl('--foreground'),
           usePointStyle: true,
           boxWidth: 8,
+          padding: 16,
           font: { family: 'Inter, sans-serif', size: 12 },
         },
       },
