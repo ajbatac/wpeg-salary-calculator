@@ -197,7 +197,7 @@ export default function Home() {
               <div>
                 <h1 className="text-lg sm:text-2xl lg:text-3xl tracking-tight font-bold text-foreground font-serif">
                   <a href="https://portal.wpeg.app/" target="_blank" rel="noopener noreferrer">
-                    WPEG: Winnipeg Salary Calculator 2026
+                    Winnipeg Salary Calculator 2026-2027
                   </a>
                 </h1>
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -227,31 +227,39 @@ export default function Home() {
         </span>
 
         <div className="relative max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-14 xl:py-20">
-          <h2 className="text-4xl sm:text-5xl xl:text-6xl font-bold font-serif tracking-tight leading-[1.05] mb-4 max-w-4xl [text-wrap:balance]">
-            Calculate Your Net Take-Home Pay
-          </h2>
-          <p className="text-lg sm:text-xl max-w-3xl opacity-70 mb-8">
-            Get accurate calculations for your salary after federal and Manitoba provincial taxes, CPP
-            contributions, and EI premiums based on current 2026 tax rates.
-          </p>
+          <div className="grid grid-cols-1 xl:grid-cols-[1.15fr_1fr] xl:gap-16 items-start">
+            <div>
+              <h2 className="text-4xl sm:text-5xl xl:text-6xl font-bold font-serif tracking-tight leading-[1.05] mb-4 max-w-2xl [text-wrap:balance]">
+                Calculate Your Net Take-Home Pay
+              </h2>
+              <p className="text-lg sm:text-xl max-w-2xl opacity-70 mb-8">
+                Get accurate calculations for your salary after federal and Manitoba provincial taxes, CPP
+                contributions, and EI premiums based on current 2026 tax rates.
+              </p>
 
-          {/* Navigation Pills (the left rail takes over on xl+ screens) */}
-          <div className="flex flex-wrap gap-3 max-w-2xl xl:hidden">
-            {[
-              { href: '#tax-rates', Icon: Info, label: 'Tax Rates' },
-              { href: '#calculator', Icon: Calculator, label: 'Calculator' },
-              { href: '#breakdown', Icon: TrendingDown, label: 'Breakdown' },
-              { href: '#coffee-coin', Icon: DollarSign, label: 'Coffee Coin' },
-            ].map(({ href, Icon, label }) => (
-              <a
-                key={href}
-                href={href}
-                className="inline-flex items-center gap-2 px-4 py-2 border border-background/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 hover:bg-background/10"
-              >
-                <Icon className="w-4 h-4" />
-                {label}
-              </a>
-            ))}
+              {/* Navigation Pills (the left rail takes over on xl+ screens) */}
+              <div className="flex flex-wrap gap-3 max-w-2xl xl:hidden">
+                {[
+                  { href: '#calculator', Icon: Calculator, label: 'Calculator' },
+                  { href: '#tax-rates', Icon: Info, label: 'Tax Rates' },
+                  { href: '#breakdown', Icon: TrendingDown, label: 'Breakdown' },
+                  { href: '#coffee-coin', Icon: DollarSign, label: 'Coffee Coin' },
+                ].map(({ href, Icon, label }) => (
+                  <a
+                    key={href}
+                    href={href}
+                    className="inline-flex items-center gap-2 px-4 py-2 border border-background/30 rounded-full text-base font-medium transition-all duration-300 hover:scale-105 hover:bg-background/10"
+                  >
+                    <Icon className="w-4 h-4" />
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* The form lives in the masthead so visitors can start
+                calculating the moment the page opens. */}
+            <SalaryForm onInputChange={setSalaryInput} />
           </div>
 
           {/* Live stat strip: computed straight from the current input (no debounce),
@@ -299,120 +307,10 @@ export default function Home() {
         <div className="xl:flex xl:items-start xl:gap-8">
           <TableOfContents />
           <div className="flex-1 min-w-0">
-            {/* Tax Information Banner */}
-            <div className="mb-12 space-y-6" id="tax-rates">
-              {/* 2026 Tax Rates */}
-              <div className="theme-card border border-border">
-                <div className="flex items-start gap-3 mb-6">
-                  <Info className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-2xl xl:text-3xl font-bold text-primary font-serif">
-                      2026 Tax Rates Used
-                    </h3>
-                    <p className="text-sm text-foreground/80">
-                      Rates effective January 1, 2026, indexed by the 2.0% CRA factor.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* Federal Tax Rates */}
-                  <section className="space-y-4 p-4 rounded-2xl bg-card border border-border shadow-sm">
-                    <header className="flex items-center justify-between border-b border-border/50 pb-3">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 rounded-full bg-red-500" />
-                        <h4 className="text-xl font-semibold text-foreground font-serif">
-                          Federal Tax Brackets
-                        </h4>
-                      </div>
-                      <a
-                        href={CRA_TAX_BRACKETS_URL}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/90 hover:text-primary hover:underline"
-                      >
-                        CRA 2026 <ExternalLink className="w-3 h-3" />
-                      </a>
-                    </header>
-                    <div className="space-y-3">
-                      {federalTaxBrackets.map((bracket) => (
-                        <div
-                          key={bracket.range}
-                          className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
-                        >
-                          <span className="text-base font-semibold text-foreground">{bracket.range}</span>
-                          <span className="text-3xl font-bold text-red-600 dark:text-red-500">
-                            {bracket.rate}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </section>
-
-                  {/* Provincial & Other Rates */}
-                  <div className="space-y-4">
-                    {/* Manitoba Tax Rates */}
-                    <section className="space-y-4 p-4 rounded-2xl bg-card border border-border shadow-sm">
-                      <header className="flex items-center justify-between border-b border-border/50 pb-3">
-                        <div className="flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full bg-orange-500" />
-                          <h4 className="text-xl font-semibold text-foreground font-serif">
-                            Manitoba Provincial Tax
-                          </h4>
-                        </div>
-                        <a
-                          href={MANITOBA_TAX_RATES_URL}
-                          target="_blank"
-                          rel="nofollow noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/90 hover:text-primary hover:underline"
-                        >
-                          MB Finance <ExternalLink className="w-3 h-3" />
-                        </a>
-                      </header>
-                      <div className="space-y-3">
-                        {manitobaTaxBrackets.map((bracket) => (
-                          <div
-                            key={bracket.range}
-                            className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
-                          >
-                            <span className="text-base font-semibold text-foreground">{bracket.range}</span>
-                            <span className="text-3xl font-bold text-orange-600 dark:text-orange-500">
-                              {bracket.rate}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </section>
-
-                    {/* CPP & EI Rates */}
-                    <div className="grid grid-cols-1 gap-3">
-                      {payrollContributions.map((item) => (
-                        <div
-                          key={item.label}
-                          className={`rounded-2xl border border-border bg-gradient-to-r ${item.accentClass} bg-card px-4 py-4 shadow-sm`}
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <span className={`w-3 h-3 rounded-full ${item.dotClass}`} />
-                              <span className="text-xl font-semibold text-foreground">{item.label}</span>
-                            </div>
-                            <span className={`text-3xl font-bold ${item.textClass}`}>{item.rate}</span>
-                          </div>
-                          <p className="text-base text-foreground/80 mt-2">{item.description}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Calculator Layout */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" id="calculator">
               {/* Input Form */}
               <div className="space-y-8">
-                <SalaryForm onInputChange={setSalaryInput} />
-
                 {/* Rent-to-Income Snapshot */}
                 <div className="theme-card border border-primary/20">
                   <div className="flex items-center gap-3 mb-4">
@@ -584,6 +482,114 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Tax Information Banner */}
+            <div className="mb-12 space-y-6" id="tax-rates">
+              {/* 2026 Tax Rates */}
+              <div className="theme-card border border-border">
+                <div className="flex items-start gap-3 mb-6">
+                  <Info className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-2xl xl:text-3xl font-bold text-primary font-serif">
+                      2026 Tax Rates Used
+                    </h3>
+                    <p className="text-sm text-foreground/80">
+                      Rates effective January 1, 2026, indexed by the 2.0% CRA factor.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  {/* Federal Tax Rates */}
+                  <section className="space-y-4 p-4 rounded-2xl bg-card border border-border shadow-sm">
+                    <header className="flex items-center justify-between border-b border-border/50 pb-3">
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-red-500" />
+                        <h4 className="text-xl font-semibold text-foreground font-serif">
+                          Federal Tax Brackets
+                        </h4>
+                      </div>
+                      <a
+                        href={CRA_TAX_BRACKETS_URL}
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/90 hover:text-primary hover:underline"
+                      >
+                        CRA 2026 <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </header>
+                    <div className="space-y-3">
+                      {federalTaxBrackets.map((bracket) => (
+                        <div
+                          key={bracket.range}
+                          className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
+                        >
+                          <span className="text-base font-semibold text-foreground">{bracket.range}</span>
+                          <span className="text-3xl font-bold text-red-600 dark:text-red-500">
+                            {bracket.rate}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+
+                  {/* Provincial & Other Rates */}
+                  <div className="space-y-4">
+                    {/* Manitoba Tax Rates */}
+                    <section className="space-y-4 p-4 rounded-2xl bg-card border border-border shadow-sm">
+                      <header className="flex items-center justify-between border-b border-border/50 pb-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-3 h-3 rounded-full bg-orange-500" />
+                          <h4 className="text-xl font-semibold text-foreground font-serif">
+                            Manitoba Provincial Tax
+                          </h4>
+                        </div>
+                        <a
+                          href={MANITOBA_TAX_RATES_URL}
+                          target="_blank"
+                          rel="nofollow noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs uppercase tracking-wide text-foreground/90 hover:text-primary hover:underline"
+                        >
+                          MB Finance <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </header>
+                      <div className="space-y-3">
+                        {manitobaTaxBrackets.map((bracket) => (
+                          <div
+                            key={bracket.range}
+                            className="flex items-center justify-between rounded-xl px-4 py-3 bg-background border border-border"
+                          >
+                            <span className="text-base font-semibold text-foreground">{bracket.range}</span>
+                            <span className="text-3xl font-bold text-orange-600 dark:text-orange-500">
+                              {bracket.rate}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+
+                    {/* CPP & EI Rates */}
+                    <div className="grid grid-cols-1 gap-3">
+                      {payrollContributions.map((item) => (
+                        <div
+                          key={item.label}
+                          className={`rounded-2xl border border-border bg-gradient-to-r ${item.accentClass} bg-card px-4 py-4 shadow-sm`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className={`w-3 h-3 rounded-full ${item.dotClass}`} />
+                              <span className="text-xl font-semibold text-foreground">{item.label}</span>
+                            </div>
+                            <span className={`text-3xl font-bold ${item.textClass}`}>{item.rate}</span>
+                          </div>
+                          <p className="text-base text-foreground/80 mt-2">{item.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Footer Information */}
             <div className="mt-12 theme-card" id="important-notes">
               <h3 className="text-2xl font-bold text-foreground font-serif mb-3">Important Notes</h3>
@@ -618,43 +624,6 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Sources & References */}
-            <div className="mt-8 theme-card" id="sources">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-3 theme-gradient-secondary rounded-[var(--radius)] shadow-lg">
-                  <ExternalLink className="w-5 h-5 text-white" />
-                </div>
-                <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif">
-                  Sources & References
-                </h3>
-              </div>
-              <p className="text-sm text-muted-foreground mb-4">
-                Every 2026 rate, bracket, and credit used by this calculator comes from the official
-                government publications below. Last verified November 2026.
-              </p>
-              <ul className="space-y-3">
-                {TAX_SOURCES.map((source) => (
-                  <li
-                    key={source.url}
-                    className="flex items-start gap-3 py-2 px-4 rounded-[var(--radius)] theme-surface border border-border"
-                  >
-                    <ExternalLink className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                    <div>
-                      <a
-                        href={source.url}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        className="font-medium text-primary hover:underline"
-                      >
-                        {source.label}
-                      </a>
-                      <p className="text-sm text-muted-foreground">{source.description}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
             </div>
 
             {/* Coffee Coin Section */}
@@ -763,6 +732,34 @@ export default function Home() {
                   mortgage down payment, or fund major life experiences.
                 </p>
               </div>
+            </div>
+            {/* References: Wikipedia-style citation list, at the very bottom */}
+            <div className="mt-12" id="sources">
+              <h3 className="text-2xl xl:text-3xl font-bold text-foreground font-serif mb-1">References</h3>
+              <div className="h-px bg-border mb-4" aria-hidden="true" />
+              <ol className="space-y-2.5">
+                {TAX_SOURCES.map((source, index) => (
+                  <li key={source.url} className="flex items-start gap-2.5 text-sm leading-relaxed">
+                    <span className="text-primary font-semibold select-none" aria-hidden="true">
+                      [{index + 1}]
+                    </span>
+                    <span>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="nofollow noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        {source.label}
+                      </a>
+                      <span className="text-muted-foreground"> — {source.description}</span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-4 text-xs italic text-muted-foreground">
+                All rates last verified against these publications in November 2026.
+              </p>
             </div>
           </div>
         </div>

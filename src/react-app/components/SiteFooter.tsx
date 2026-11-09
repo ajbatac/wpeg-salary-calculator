@@ -160,7 +160,7 @@ export default function SiteFooter() {
                 links={[
                   { label: 'Salary Calculator', url: '/', internal: true },
                   { label: 'Changelog', url: '/changelog', internal: true },
-                  { label: 'Sources & References', url: '/#sources', internal: true },
+                  { label: 'References', url: '/#sources', internal: true },
                 ]}
               />
               <FooterColumn title="Company" links={COMPANY_LINKS} />

@@ -9,12 +9,12 @@ interface TocEntry {
 
 /** Document-order list of sections the rail can jump to. */
 const ENTRIES: readonly TocEntry[] = [
-  { id: 'tax-rates', label: 'Tax Rates', icon: Info },
   { id: 'calculator', label: 'Calculator', icon: Calculator },
+  { id: 'tax-rates', label: 'Tax Rates', icon: Info },
   { id: 'important-notes', label: 'Important Notes', icon: FileText },
-  { id: 'sources', label: 'Sources', icon: BookOpen },
   { id: 'coffee-coin', label: 'Coffee Coin', icon: CupSoda },
   { id: 'could-buy', label: 'What Deductions Buy', icon: ShoppingBag },
+  { id: 'sources', label: 'References', icon: BookOpen },
 ];
 
 /** Fraction of the viewport from the top that counts as "the reading line". */
