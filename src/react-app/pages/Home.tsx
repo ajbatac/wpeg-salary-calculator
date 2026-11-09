@@ -321,7 +321,7 @@ export default function Home() {
           </div>
           <div className="flex-1 min-w-0">
             {/* Calculator Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" id="calculator">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12" id="calculator">
               {/* Input Form */}
               <div className="space-y-8">
                 {/* Rent-to-Income Snapshot */}
@@ -609,7 +609,7 @@ export default function Home() {
             </div>
 
             {/* Footer Information */}
-            <div className="mt-12 theme-card" id="important-notes">
+            <div className="theme-card" id="important-notes">
               <h3 className="text-2xl font-bold text-foreground font-serif mb-3">Important Notes</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-muted-foreground">
                 <div>
