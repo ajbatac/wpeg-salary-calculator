@@ -74,13 +74,29 @@ export default function ChangelogPage() {
               <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none">
                 <img src="/logo.png" alt="WPEG logo" className="w-10 h-10 object-contain" />
               </div>
+              <span className="text-muted-foreground font-serif text-xl hidden sm:inline" aria-hidden="true">
+                ×
+              </span>
+              <a
+                href="https://portal.wpeg.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 bg-card rounded-[var(--radius)] border border-border hover:border-primary/50 transition-colors hidden sm:flex items-center"
+                aria-label="WPEG.app — part of the WPEG family"
+              >
+                <img
+                  src="/wpeg-logo.png"
+                  alt="WPEG.app — part of the WPEG family"
+                  className="h-6 w-auto object-contain"
+                />
+              </a>
               <div>
-                <h1 className="text-2xl font-bold text-foreground font-serif">
+                <h1 className="text-lg sm:text-2xl font-bold text-foreground font-serif">
                   <Link to="/">WPEG Salary Calculator</Link>
                 </h1>
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
                   <MapPin className="w-4 h-4" />
-                  <span>Manitoba, Canada</span>
+                  <span>Part of the WPEG family · Manitoba, Canada</span>
                 </div>
               </div>
             </div>

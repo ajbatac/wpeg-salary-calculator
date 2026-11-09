@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
 import { MapPin, Calculator, Info, TrendingDown, DollarSign, ExternalLink } from 'lucide-react';
 import SalaryForm from '@/react-app/components/SalaryForm';
 import SalaryBreakdownComponent from '@/react-app/components/SalaryBreakdown';
@@ -175,15 +174,31 @@ export default function Home() {
               <div className="p-2 bg-card rounded-[var(--radius)] border border-border shadow-lg print:shadow-none">
                 <img src="/logo.png" alt="WPEG logo" className="w-10 h-10 object-contain" />
               </div>
+              <span className="text-muted-foreground font-serif text-xl hidden sm:inline" aria-hidden="true">
+                ×
+              </span>
+              <a
+                href="https://portal.wpeg.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 bg-card rounded-[var(--radius)] border border-border hover:border-primary/50 transition-colors hidden sm:flex items-center"
+                aria-label="WPEG.app — part of the WPEG family"
+              >
+                <img
+                  src="/wpeg-logo.png"
+                  alt="WPEG.app — part of the WPEG family"
+                  className="h-6 w-auto object-contain"
+                />
+              </a>
               <div>
-                <h1 className="text-2xl font-bold text-foreground font-serif">
+                <h1 className="text-lg sm:text-2xl font-bold text-foreground font-serif">
                   <a href="https://portal.wpeg.app/" target="_blank" rel="noopener noreferrer">
                     WPEG: Winnipeg Salary Calculator 2026
                   </a>
                 </h1>
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
                   <MapPin className="w-4 h-4" />
-                  <span>Manitoba, Canada</span>
+                  <span>Part of the WPEG family · Manitoba, Canada</span>
                 </div>
               </div>
             </div>
@@ -694,24 +709,6 @@ export default function Home() {
                   This puts your annual deductions in perspective: They&apos;re enough to buy a car, cover a
                   mortgage down payment, or fund major life experiences.
                 </p>
-              </div>
-            </div>
-            <div className="mt-12 theme-card border border-blue-400/30 bg-gradient-to-br from-blue-50/50 to-indigo-50/30 dark:from-blue-950/20 dark:to-indigo-950/10">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <a
-                  href="https://portal.wpeg.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline"
-                >
-                  &lt;&lt; Back to WPEG
-                </a>
-                <Link
-                  to="/changelog"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  v1.1.0 · <span className="hover:underline">Changelog</span>
-                </Link>
               </div>
             </div>
           </div>

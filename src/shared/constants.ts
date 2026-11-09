@@ -2,6 +2,11 @@
  * Winnipeg reference figures used across the fun-fact and perspective cards.
  * Single source of truth so the numbers never drift between components.
  */
+
+/** App version shown in the footer; keep in sync with package.json. */
+export const APP_VERSION = 'v1.1.0';
+export const PORTAL_URL = 'https://portal.wpeg.app';
+
 export const AVG_MONTHLY_RENT = 1353;
 export const CAPPUCCINO_PRICE = 3.53;
 export const SMALL_SLURPEE_PRICE = 2;
