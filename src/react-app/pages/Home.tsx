@@ -447,7 +447,7 @@ export default function Home() {
             </div>
 
             {/* Chart CTA for screens without the left rail */}
-            <div className="xl:hidden max-w-md">
+            <div className="xl:hidden max-w-md mx-auto mb-12">
               <ChartSidebarCard input={salaryInput} className="mt-8" />
             </div>
 
