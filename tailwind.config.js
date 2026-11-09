@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  // The app toggles dark mode with a .dark class on <html> (DarkModeToggle);
+  // dark: utilities must follow that class, not the OS color scheme.
+  darkMode: 'class',
   content: ['./index.html', './src/react-app/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {

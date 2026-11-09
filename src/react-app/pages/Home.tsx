@@ -654,7 +654,7 @@ export default function Home() {
                   <h3 className="text-2xl font-bold text-emerald-700 dark:text-emerald-300 font-serif">
                     What Your Deductions Could Buy
                   </h3>
-                  <p className="text-sm text-emerald-600 dark:text-emerald-400">
+                  <p className="text-sm text-emerald-700 dark:text-emerald-400">
                     Here are ten useful products or purchases you could make with{' '}
                     <strong className="text-emerald-700 dark:text-emerald-300">
                       {formatCurrency(totalDeductions)}
@@ -668,7 +668,7 @@ export default function Home() {
                 {couldBuyItems.map((item, index) => (
                   <div
                     key={item.title}
-                    className="bg-white/60 dark:bg-black-950/30 rounded-[var(--radius)] p-4 border border-emerald-100/50 dark:border-emerald-800/30 hover:scale-[1.02] transition-all duration-300"
+                    className="bg-white/60 dark:bg-black/30 rounded-[var(--radius)] p-4 border border-emerald-100/50 dark:border-emerald-800/30 hover:scale-[1.02] transition-all duration-300"
                   >
                     <div className="flex items-start gap-3">
                       <div className="text-2xl mt-1 flex-shrink-0">{item.icon}</div>
@@ -676,7 +676,7 @@ export default function Home() {
                         <h4 className="font-bold text-emerald-800 dark:text-emerald-200 mb-2 font-serif">
                           {index + 1}. {item.title}
                         </h4>
-                        <p className="text-sm text-emerald-600 dark:text-emerald-100 leading-relaxed">
+                        <p className="text-sm text-emerald-700 dark:text-emerald-100 leading-relaxed">
                           {item.description}
                         </p>
                       </div>
