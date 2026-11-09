@@ -331,6 +331,20 @@
     background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--chart-2)));
   }
 
+  /* Gradient text. Self-contained because combining theme-gradient-primary
+     (a background shorthand) with bg-clip-text is source-order dependent —
+     the shorthand resets background-clip and the text renders invisible.
+     Named theme-gradient-* so the Basic theme's solid-fill rescue rule
+     ([class*='theme-gradient']) keeps the glyphs visible when gradients
+     are stripped. */
+  .theme-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--chart-2)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
   .theme-gradient-secondary {
     background: linear-gradient(135deg, hsl(var(--chart-3)), hsl(var(--chart-4)));
   }
@@ -368,6 +382,83 @@
   .theme-input:focus {
     --tw-ring-color: hsl(var(--ring));
     border-color: hsl(var(--ring));
+  }
+
+  /* ── 404 page motion ──────────────────────────────────────────────
+     Purely decorative; disabled by prefers-reduced-motion below, and
+     the Basic theme strips all animation globally via its own rules.
+     Rotation/tilt lives in the separate CSS `rotate` property so the
+     bob keyframes can stay transform-only. */
+  @keyframes wpeg-bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-16px);
+    }
+  }
+
+  @keyframes wpeg-fall {
+    0% {
+      transform: translate3d(0, -12vh, 0) rotate(0deg);
+      opacity: 0;
+    }
+    8%,
+    92% {
+      opacity: var(--wpeg-opacity, 0.4);
+    }
+    100% {
+      transform: translate3d(var(--wpeg-drift, 4vw), 112vh, 0) rotate(300deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes wpeg-drift {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(6vw, -4vh) scale(1.15);
+    }
+    66% {
+      transform: translate(-5vw, 3vh) scale(0.95);
+    }
+  }
+
+  @keyframes wpeg-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .wpeg-bob {
+    animation: wpeg-bob 6s ease-in-out infinite;
+  }
+
+  .wpeg-fall {
+    animation: wpeg-fall linear infinite;
+  }
+
+  .wpeg-drift {
+    animation: wpeg-drift 18s ease-in-out infinite;
+  }
+
+  .wpeg-marquee {
+    animation: wpeg-marquee 36s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wpeg-bob,
+    .wpeg-fall,
+    .wpeg-drift,
+    .wpeg-marquee {
+      animation: none !important;
+    }
   }
 }
 
