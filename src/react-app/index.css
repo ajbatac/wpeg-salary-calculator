@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap');
 
 /* Font fallbacks in case Google Fonts fails */
 @font-face {
-  font-family: 'Geist Fallback';
+  font-family: 'Inter Fallback';
   src: local('Arial'), local('Helvetica'), local('sans-serif');
   font-display: swap;
 }
@@ -61,7 +61,7 @@
     --sidebar-border: 251 22% 88%;
     --sidebar-ring: 256 31% 47%;
     --font-sans:
-      Geist, 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+      Inter, 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
       Cantarell, sans-serif;
     --font-serif: 'Lora', 'Lora Fallback', Georgia, 'Times New Roman', serif;
     --font-mono: 'Fira Code', 'Fira Code Fallback', 'Courier New', Consolas, Monaco, monospace;
@@ -112,7 +112,7 @@
     --sidebar-border: 251 20% 26%;
     --sidebar-ring: 258 55% 78%;
     --font-sans:
-      Geist, 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+      Inter, 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
       Cantarell, sans-serif;
     --font-serif: 'Lora', 'Lora Fallback', Georgia, 'Times New Roman', serif;
     --font-mono: 'Fira Code', 'Fira Code Fallback', 'Courier New', Consolas, Monaco, monospace;
