@@ -17,13 +17,21 @@ import {
   type Plugin,
 } from 'chart.js';
 import { Chart as ReactChart } from 'react-chartjs-2';
-import { MapPin, ArrowLeft, Briefcase, PieChart, LineChart as LineIcon, Trophy } from 'lucide-react';
+import {
+  MapPin,
+  ArrowLeft,
+  ArrowDown,
+  Briefcase,
+  PieChart,
+  LineChart as LineIcon,
+  Trophy,
+} from 'lucide-react';
 import DarkModeToggle from '@/react-app/components/DarkModeToggle';
 import ColorThemeSelector from '@/react-app/components/ColorThemeSelector';
 import { DEFAULT_SALARY_INPUT, SalaryBreakdown } from '@/shared/types';
 import { decodeSalaryInput } from '@/shared/query';
 import { calculateSalary } from '@/react-app/utils/salaryCalculator';
-import { formatCurrency } from '@/react-app/utils/format';
+import { formatCurrency, formatPayFrequency } from '@/react-app/utils/format';
 
 ChartJS.register(
   ArcElement,
@@ -475,38 +483,60 @@ export default function ChartPage() {
       {header}
 
       <main id="main-content" className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 py-10">
-        {/* Intro + headline stats */}
-        <div className="mb-10">
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-serif tracking-tight leading-[1.05] mb-3 [text-wrap:balance]">
-            Your salary, charted.
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mb-6">
-            Every number from your calculation, drawn as living charts — where your money goes, how you stack
-            up, and where you sit on Manitoba's 2026 curve.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            {[
-              { label: 'Gross', value: formatCurrency(breakdown.grossAnnual) },
-              { label: 'Take-home', value: formatCurrency(breakdown.netAnnual) },
-              { label: 'Deductions', value: formatCurrency(breakdown.totalDeductions) },
-            ].map((stat) => (
-              <div key={stat.label} className="px-4 py-2.5 rounded-full bg-card border border-border text-sm">
-                <span className="text-muted-foreground">{stat.label} </span>
-                <strong className="text-foreground tabular-nums">{stat.value}</strong>
-              </div>
-            ))}
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
+        {/* Intro: headline left, the entered salary massive on the right */}
+        <div className="mb-10 flex flex-col xl:flex-row xl:items-end xl:justify-between gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-serif tracking-tight leading-[1.05] mb-3 [text-wrap:balance]">
+              Your salary, charted.
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              Every number from your calculation, drawn as living charts — where your money goes, how you
+              stack up, and where you sit on Manitoba's 2026 curve.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {[
+                { label: 'Gross', value: formatCurrency(breakdown.grossAnnual) },
+                { label: 'Take-home', value: formatCurrency(breakdown.netAnnual) },
+                { label: 'Deductions', value: formatCurrency(breakdown.totalDeductions) },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="px-4 py-2.5 rounded-full bg-card border border-border text-sm"
+                >
+                  <span className="text-muted-foreground">{stat.label} </span>
+                  <strong className="text-foreground tabular-nums">{stat.value}</strong>
+                </div>
+              ))}
+              <Link
+                to="/"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+                Adjust my salary
+              </Link>
+            </div>
+          </div>
+
+          {/* The number they entered, massive */}
+          <div className="xl:text-right">
+            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+              Your entry · {formatPayFrequency(input.payFrequency)}
+            </p>
+            <p className="text-6xl sm:text-7xl xl:text-8xl font-bold tabular-nums tracking-tight text-foreground leading-none">
+              {formatCurrency(input.grossSalary)}
+            </p>
+            <a
+              href="#charts"
+              className="mt-3 inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
             >
-              <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-              Adjust my salary
-            </Link>
+              Jump to chart
+              <ArrowDown className="w-3 h-3" aria-hidden="true" />
+            </a>
           </div>
         </div>
 
         {/* Charts */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6" id="charts">
           <section className="theme-card">
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 theme-gradient-primary rounded-[var(--radius)] shadow-lg">
