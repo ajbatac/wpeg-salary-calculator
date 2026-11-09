@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { Calculator, DollarSign, Calendar, Briefcase, Plus, Minus } from 'lucide-react';
 import { SalaryInput, PayFrequency, EmploymentType, DEFAULT_SALARY_INPUT } from '@/shared/types';
 
 interface SalaryFormProps {
   onInputChange: (input: SalaryInput) => void;
+  /** Fired on submit (button click or Enter) — the parent decides what happens next. */
+  onSubmitInput?: (input: SalaryInput) => void;
 }
 
 const NUMERIC_FIELDS: ReadonlySet<keyof SalaryInput> = new Set([
@@ -17,7 +19,7 @@ const NUMERIC_FIELDS: ReadonlySet<keyof SalaryInput> = new Set([
 /** Parses raw input into a finite, non-negative number (empty or invalid -> 0). */
 const parseAmount = (raw: string): number => Math.max(0, parseFloat(raw) || 0);
 
-export default function SalaryForm({ onInputChange }: SalaryFormProps) {
+export default function SalaryForm({ onInputChange, onSubmitInput }: SalaryFormProps) {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [input, setInput] = useState<SalaryInput>(DEFAULT_SALARY_INPUT);
 
@@ -28,8 +30,14 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
     onInputChange(newInput);
   };
 
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onInputChange(input);
+    onSubmitInput?.(input);
+  };
+
   return (
-    <div className="theme-card">
+    <form className="theme-card" onSubmit={handleSubmit} aria-label="Salary information">
       <div className="flex items-center gap-3 mb-6">
         <div className="p-3 theme-gradient-primary rounded-[var(--radius)] shadow-lg">
           <Calculator className="w-6 h-6 text-white" />
@@ -189,7 +197,17 @@ export default function SalaryForm({ onInputChange }: SalaryFormProps) {
             </div>
           </div>
         )}
+
+        {/* The submit button people look for. The math is already live,
+            but the click gives the action a name and lands you on the answer. */}
+        <button
+          type="submit"
+          className="w-full flex items-center justify-center gap-2 rounded-[var(--radius)] bg-primary px-6 py-3.5 text-base font-semibold text-primary-foreground transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-95"
+        >
+          <Calculator className="w-5 h-5" aria-hidden="true" />
+          Calculate Take-Home Pay
+        </button>
       </div>
-    </div>
+    </form>
   );
 }
